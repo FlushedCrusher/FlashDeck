@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Flash Deck v 0.0.1">
+    <meta name="author" content="Daniel J. Montanez">
+    
+    <title>Flash Deck v 0.0.1</title>
+
+    <!--
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+    -->
+
+</head>
+
+<body>
+    <h1>Flash Deck v 1.0</h1>
+</body>
+
+<script type="text/javascript" src="../js/Card.js"></script>
+<script type="text/javascript" src="../js/Deck.js"></script>
+    
+<script type="text/javascript">
+    var myCards = [
+        {
+            phrase      : "a phrase",
+            definition  : "a definition"
+        },{
+            phrase      : "a phrase",
+            definition  : "a definition"
+        },{
+            phrase      : "a phrase",
+            definition  : "a definition"
+        },{
+            phrase      : "a phrase",
+            definition  : "a definition"
+        },{
+            phrase      : "a phrase",
+            definition  : "a definition"
+        },{
+            phrase      : "a phrase",
+            definition  : "a definition"
+        },{
+            phrase      : "a phrase",
+            definition  : "a definition"
+        },{
+            phrase      : "a phrase",
+            definition  : "a definition"
+        },{
+            phrase      : "a phrase",
+            definition  : "a definition"
+        },{
+            phrase      : "a phrase",
+            definition  : "a definition"
+        }
+    ];
+    
+    var myDeck = new Deck();
+    
+    myCards.forEach(function( card ) {
+        myDeck.addCard( new Card(card.phrase, card.definition));
+    });
+    
+    console.log(myDeck.getCards());
+</script>
+
+</html>
