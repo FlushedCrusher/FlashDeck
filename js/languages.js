@@ -72,19 +72,3 @@ var langs = [
     ['日本語',               ['ja-JP']],
     ['Lingua latīna',       ['la']]
 ];
-
-// Reference to language selection element <select>
-var select_language = document.getElementById("select_language");
-
-// Populate the language select options
-var i = 0;
-langs.forEach(function() {
-    select_language.options[i] = new Option(langs[i][0], i);
-    i++;
-});
-
-// Set default language to english
-select_language.selectedIndex = 6;
-updateCountry();
-select_dialect.selectedIndex = 6;
-showInfo('info_start');
