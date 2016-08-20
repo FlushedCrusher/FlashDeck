@@ -13,13 +13,28 @@
 
 <body>
     <h1 class="center" id="headline">Flash Deck v 0.0.1</h1>
-        
-    <div class="right">
-        <button id="start_button" onclick="startButton(event)">
-        <img id="start_img" src="../images/mic.gif" alt="Start"></button>
-    </div>
+    
+    
     
     <div class="center">
+        <div>
+            <table class="card_table">
+                <tbody>
+                    <tr>
+                        <td id="correct" class="side_card" >
+                            0
+                        </td>
+                        <td id="current_card" class="card" data-index="0">
+                            Card Text
+                        </td>
+                        <td id="in_correct" class="side_card" >
+                            0
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
         <div id="div_language">
             <select id="select_language" onchange="updateCountry()"></select>
             &nbsp;&nbsp;
@@ -27,8 +42,38 @@
         </div>
     </div>
     
+    <div class="sidebyside">
+        <button onclick="handleResponse(big_check)">Correct</button>
+        <button onclick="handleResponse(big_exx)">Incorrect</button>
+        <button onclick="reset()">Reset</button>
+        <button onclick="cycleCard()">Cycle Card</button>
+    </div>
+    
+    
+    
+    <div class="footer">
+        
+        
+        
+        <div id="big_check" class="l_response left" data-count-id="correct">
+            <img src="../images/check.png">
+        </div>
+        
+        <div class="s_response center">
+            <div class="right">
+                <button id="start_button" onclick="startButton(event)">
+                <img id="start_img" src="../images/mic.gif" alt="Start"></button>
+            </div>
+            Speach Response Here...
+        </div>
+        
+        <div id="big_exx" class="r_response right" data-count-id="in_correct">
+            <img src="../images/exx.png">
+        </div>
+    </div>
+    
 </body>
-
+    
 <script type="text/javascript" src="../js/Card.js"></script>
 <script type="text/javascript" src="../js/Deck.js"></script>
 <script type="text/javascript" src="../js/Selection.js"></script>
@@ -39,35 +84,35 @@
 <script type="text/javascript">
     var myCards = [
         {
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "1 phrase",
+            definition  : "1"
         },{
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "2 phrase",
+            definition  : "2"
         },{
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "3 phrase",
+            definition  : "3"
         },{
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "4 phrase",
+            definition  : "4"
         },{
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "5 phrase",
+            definition  : "5"
         },{
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "6 phrase",
+            definition  : "6"
         },{
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "7 phrase",
+            definition  : "7"
         },{
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "8 phrase",
+            definition  : "8"
         },{
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "9 phrase",
+            definition  : "9"
         },{
-            phrase      : "a phrase",
-            definition  : "a definition"
+            phrase      : "10 phrase",
+            definition  : "10"
         }
     ];
     
@@ -77,7 +122,9 @@
         myDeck.addCard( new Card(card.phrase, card.definition));
     });
     
-    console.log(myDeck.getCards());
+    (function() {
+        init();
+    })();
 </script>
 
 </html>
