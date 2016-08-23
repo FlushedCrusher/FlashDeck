@@ -1,13 +1,3 @@
-// Handle language selection change
-function updateCountry( selection ) {
-    var select = selection || _language.getSelected();
-    _language.setSelection( select );
-    _dialect.removeOptions();
-    _dialect.addOptions( langs[select], 2 );
-    _dialect.styleVisibility( langs[select][1].length );
-    _dialect.setSelection( select );
-};
-
 // Trigger the animation for responses
 function handleResponse(element) {
     element.classList.add("flash");
@@ -70,6 +60,18 @@ function flipCard() {
         current_card.classList.remove('flipped');
     }, 1000 + config.flipDuration);
 }
+
+/*
+
+// Handle language selection change
+function updateCountry( selection ) {
+    var select = selection || _language.getSelected();
+    _language.setSelection( select );
+    _dialect.removeOptions();
+    _dialect.addOptions( langs[select], 2 );
+    _dialect.styleVisibility( langs[select][1].length );
+    _dialect.setSelection( select );
+};
 
 // Language variable
 // var langs = [...]; // languages.js
@@ -206,6 +208,30 @@ function startButton(event) {
   //showInfo('info_allow');
   //showButtons('none');
   start_timestamp = event.timeStamp;
+}
+
+*/
+
+// Handle user query if known
+function handleUserQuery( known ) {
+    var index = parseInt(current_card.dataset.index);
+    var element = getResponseElement( known );
+    myDeck.cards[index].handleResponse( known );
+    handleResponse(element);
+}
+
+// Return element associated with response
+function getResponseElement( known ) {
+    switch( known ) {
+        case true:
+            return big_check;
+            break;
+        case false:
+            return big_exx;
+            break;
+        default:
+            console.error("Error getting response element.");
+    }
 }
 
 // Initialize the quiz using a myDeck variable of length 1+

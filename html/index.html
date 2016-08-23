@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Flash Deck v 0.0.1">
+    <meta name="description" content="Flash Deck v 1.0.0">
     <meta name="author" content="Daniel J. Montanez">
     
-    <title>Flash Deck v 0.0.1</title>
+    <title>Flash Deck v 1.0.0</title>
 
     <link rel="stylesheet" href="../css/styles.css">
 
 </head>
 
 <body>
-    <h1 class="center" id="headline">Flash Deck v 0.0.1</h1>
+    <h1 class="center" id="headline">Flash Deck v 1.0.0</h1>
     
     <!-- Test Controls -->
     <div class="sidebyside">
@@ -74,6 +74,8 @@
         </div>
     </div>    
 </body>
+
+<script type="text/javascript" src="../js/myCards.js"></script>
     
 <script type="text/javascript" src="../js/Card.js"></script>
 <script type="text/javascript" src="../js/Deck.js"></script>
@@ -84,40 +86,7 @@
 <script type="text/javascript" src="../js/app.js"></script>
     
 <script type="text/javascript">
-    var myCards = [
-        {
-            phrase      : "1 phrase",
-            definition  : "1"
-        },{
-            phrase      : "2 phrase",
-            definition  : "2"
-        },{
-            phrase      : "3 phrase",
-            definition  : "3"
-        },{
-            phrase      : "4 phrase",
-            definition  : "4"
-        },{
-            phrase      : "5 phrase",
-            definition  : "5"
-        },{
-            phrase      : "6 phrase",
-            definition  : "6"
-        },{
-            phrase      : "7 phrase",
-            definition  : "7"
-        },{
-            phrase      : "8 phrase",
-            definition  : "8"
-        },{
-            phrase      : "9 phrase",
-            definition  : "9"
-        },{
-            phrase      : "10 phrase",
-            definition  : "10"
-        }
-    ];
-    
+        
     var myDeck = new Deck();
     
     myCards.forEach(function( card ) {

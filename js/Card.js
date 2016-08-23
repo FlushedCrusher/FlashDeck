@@ -58,6 +58,6 @@ Card.prototype.handleResponse = function( correct ) {
             this.timesIncorrectPlus( 1 );
             break;
         default:
-            console.error("Error processing handling response.");
+            console.error("Error handling response.");
     } 
 }
