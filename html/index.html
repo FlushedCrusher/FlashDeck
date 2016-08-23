@@ -14,64 +14,65 @@
 <body>
     <h1 class="center" id="headline">Flash Deck v 0.0.1</h1>
     
-    
-    
-    <div class="center">
-        <div>
-            <table class="card_table">
-                <tbody>
-                    <tr>
-                        <td id="correct" class="side_card" >
-                            0
-                        </td>
-                        <td id="current_card" class="card" data-index="0">
-                            Card Text
-                        </td>
-                        <td id="in_correct" class="side_card" >
-                            0
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div id="div_language">
-            <select id="select_language" onchange="updateCountry()"></select>
-            &nbsp;&nbsp;
-            <select id="select_dialect"></select>
-        </div>
-    </div>
-    
+    <!-- Test Controls -->
     <div class="sidebyside">
-        <button onclick="handleResponse(big_check)">Correct</button>
-        <button onclick="handleResponse(big_exx)">Incorrect</button>
-        <button onclick="reset()">Reset</button>
-        <button onclick="cycleCard()">Cycle Card</button>
+        <button class="test" onclick="handleResponse(big_check)">Correct</button>
+        <button class="test" onclick="handleResponse(big_exx)">Incorrect</button>
+        <button class="test" onclick="reset()">Reset</button>
+        <button class="test" onclick="cycleCardForward()">Cycle Card Forward</button>
+        <button class="test" onclick="cycleCardBackward()">Cycle Card Backward</button>
+        <button class="test" onclick="flipCard()">Flip Card</button>
     </div>
-    
-    
-    
+    <!-- Card and response count -->
+    <div class="card_row">
+        <div id="correct" class="left side_bar">
+            0
+        </div>
+        <div class="left card_container">
+            <div id="current_card" class="card" data-index="0">
+                <span id="front">FRONT</span>
+                <span id="back">BACK</span>
+            </div>
+        </div>
+        <div id="in_correct" class="left side_bar">
+            0
+        </div>
+    </div> 
+    <!-- Navigation Control -->
+    <div class="sidebyside">
+        <span id="prev" class="nav nav_left style_prevu_kit" onclick="cycleCardBackward()">&larr;</span>
+        &nbsp;&nbsp;
+        <span id="prev" class="nav nav_center style_prevu_kit" onclick="flipCard()">&#8631;</span>
+        &nbsp;&nbsp;
+        <span id="next" class="nav nav_right style_prevu_kit" onclick="cycleCardForward()">&rarr;</span>
+    </div>
+    <!-- Speech box & response indicators --> 
     <div class="footer">
-        
-        
-        
         <div id="big_check" class="l_response left" data-count-id="correct">
             <img src="../images/check.png">
         </div>
         
         <div class="s_response center">
-            <div class="right">
-                <button id="start_button" onclick="startButton(event)">
-                <img id="start_img" src="../images/mic.gif" alt="Start"></button>
+            <div id="results">
+              <button id="start_button" class="right" onclick="startButton(event)">
+              <img id="start_img" src="../images/mic.gif" alt="Start"></button>
+              <span id="final_span" class="final"></span>
+              <span id="interim_span" class="interim"></span>
+              <p>
             </div>
-            Speach Response Here...
         </div>
-        
         <div id="big_exx" class="r_response right" data-count-id="in_correct">
             <img src="../images/exx.png">
         </div>
     </div>
-    
+    <!-- Language control -->
+    <div class="base center">
+        <div id="div_language">
+            <select id="select_language" onchange="updateCountry()"></select>
+            &nbsp;&nbsp;
+            <select id="select_dialect"></select>
+        </div>
+    </div>    
 </body>
     
 <script type="text/javascript" src="../js/Card.js"></script>
@@ -79,6 +80,7 @@
 <script type="text/javascript" src="../js/Selection.js"></script>
 <script type="text/javascript" src="../js/languages.js"></script>
 
+<script type="text/javascript" src="../js/config.js"></script>
 <script type="text/javascript" src="../js/app.js"></script>
     
 <script type="text/javascript">
