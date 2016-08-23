@@ -29,7 +29,7 @@ Deck.prototype.removeCard = function( index ) { this.cards.splice(index, 1); };
 
 // A way to add to the mastered cards in a deck
 Deck.prototype.addToMastered = function( index ) {
-    this.mastered.push( cards[index] );
+    this.mastered.push( this.cards[index] );
     this.removeCard( index );
 };
 

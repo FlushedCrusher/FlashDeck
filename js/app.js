@@ -1,5 +1,5 @@
 // Trigger the animation for responses
-function handleResponse(element) {
+function handleResponse( element ) {
     element.classList.add("flash");
     current_card.classList.add("grayout");
     addCount(element.dataset.countId);
@@ -10,7 +10,7 @@ function handleResponse(element) {
 }
 
 // Add to the response type count
-function addCount(elementId) {
+function addCount( elementId ) {
     var el = document.getElementById(elementId);
     var num = parseInt(el.innerHTML);
     num += 1;
@@ -29,8 +29,21 @@ function cycleCardForward() {
     var index = parseInt(current_card.dataset.index);
     index = (index + 1) % myDeck.numCards();
     current_card.dataset.index = index;
-    front.innerHTML = myDeck.cards[index].phrase;
-    back.innerHTML = myDeck.cards[index].definition;
+    if(index) {
+        front.innerHTML = myDeck.cards[index].phrase;
+        back.innerHTML = myDeck.cards[index].definition;
+    } else {
+        // Deck mastered!
+        if(!myDeck.isMastered()) {
+            alert('ERROR', 'Deck should be mastered but for some reason is not.');
+        } else {
+            front.innerHTML = 'Congratulations!';
+            back.innerHTML = 'You did it!';
+            config.quizType = 'mastered';
+            fireworks.style.visibility = 'visible';
+            flashApp.style.backgroundColor = '#cccccc';
+        }
+    }
     current_card.classList.remove("grayout");
 }
 
@@ -68,6 +81,9 @@ function flipCard() {
                 modal.style.display = "block";
             }
             break;
+        case 'mastered':
+            current_card.classList.toggle('flipped');
+            break;
         default:
             alert('An error has occured.');
             
@@ -96,7 +112,7 @@ span.onclick = function() {
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function( event ) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
@@ -261,6 +277,17 @@ function handleUserQuery( known ) {
     modal.style.display = "none";
     flipCard();
     handleResponse(element);
+    checkMastery( index );
+}
+
+// Chack the mastery of a card in the deck
+function checkMastery( index ) {
+    var cardInQuestion = myDeck.cards[index];
+    if(cardInQuestion.isMastered()) {
+        console.log(cardInQuestion.phrase,'Mastered!');
+        myDeck.addToMastered( index );
+        current_card.dataset.index = parseInt(current_card.dataset.index) - 1;
+    }
 }
 
 // Return element associated with response

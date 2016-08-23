@@ -2,7 +2,7 @@
 function Card(phrase, definition) {
     this.phrase = phrase;
     this.definition = definition.toLowerCase();
-    this.timesCorrect = 0;
+    this.timesCorrect = 2;
     this.timesIncorrect = 0;
     this.averageAnswerTime = 0;
 }
