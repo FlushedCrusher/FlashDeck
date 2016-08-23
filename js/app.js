@@ -6,7 +6,7 @@ function handleResponse(element) {
     setTimeout(function() {
         element.classList.remove("flash");
         cycleCardForward();
-    }, 750)
+    }, config.flashDuration)
 }
 
 // Add to the response type count
@@ -55,10 +55,51 @@ current_card.addEventListener('mouseout', function() {
 
 // Trigger a card flip
 function flipCard() {
-    current_card.classList.add('flipped');
-    setTimeout(function() {
-        current_card.classList.remove('flipped');
-    }, 1000 + config.flipDuration);
+    switch (config.quizType) {
+        case 'test':
+            current_card.classList.add('flipped');
+            setTimeout(function() {
+                current_card.classList.remove('flipped');
+            }, 1000 + config.flipDuration);
+            break;
+        case 'userInput':
+            current_card.classList.toggle('flipped');
+            if(current_card.classList.contains('flipped')) {
+                modal.style.display = "block";
+            }
+            break;
+        default:
+            alert('An error has occured.');
+            
+    }
+}
+
+//User input modal
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 /*
@@ -217,6 +258,8 @@ function handleUserQuery( known ) {
     var index = parseInt(current_card.dataset.index);
     var element = getResponseElement( known );
     myDeck.cards[index].handleResponse( known );
+    modal.style.display = "none";
+    flipCard();
     handleResponse(element);
 }
 

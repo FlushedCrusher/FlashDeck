@@ -22,7 +22,29 @@
         <button class="test" onclick="cycleCardForward()">Cycle Card Forward</button>
         <button class="test" onclick="cycleCardBackward()">Cycle Card Backward</button>
         <button class="test" onclick="flipCard()">Flip Card</button>
+        <button class="test" id="myBtn">Open Modal</button>
     </div>
+
+    <!-- User Input Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">×</span>
+          <h2>Did you know this one?</h2>
+        </div>
+        <div class="modal-body">
+            <div class="sidebyside">
+                <div class="user_yes left style_prevu_kit" onclick="handleUserQuery(true)">YES</div>
+                &nbsp;&nbsp;
+                <div class="user_no right style_prevu_kit" onclick="handleUserQuery(false)">NO</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+    
     <!-- Card and response count -->
     <div class="card_row">
         <div id="correct" class="left side_bar">
@@ -42,7 +64,7 @@
     <div class="sidebyside">
         <span id="prev" class="nav nav_left style_prevu_kit" onclick="cycleCardBackward()">&larr;</span>
         &nbsp;&nbsp;
-        <span id="prev" class="nav nav_center style_prevu_kit" onclick="flipCard()">&#8631;</span>
+        <span id="flip" class="nav nav_center style_prevu_kit" onclick="flipCard()">&#8631;</span>
         &nbsp;&nbsp;
         <span id="next" class="nav nav_right style_prevu_kit" onclick="cycleCardForward()">&rarr;</span>
     </div>
