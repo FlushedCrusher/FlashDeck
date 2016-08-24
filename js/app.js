@@ -1,67 +1,175 @@
+/* Card flip operations *******
+ ****************************** */
+ 
+// Trigger a card flip
+function flipCard() {
+    // Toggle flipped state
+    current_card.classList.toggle('flipped');
+    // Return if the quiz has ended
+    if(config.quizFinished) {
+        return;
+    }
+    // Perform additional flip operations
+    switch (config.flipType) {
+        case 'test':
+            quickFlip();
+            break;
+        case 'userInput':
+            userFlip();
+            break;
+        default:
+            console.error('Error flipping card.');
+    }
+}
+
+// Quick flip
+function quickFlip() {
+    // Flip the card back over after some time
+    setTimeout(function() {
+        current_card.classList.toggle('flipped');
+    }, config.flipDuration);
+}
+
+// User flip
+function userFlip() {
+    // Display response modal if showing back of card
+    if(current_card.classList.contains('flipped')) {
+        modal.style.display = "block";
+    }
+}
+
+/* Response operations ********
+ ****************************** */
+ 
+// Handle user query response
+function handleUserQuery( known ) {
+    // Get current index
+    var index = parseInt(current_card.dataset.index);
+    // Get the response element
+    var element = getResponseElement( known );
+    // Handle the response in card
+    myDeck.cards[index].handleResponse( known );
+    // Close the modal
+    modal.style.display = "none";
+    // Flip the card
+    flipCard();
+    // Handle the response in the UI
+    handleResponse(element);
+    // Chack the deck mastery
+    checkMastery( index );
+}
+
+// Return element associated with response
+function getResponseElement( known ) {
+    switch( known ) {
+        case true:
+            return big_check;
+            break;
+        case false:
+            return big_exx;
+            break;
+        default:
+            console.error("Error getting response element.");
+    }
+}
+
 // Trigger the animation for responses
 function handleResponse( element ) {
+    // Flash the response icon
     element.classList.add("flash");
+    // Grayout the card
     current_card.classList.add("grayout");
+    // Increment the response count
     addCount(element.dataset.countId);
+    // Remove the response icon flash styling & cycle the card
     setTimeout(function() {
         element.classList.remove("flash");
-        cycleCardForward();
+        getNextcard();
     }, config.flashDuration)
 }
 
-// Add to the response type count
+// Increment the response count
 function addCount( elementId ) {
+    // Get reference to counter
     var el = document.getElementById(elementId);
+    // Parse the test as an integer
     var num = parseInt(el.innerHTML);
+    // Increment the integer
     num += 1;
+    // Assign the new value
     el.innerHTML = num;
 }
 
-// Reset the response counts
-function reset() {
-    correct.innerHTML = 0;
-    in_correct.innerHTML = 0;
-    init();
+// Chack the mastery of a card in the deck
+function checkMastery( index ) {
+    var cardInQuestion = myDeck.cards[index];
+    if(cardInQuestion.isMastered()) {
+        console.log(cardInQuestion.phrase,'Mastered!');
+        myDeck.addToMastered( index );
+        current_card.dataset.index = parseInt(current_card.dataset.index) - 1;
+    }
+}
+
+/* Card cycle operations ******
+ ****************************** */
+ 
+// Get the next card
+function getNextcard() {
+    // Check for deck mastery
+    if(myDeck.isMastered()) { 
+        setUIEndState();
+        return;
+    }
+    // Cycle the card based on config settings
+    switch (config.cycle) {
+        case 'forward':
+            cycleCardForward();
+            break;
+        case 'backward':
+            cycleCardBackward();
+            break;
+        case 'random':
+            cycleCardRandom();
+            break;
+        default:
+            console.error("Error cycling cards");
+    }
 }
 
 // Cycle the current card forward
 function cycleCardForward() {
+    // Get the index of the current card
     var index = parseInt(current_card.dataset.index);
-    index = (index + 1) % myDeck.numCards();
-    current_card.dataset.index = index;
-    if(!isNaN( index ))  {
-        front.innerHTML = myDeck.cards[index].phrase;
-        back.innerHTML = myDeck.cards[index].definition;
-    } else {
-        // Deck mastered!
-        if(!myDeck.isMastered()) {
-            alert('ERROR', 'Deck should be mastered but for some reason is not.');
-        } else {
-           handleMastered();
-        }
-    }
-    current_card.classList.remove("grayout");
-}
-
-// Handle Mastered Deck
-function handleMastered() {
-    front.innerHTML = 'Congratulations!';
-    back.innerHTML = 'You did it!';
-    config.quizFinished = true;
-    fireworks.style.visibility = 'visible';
-    full_window.style.visibility = 'visible';
-    full_window.style.backgroundColor = "#ffffff";
-    setTimeout(flipCard, 1500);
+    // Cycle the card
+    cycleCard( 1 );
 }
 
 // Cycle the current card forward
 function cycleCardBackward() {
+    // Get the index of the current card
     var index = parseInt(current_card.dataset.index);
+    // If index is 0, set index to one mare than last index
     if(index === 0) { index = myDeck.numCards(); }
-    index = (index - 1) % myDeck.numCards();
+    // Cycle the card
+    cycleCard( -1 );
+}
+
+// Clcle the current card at random
+function cycleCardRandom() {
+    // TODO
+}
+
+// Cycle card
+function cycleCard( val ) {
+    // Increment / Decrement the index, taking the number of cards
+    // in the deck into account
+    index = (index + val) % myDeck.numCards();
+    // Assign the new index to the card element
     current_card.dataset.index = index;
+    // If not, assign the card new values
     front.innerHTML = myDeck.cards[index].phrase;
     back.innerHTML = myDeck.cards[index].definition;
+    // Un-grayout the card
     current_card.classList.remove("grayout");
 }
 
@@ -69,54 +177,23 @@ function cycleCardBackward() {
 current_card.addEventListener('mouseover', function() {
     if(config.flipOnHover) { current_card.classList.add('flipped'); }
 });
+
 current_card.addEventListener('mouseout', function() {
     if(config.flipOnHover) { current_card.classList.remove('flipped'); }
 });
 
-// Trigger a card flip
-function flipCard() {
-    if(config.quizFinished) {
-        current_card.classList.toggle('flipped');
-        return;
-    }
-    switch (config.quizType) {
-        case 'test':
-            current_card.classList.add('flipped');
-            setTimeout(function() {
-                current_card.classList.remove('flipped');
-            }, 1000 + config.flipDuration);
-            break;
-        case 'userInput':
-            current_card.classList.toggle('flipped');
-            if(current_card.classList.contains('flipped')) {
-                modal.style.display = "block";
-            }
-            break;
-        default:
-            alert('An error has occured.');
-            
-    }
-}
-
-//User input modal
-
+/* Modal operations ***********
+ ****************************** */
+ 
 // Get the modal
 var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks on the button, open the modal 
 btn.onclick = function() {
     modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -124,6 +201,72 @@ window.onclick = function( event ) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+
+/* Quiz / UI operations *******
+ ****************************** */
+ 
+// Set the UI to the end state
+function setUIEndState() {
+    // Set card content
+    front.innerHTML = config.endMessageFront;
+    back.innerHTML  = config.endMessageBack;
+    // Set quiz finished boolean
+    config.quizFinished = true;
+    // Show the fireworks
+    fireworks.style.visibility = 'visible';
+    fireworks_window.style.visibility = 'visible';
+    fireworks_window.style.backgroundColor = "#ffffff";
+    // Show the back end message
+    setTimeout(flipCard, 1500);
+}
+
+// Set the UI to the initial state
+function setUIInitState() {
+    // Reset response counts
+    correct.innerHTML = 0;
+    in_correct.innerHTML = 0;
+    // Set card content after some time
+    if(config.quizFinished) {
+        delayCardInit();
+    } else {
+        setCardInit();
+    }
+    // Set quiz finished boolean
+    config.quizFinished = false;
+    // Hide the fireworks
+    fireworks.style.visibility = 'hidden';
+    fireworks_window.style.visibility = 'hidden';
+    fireworks_window.style.backgroundColor = "transparent";
+    // Flip card to front
+    current_card.classList.remove('flipped')
+}
+
+// Delayed init card
+function delayCardInit() {
+    setTimeout(setCardInit, config.flipDuration / 2);
+}
+
+// Set the initial card
+function setCardInit() {
+    current_card.dataset.index = 0;
+    front.innerHTML = myDeck.cards[0].phrase;
+    back.innerHTML = myDeck.cards[0].definition;
+}
+
+// Reset the quiz
+function reset() {
+    init();
+}
+
+// Initialize the quiz using a myDeck variable of length 1+
+function init() {
+    // Reset deck mastery
+    myDeck.reset();
+    // Set initial UI state
+    setUIInitState();
+    // Set card index and content
+    
 }
 
 /*
@@ -276,51 +419,3 @@ function startButton(event) {
 }
 
 */
-
-// Handle user query if known
-function handleUserQuery( known ) {
-    var index = parseInt(current_card.dataset.index);
-    var element = getResponseElement( known );
-    myDeck.cards[index].handleResponse( known );
-    modal.style.display = "none";
-    flipCard();
-    handleResponse(element);
-    checkMastery( index );
-}
-
-// Chack the mastery of a card in the deck
-function checkMastery( index ) {
-    var cardInQuestion = myDeck.cards[index];
-    if(cardInQuestion.isMastered()) {
-        console.log(cardInQuestion.phrase,'Mastered!');
-        myDeck.addToMastered( index );
-        current_card.dataset.index = parseInt(current_card.dataset.index) - 1;
-    }
-}
-
-// Return element associated with response
-function getResponseElement( known ) {
-    switch( known ) {
-        case true:
-            return big_check;
-            break;
-        case false:
-            return big_exx;
-            break;
-        default:
-            console.error("Error getting response element.");
-    }
-}
-
-// Initialize the quiz using a myDeck variable of length 1+
-function init() {
-    myDeck.reset();
-    current_card.classList.remove('flipped')
-    config.quizFinished = false;
-    fireworks.style.visibility = 'hidden';
-    full_window.style.visibility = 'hidden';
-    full_window.style.backgroundColor = "transparent";
-    current_card.dataset.index = 0;
-    front.innerHTML = myDeck.cards[0].phrase;
-    back.innerHTML = myDeck.cards[0].definition;
-}

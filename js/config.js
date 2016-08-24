@@ -1,7 +1,10 @@
 var config = {
-    flipOnHover     : false,
-    flipDuration    : 2000,
+    cycle           : 'forward',
+    endMessageFront : 'Congratulations!',
+    endMessageBack  : 'You did it!',
     flashDuration   : 750,
-    quizType        : 'userInput',
+    flipDuration    : 2000,
+    flipOnHover     : false,
+    flipType        : 'userInput',
     quizFinished    : false
 };
