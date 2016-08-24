@@ -1,7 +1,10 @@
-/* Card flip operations *******
- ****************************** */
+// ********************************************************
+// *********************************** Card flip operations 
+// ********************************************************
  
-// Trigger a card flip
+/* ***** ***** ***** *****
+ * Trigger a card flip
+ */
 function flipCard() {
     // Toggle flipped state
     current_card.classList.toggle('flipped');
@@ -21,16 +24,18 @@ function flipCard() {
             console.error('Error flipping card.');
     }
 }
-
-// Quick flip
+/* ***** ***** ***** *****
+ * Quick flip
+ */
 function quickFlip() {
     // Flip the card back over after some time
     setTimeout(function() {
         current_card.classList.toggle('flipped');
     }, config.flipDuration);
 }
-
-// User flip
+/* ***** ***** ***** *****
+ * User flip
+ */
 function userFlip() {
     // Display response modal if showing back of card
     if(current_card.classList.contains('flipped')) {
@@ -38,10 +43,13 @@ function userFlip() {
     }
 }
 
-/* Response operations ********
- ****************************** */
- 
-// Handle user query response
+// ********************************************************
+// ************************************ Response operations 
+// ********************************************************
+
+/* ***** ***** ***** *****
+ * Handle user query response
+ */
 function handleUserQuery( known ) {
     // Get current index
     var index = parseInt(current_card.dataset.index);
@@ -58,8 +66,9 @@ function handleUserQuery( known ) {
     // Chack the deck mastery
     checkMastery( index );
 }
-
-// Return element associated with response
+/* ***** ***** ***** *****
+ * Return element associated with response
+ */
 function getResponseElement( known ) {
     switch( known ) {
         case true:
@@ -72,8 +81,9 @@ function getResponseElement( known ) {
             console.error("Error getting response element.");
     }
 }
-
-// Trigger the animation for responses
+/* ***** ***** ***** *****
+ * Trigger the animation for responses
+ */
 function handleResponse( element ) {
     // Flash the response icon
     element.classList.add("flash");
@@ -87,8 +97,9 @@ function handleResponse( element ) {
         getNextcard();
     }, config.flashDuration)
 }
-
-// Increment the response count
+/* ***** ***** ***** *****
+ * Increment the response count
+ */
 function addCount( elementId ) {
     // Get reference to counter
     var el = document.getElementById(elementId);
@@ -99,8 +110,9 @@ function addCount( elementId ) {
     // Assign the new value
     el.innerHTML = num;
 }
-
-// Chack the mastery of a card in the deck
+/* ***** ***** ***** *****
+ * Chack the mastery of a card in the deck
+ */
 function checkMastery( index ) {
     var cardInQuestion = myDeck.cards[index];
     if(cardInQuestion.isMastered()) {
@@ -110,10 +122,13 @@ function checkMastery( index ) {
     }
 }
 
-/* Card cycle operations ******
- ****************************** */
+// ********************************************************
+// ********************************** Card cycle operations 
+// ********************************************************
  
-// Get the next card
+/* ***** ***** ***** *****
+ * Get the next card
+ */
 function getNextcard() {
     // Check for deck mastery
     if(myDeck.isMastered()) { 
@@ -135,16 +150,18 @@ function getNextcard() {
             console.error("Error cycling cards");
     }
 }
-
-// Cycle the current card forward
+/* ***** ***** ***** *****
+ * Cycle the current card forward
+ */
 function cycleCardForward() {
     // Get the index of the current card
     var index = parseInt(current_card.dataset.index);
     // Cycle the card
     cycleCard( 1 );
 }
-
-// Cycle the current card forward
+/* ***** ***** ***** *****
+ * Cycle the current card forward
+ */
 function cycleCardBackward() {
     // Get the index of the current card
     var index = parseInt(current_card.dataset.index);
@@ -153,13 +170,15 @@ function cycleCardBackward() {
     // Cycle the card
     cycleCard( -1 );
 }
-
-// Clcle the current card at random
+/* ***** ***** ***** *****
+ * Clcle the current card at random
+ */
 function cycleCardRandom() {
     // TODO
 }
-
-// Cycle card
+/* ***** ***** ***** *****
+ * Cycle card
+ */
 function cycleCard( val ) {
     // Increment / Decrement the index, taking the number of cards
     // in the deck into account
@@ -177,36 +196,40 @@ function cycleCard( val ) {
 current_card.addEventListener('mouseover', function() {
     if(config.flipOnHover) { current_card.classList.add('flipped'); }
 });
-
 current_card.addEventListener('mouseout', function() {
     if(config.flipOnHover) { current_card.classList.remove('flipped'); }
 });
 
-/* Modal operations ***********
- ****************************** */
+// ********************************************************
+// *************************************** Modal operations 
+// ********************************************************
  
-// Get the modal
+// Get the modal elements
 var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 
-// When the user clicks on the button, open the modal 
+/* ***** ***** ***** *****
+ * When the user clicks on the button, open the modal
+ */ 
 btn.onclick = function() {
     modal.style.display = "block";
 }
-
-// When the user clicks anywhere outside of the modal, close it
+/* ***** ***** ***** *****
+ * When the user clicks anywhere outside of the modal, close it
+ */
 window.onclick = function( event ) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
 
-/* Quiz / UI operations *******
- ****************************** */
- 
-// Set the UI to the end state
+// ********************************************************
+// *********************************** Quiz / UI operations 
+// ********************************************************
+
+/* ***** ***** ***** *****
+ * Set the UI to the end state
+ */
 function setUIEndState() {
     // Set card content
     front.innerHTML = config.endMessageFront;
@@ -219,16 +242,21 @@ function setUIEndState() {
     fireworks_window.style.backgroundColor = "#ffffff";
     // Show the back end message
     setTimeout(flipCard, 1500);
+    // Hide the reset button after som etime
+    setTimeout( function() {
+        reset_button.style.visibility = 'visible';
+    }, 1500);
 }
-
-// Set the UI to the initial state
+/* ***** ***** ***** *****
+ * Set the UI to the initial state
+ */
 function setUIInitState() {
     // Reset response counts
     correct.innerHTML = 0;
     in_correct.innerHTML = 0;
-    // Set card content after some time
+    // Set card content
     if(config.quizFinished) {
-        delayCardInit();
+        setTimeout( setCardInit, config.flipDuration / 2);
     } else {
         setCardInit();
     }
@@ -238,28 +266,28 @@ function setUIInitState() {
     fireworks.style.visibility = 'hidden';
     fireworks_window.style.visibility = 'hidden';
     fireworks_window.style.backgroundColor = "transparent";
+    // Hide the reset button
+    reset_button.style.visibility = 'hidden';
     // Flip card to front
     current_card.classList.remove('flipped')
 }
-
-// Delayed init card
-function delayCardInit() {
-    setTimeout(setCardInit, config.flipDuration / 2);
-}
-
-// Set the initial card
+/* ***** ***** ***** *****
+ * Set the initial card
+ */
 function setCardInit() {
     current_card.dataset.index = 0;
     front.innerHTML = myDeck.cards[0].phrase;
     back.innerHTML = myDeck.cards[0].definition;
 }
-
-// Reset the quiz
+/* ***** ***** ***** *****
+ * Reset the quiz
+ */
 function reset() {
     init();
 }
-
-// Initialize the quiz using a myDeck variable of length 1+
+/* ***** ***** ***** *****
+ * Initialize the quiz
+ */
 function init() {
     // Reset deck mastery
     myDeck.reset();
@@ -269,6 +297,9 @@ function init() {
     
 }
 
+// ********************************************************
+// ********************************* Speech recognition ops 
+// ********************************************************
 /*
 
 // Handle language selection change

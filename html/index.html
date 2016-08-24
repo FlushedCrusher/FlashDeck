@@ -22,7 +22,7 @@
     </div>
     
     <!-- Test Controls -->
-    <div class="sidebyside">
+    <div id="test_control" class="sidebyside">
         <button class="test" onclick="handleResponse(big_check)">Correct</button>
         <button class="test" onclick="handleResponse(big_exx)">Incorrect</button>
         <button class="test" onclick="reset()">Reset</button>
@@ -41,9 +41,9 @@
         </div>
         <div class="modal-body">
             <div class="sidebyside">
-                <div class="user_yes left style_prevu_kit" onclick="handleUserQuery(true)">YES</div>
+                <div class="user_yes left pop_out" onclick="handleUserQuery(true)">YES</div>
                 &nbsp;&nbsp;
-                <div class="user_no right style_prevu_kit" onclick="handleUserQuery(false)">NO</div>
+                <div class="user_no right pop_out" onclick="handleUserQuery(false)">NO</div>
             </div>
         </div>
         <div class="modal-footer">
@@ -66,15 +66,17 @@
             0
         </div>
     </div> 
+    
     <!-- Navigation Control -->
-    <div class="sidebyside">
-        <span id="reset" class="nav nav_left style_prevu_kit" onclick="reset()">&#8634;</span>
-        <span id="prev" class="nav nav_left style_prevu_kit" onclick="cycleCardBackward()">&larr;</span>
+    <div id="nav_control" class="sidebyside">
+        <span id="reset_button" class="nav nav_left pop_out" onclick="reset()">&#8634;</span>
+        <span id="prev" class="nav nav_left pop_out" onclick="cycleCardBackward()">&larr;</span>
         &nbsp;&nbsp;
-        <span id="flip" class="nav nav_center style_prevu_kit" onclick="flipCard()">&#8631;</span>
+        <span id="flip" class="nav nav_center pop_out" onclick="flipCard()">&#8631;</span>
         &nbsp;&nbsp;
-        <span id="next" class="nav nav_right style_prevu_kit" onclick="cycleCardForward()">&rarr;</span>
+        <span id="next" class="nav nav_right pop_out" onclick="cycleCardForward()">&rarr;</span>
     </div>
+    
     <!-- Speech box & response indicators --> 
     <div class="footer">
         <div id="big_check" class="l_response left" data-count-id="correct">
@@ -90,10 +92,12 @@
               <p>
             </div>
         </div>
+        
         <div id="big_exx" class="r_response right" data-count-id="in_correct">
             <img src="../images/exx.png">
         </div>
     </div>
+    
     <!-- Language control -->
     <div class="base center">
         <div id="div_language">
@@ -125,6 +129,7 @@
     (function() {
         init();
     })();
+    
 </script>
 
 </html>

@@ -35,7 +35,7 @@ Deck.prototype.addToMastered = function( index ) {
 
 // A way to tell if a deck is mastered
 Deck.prototype.isMastered = function() {
-    return this.numCards.length === 0;
+    return this.numCards() === 0;
 };
 
 // A way to reset the mastery of a deck
