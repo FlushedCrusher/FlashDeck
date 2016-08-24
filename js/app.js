@@ -29,7 +29,7 @@ function cycleCardForward() {
     var index = parseInt(current_card.dataset.index);
     index = (index + 1) % myDeck.numCards();
     current_card.dataset.index = index;
-    if(index) {
+    if(!isNaN( index ))  {
         front.innerHTML = myDeck.cards[index].phrase;
         back.innerHTML = myDeck.cards[index].definition;
     } else {
@@ -37,14 +37,21 @@ function cycleCardForward() {
         if(!myDeck.isMastered()) {
             alert('ERROR', 'Deck should be mastered but for some reason is not.');
         } else {
-            front.innerHTML = 'Congratulations!';
-            back.innerHTML = 'You did it!';
-            config.quizType = 'mastered';
-            fireworks.style.visibility = 'visible';
-            flashApp.style.backgroundColor = '#cccccc';
+           handleMastered();
         }
     }
     current_card.classList.remove("grayout");
+}
+
+// Handle Mastered Deck
+function handleMastered() {
+    front.innerHTML = 'Congratulations!';
+    back.innerHTML = 'You did it!';
+    config.quizFinished = true;
+    fireworks.style.visibility = 'visible';
+    full_window.style.visibility = 'visible';
+    full_window.style.backgroundColor = "#ffffff";
+    setTimeout(flipCard, 1500);
 }
 
 // Cycle the current card forward
@@ -68,6 +75,10 @@ current_card.addEventListener('mouseout', function() {
 
 // Trigger a card flip
 function flipCard() {
+    if(config.quizFinished) {
+        current_card.classList.toggle('flipped');
+        return;
+    }
     switch (config.quizType) {
         case 'test':
             current_card.classList.add('flipped');
@@ -80,9 +91,6 @@ function flipCard() {
             if(current_card.classList.contains('flipped')) {
                 modal.style.display = "block";
             }
-            break;
-        case 'mastered':
-            current_card.classList.toggle('flipped');
             break;
         default:
             alert('An error has occured.');
@@ -306,6 +314,12 @@ function getResponseElement( known ) {
 
 // Initialize the quiz using a myDeck variable of length 1+
 function init() {
+    myDeck.reset();
+    current_card.classList.remove('flipped')
+    config.quizFinished = false;
+    fireworks.style.visibility = 'hidden';
+    full_window.style.visibility = 'hidden';
+    full_window.style.backgroundColor = "transparent";
     current_card.dataset.index = 0;
     front.innerHTML = myDeck.cards[0].phrase;
     back.innerHTML = myDeck.cards[0].definition;

@@ -16,7 +16,9 @@
     <h1 class="center" id="headline">Flash Deck v 1.0.0</h1>
     
     <!-- Fireworks -->
-    <div id="fireworks" class="pyro"></div>
+    <div id="full_window">
+        <div id="fireworks" class="pyro"></div>
+    </div>
     
     <!-- Test Controls -->
     <div class="sidebyside">
@@ -66,6 +68,7 @@
     </div> 
     <!-- Navigation Control -->
     <div class="sidebyside">
+        <span id="reset" class="nav nav_left style_prevu_kit" onclick="reset()">&#8634;</span>
         <span id="prev" class="nav nav_left style_prevu_kit" onclick="cycleCardBackward()">&larr;</span>
         &nbsp;&nbsp;
         <span id="flip" class="nav nav_center style_prevu_kit" onclick="flipCard()">&#8631;</span>

@@ -39,9 +39,10 @@ Deck.prototype.isMastered = function() {
 };
 
 // A way to reset the mastery of a deck
-Deck.prototype.resetDeck = function() {
+Deck.prototype.reset = function() {
+    var self = this;
     this.mastered.forEach( function( card ) {
-        this.cards.push( card );
+        self.cards.push( card );
     });
     this.mastered = [];
 };
