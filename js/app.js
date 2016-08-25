@@ -6,6 +6,8 @@
  * Trigger a card flip
  */
 function flipCard() {
+    // Stop the timer
+    destroyTimer();
     // Toggle flipped state
     current_card.classList.toggle('flipped');
     // Return if the quiz has ended
@@ -157,7 +159,7 @@ function cycleCardForward() {
     // Get the index of the current card
     var index = parseInt(current_card.dataset.index);
     // Cycle the card
-    cycleCard( 1 );
+    cycleCard( index, 1 );
 }
 /* ***** ***** ***** *****
  * Cycle the current card forward
@@ -168,7 +170,7 @@ function cycleCardBackward() {
     // If index is 0, set index to one mare than last index
     if(index === 0) { index = myDeck.numCards(); }
     // Cycle the card
-    cycleCard( -1 );
+    cycleCard( index, -1 );
 }
 /* ***** ***** ***** *****
  * Clcle the current card at random
@@ -179,7 +181,7 @@ function cycleCardRandom() {
 /* ***** ***** ***** *****
  * Cycle card
  */
-function cycleCard( val ) {
+function cycleCard( index, val ) {
     // Increment / Decrement the index, taking the number of cards
     // in the deck into account
     index = (index + val) % myDeck.numCards();
@@ -308,7 +310,14 @@ var myTimer;
  */
 function initTimer() {
     setStartTime();
+    clearDurationTime();
     startTimer();
+}
+/* ***** ***** ***** *****
+ * Clear the duration time
+ */
+function clearDurationTime() {
+    config.timerDuration = 0;
 }
 /* ***** ***** ***** *****
  * Set the start time
@@ -320,17 +329,18 @@ function setStartTime() {
  * Start the timer
  */
 function startTimer() {
-    myTimer = setInterval(incrementTimer, 1000);
+    myTimer = setInterval(incrementTimer, config.timerIncrement);
 }
 /* ***** ***** ***** *****
  * Increment the timer
  */
 function incrementTimer() {
     var timer = document.getElementById("timer");
-    config.timerEnd  += 1000;
-    var secs    = (   config.timerEnd / 1000 )        % 60;
-    var mins    = ( ( config.timerEnd / 1000 ) / 60 ) % 60;
-    timer.innerHTML = mins + ":" + secs;
+    config.timerDuration += config.timerIncrement;
+    var secOverTen  =             ( config.timerDuration / 100 )         % 10;
+    var secs        = Math.floor  ( config.timerDuration / 1000 )        % 60;
+    var mins        = Math.floor( ( config.timerDuration / 1000 ) / 60 ) % 60;
+    timer.innerHTML = mins + ":" + secs + ":" + secOverTen;
 }
 /* ***** ***** ***** *****
  * Destroy the timer

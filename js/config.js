@@ -7,6 +7,8 @@ var config = {
     flipOnHover     : false,
     flipType        : 'userInput',
     timerStart      : 0,
+    timerDuration   : 0,
     timerEnd        : 0,
+    timerIncrement  : 100,
     quizFinished    : false
 };
