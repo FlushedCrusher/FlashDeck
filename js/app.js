@@ -327,9 +327,9 @@ function startTimer() {
  */
 function incrementTimer() {
     var timer = document.getElementById("timer");
-    var msTime  = Math.abs( new Date() - config.timerStart );
-    var secs    = Math.round(             msTime / 1000 )        % 60;
-    var mins    = Math.round( Math.round( msTime / 1000 ) / 60 ) % 60;
+    config.timerEnd  += 1000;
+    var secs    = (   config.timerEnd / 1000 )        % 60;
+    var mins    = ( ( config.timerEnd / 1000 ) / 60 ) % 60;
     timer.innerHTML = mins + ":" + secs;
 }
 /* ***** ***** ***** *****
