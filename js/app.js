@@ -293,8 +293,63 @@ function init() {
     myDeck.reset();
     // Set initial UI state
     setUIInitState();
-    // Set card index and content
-    
+    // Initialize the timer
+    initTimer();
+}
+
+// ********************************************************
+// *********************************** Timer operations 
+// ********************************************************
+
+// The timer variable
+var myTimer;
+/* ***** ***** ***** *****
+ * Initialize the timer
+ */
+function initTimer() {
+    setStartTime();
+    startTimer();
+}
+/* ***** ***** ***** *****
+ * Set the start time
+ */
+function setStartTime() {
+    config.timerStart = new Date();
+}
+/* ***** ***** ***** *****
+ * Start the timer
+ */
+function startTimer() {
+    myTimer = setInterval(incrementTimer, 1000);
+}
+/* ***** ***** ***** *****
+ * Increment the timer
+ */
+function incrementTimer() {
+    var timer = document.getElementById("timer");
+    var msTime  = Math.abs( new Date() - config.timerStart );
+    var secs    = Math.round(             msTime / 1000 )        % 60;
+    var mins    = Math.round( Math.round( msTime / 1000 ) / 60 ) % 60;
+    timer.innerHTML = mins + ":" + secs;
+}
+/* ***** ***** ***** *****
+ * Destroy the timer
+ */
+function destroyTimer() {
+    stopTimer();
+    setEndTime();
+}
+/* ***** ***** ***** *****
+ * Stop the timer
+ */
+function stopTimer() {
+    clearInterval(myTimer);
+}
+/* ***** ***** ***** *****
+ * Set the end time
+ */
+function setEndTime() {
+    config.timerEnd = new Date();
 }
 
 // ********************************************************
