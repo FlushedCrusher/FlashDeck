@@ -2,9 +2,10 @@
 function Card(phrase, definition) {
     this.phrase = phrase;
     this.definition = definition.toLowerCase();
-    this.timesCorrect = 2;
+    this.timesCorrect = 0;
     this.timesIncorrect = 0;
     this.averageAnswerTime = 0;
+    this.masteryLevel = 3;
 }
 
 // A function(s) to get card card attributes
@@ -14,10 +15,12 @@ Card.prototype.getTimesCorrect = function() { return this.timesCorrect; };
 Card.prototype.getTimesIncorrect = function() { return this.timesIncorrect; };
 Card.prototype.getTimesAnswered = function() { return this.timesCorrect + this.timesIncorrect; };
 Card.prototype.getAverageAnswerTime = function() { return this.averageAnswerTime; };
+Card.prototype.getMasteryLevel = function() { return this.masteryLevel; };
 
 // A function(s) to set card attributes
 Card.prototype.setPhrase = function( newVal ) { this.phrase = newVal; };
 Card.prototype.setDefinition = function( newVal ) { this.definition = newVal.toLowerCase(); };
+Card.prototype.setMasteryLevel = function( newVal ) { this.masteryLevel = newVal; };
 
 // A function to increment correct / incorrect counts
 Card.prototype.timesCorrectPlus = function( num ) { this.timesCorrect += num || 1; };
@@ -27,8 +30,15 @@ Card.prototype.calculateAverageAnswerTime = function( num ) {
     this.averageAnswerTime = tmp / this.getTimesAnswered();
 };
 
+// A way to reset the mastery of a card
+Card.prototype.reset = function() {
+    this.timesCorrect = 0;
+    this.timesIncorrect = 0;
+    this.averageAnswerTime = 0;
+}
+
 // A function to tell if a card is mastered
-Card.prototype.isMastered = function() { return this.timesCorrect === 3; };
+Card.prototype.isMastered = function() { return this.timesCorrect === this.masteryLevel; };
 
 // A function to print a card
 Card.prototype.print = function() {

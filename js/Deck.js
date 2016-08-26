@@ -33,6 +33,16 @@ Deck.prototype.addToMastered = function( index ) {
     this.removeCard( index );
 };
 
+// A way to modify the mastery level of the deck
+Deck.prototype.setMasteryLevel = function( val ) {
+    this.cards.forEach( function( card ) {
+        card.setMasteryLevel( val );
+    });
+    this.mastered.forEach( function( card ) {
+        card.setMasteryLevel( val );
+    });
+}
+
 // A way to tell if a deck is mastered
 Deck.prototype.isMastered = function() {
     return this.numCards() === 0;
@@ -42,6 +52,7 @@ Deck.prototype.isMastered = function() {
 Deck.prototype.reset = function() {
     var self = this;
     this.mastered.forEach( function( card ) {
+        card.reset();
         self.cards.push( card );
     });
     this.mastered = [];

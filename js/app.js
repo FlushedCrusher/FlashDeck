@@ -2,10 +2,11 @@
 // *********************************** Card flip operations 
 // ********************************************************
  
-/* ***** ***** ***** *****
+/**
  * Trigger a card flip
  */
 function flipCard() {
+    console.log('->flipCard');
     // Stop the timer
     destroyTimer();
     // Toggle flipped state
@@ -26,19 +27,21 @@ function flipCard() {
             console.error('Error flipping card.');
     }
 }
-/* ***** ***** ***** *****
+/**
  * Quick flip
  */
 function quickFlip() {
+    console.log('->quickFlip');
     // Flip the card back over after some time
     setTimeout(function() {
         current_card.classList.toggle('flipped');
     }, config.flipDuration);
 }
-/* ***** ***** ***** *****
+/**
  * User flip
  */
 function userFlip() {
+    console.log('->userFlip');
     // Display response modal if showing back of card
     if(current_card.classList.contains('flipped')) {
         modal.style.display = "block";
@@ -49,16 +52,19 @@ function userFlip() {
 // ************************************ Response operations 
 // ********************************************************
 
-/* ***** ***** ***** *****
+/**
  * Handle user query response
  */
 function handleUserQuery( known ) {
+    console.log('->handleUserQuery');
     // Get current index
     var index = parseInt(current_card.dataset.index);
     // Get the response element
     var element = getResponseElement( known );
     // Handle the response in card
     myDeck.cards[index].handleResponse( known );
+    // Calculate the average response time
+    myDeck.cards[index].calculateAverageAnswerTime( config.timerDuration );
     // Close the modal
     modal.style.display = "none";
     // Flip the card
@@ -68,10 +74,11 @@ function handleUserQuery( known ) {
     // Chack the deck mastery
     checkMastery( index );
 }
-/* ***** ***** ***** *****
+/**
  * Return element associated with response
  */
 function getResponseElement( known ) {
+    console.log('->getResponseElement');
     switch( known ) {
         case true:
             return big_check;
@@ -83,10 +90,11 @@ function getResponseElement( known ) {
             console.error("Error getting response element.");
     }
 }
-/* ***** ***** ***** *****
+/**
  * Trigger the animation for responses
  */
 function handleResponse( element ) {
+    console.log('->handleResponse');
     // Flash the response icon
     element.classList.add("flash");
     // Grayout the card
@@ -99,10 +107,11 @@ function handleResponse( element ) {
         getNextcard();
     }, config.flashDuration)
 }
-/* ***** ***** ***** *****
+/**
  * Increment the response count
  */
 function addCount( elementId ) {
+    console.log('->addCount');
     // Get reference to counter
     var el = document.getElementById(elementId);
     // Parse the test as an integer
@@ -112,10 +121,11 @@ function addCount( elementId ) {
     // Assign the new value
     el.innerHTML = num;
 }
-/* ***** ***** ***** *****
+/**
  * Chack the mastery of a card in the deck
  */
 function checkMastery( index ) {
+    console.log('->checkMastery');
     var cardInQuestion = myDeck.cards[index];
     if(cardInQuestion.isMastered()) {
         console.log(cardInQuestion.phrase,'Mastered!');
@@ -128,10 +138,11 @@ function checkMastery( index ) {
 // ********************************** Card cycle operations 
 // ********************************************************
  
-/* ***** ***** ***** *****
+/**
  * Get the next card
  */
 function getNextcard() {
+    console.log('->getNextcard');
     // Check for deck mastery
     if(myDeck.isMastered()) { 
         setUIEndState();
@@ -152,19 +163,21 @@ function getNextcard() {
             console.error("Error cycling cards");
     }
 }
-/* ***** ***** ***** *****
+/**
  * Cycle the current card forward
  */
 function cycleCardForward() {
+    console.log('->cycleCardForward');
     // Get the index of the current card
     var index = parseInt(current_card.dataset.index);
     // Cycle the card
     cycleCard( index, 1 );
 }
-/* ***** ***** ***** *****
+/**
  * Cycle the current card forward
  */
 function cycleCardBackward() {
+    console.log('->cycleCardBackward');
     // Get the index of the current card
     var index = parseInt(current_card.dataset.index);
     // If index is 0, set index to one mare than last index
@@ -172,16 +185,18 @@ function cycleCardBackward() {
     // Cycle the card
     cycleCard( index, -1 );
 }
-/* ***** ***** ***** *****
+/**
  * Clcle the current card at random
  */
 function cycleCardRandom() {
+    console.log('->cycleCardRandom');
     // TODO
 }
-/* ***** ***** ***** *****
+/**
  * Cycle card
  */
 function cycleCard( index, val ) {
+    console.log('->cycleCard');
     // Increment / Decrement the index, taking the number of cards
     // in the deck into account
     index = (index + val) % myDeck.numCards();
@@ -192,6 +207,8 @@ function cycleCard( index, val ) {
     back.innerHTML = myDeck.cards[index].definition;
     // Un-grayout the card
     current_card.classList.remove("grayout");
+    // Start the timer for the new card
+    initTimer();
 }
 
 // Card hover events
@@ -210,13 +227,13 @@ current_card.addEventListener('mouseout', function() {
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
 
-/* ***** ***** ***** *****
+/**
  * When the user clicks on the button, open the modal
  */ 
 btn.onclick = function() {
     modal.style.display = "block";
 }
-/* ***** ***** ***** *****
+/**
  * When the user clicks anywhere outside of the modal, close it
  */
 window.onclick = function( event ) {
@@ -229,10 +246,11 @@ window.onclick = function( event ) {
 // *********************************** Quiz / UI operations 
 // ********************************************************
 
-/* ***** ***** ***** *****
+/**
  * Set the UI to the end state
  */
 function setUIEndState() {
+    console.log('->setUIEndState');
     // Set card content
     front.innerHTML = config.endMessageFront;
     back.innerHTML  = config.endMessageBack;
@@ -249,10 +267,11 @@ function setUIEndState() {
         reset_button.style.visibility = 'visible';
     }, 1500);
 }
-/* ***** ***** ***** *****
+/**
  * Set the UI to the initial state
  */
 function setUIInitState() {
+    console.log('->setUIInitState');
     // Reset response counts
     correct.innerHTML = 0;
     in_correct.innerHTML = 0;
@@ -273,24 +292,63 @@ function setUIInitState() {
     // Flip card to front
     current_card.classList.remove('flipped')
 }
-/* ***** ***** ***** *****
+/**
+ * Define user settings
+ */
+function defineUserSettings() {
+    console.log('->defineUserSettings');
+    // Set the cycle type
+    config.cycle = config.cycle;
+    // Set response flash duration
+    config.flashDuration = config.flashDuration;
+    // Set card flip duration
+    config.flipDuration = config.flipDuration;
+    // Flip card on hover?
+    config.flipOnHover = config.flipOnHover;
+    // Define the flip type
+    config.flipType =config.flipType;
+    // Define deck mastery level
+    config.masteryLevel = config.masteryLevel;
+    // Show response counts?
+    config.showReponseCount = config.showReponseCount;
+    // Show response indicators?
+    config.showReponseIndicators = config.showReponseIndicators;
+    // Show the timer?
+    config.showTimer = config.showTimer;
+}
+/**
+ * Assign user settings
+ */
+function assignUserSettings() {
+    console.log('->assignUserSettings');
+    // Set the deck mastery level
+    myDeck.setMasteryLevel( config.masteryLevel );
+}
+/**
  * Set the initial card
  */
 function setCardInit() {
+    console.log('->setCardInit');
     current_card.dataset.index = 0;
     front.innerHTML = myDeck.cards[0].phrase;
     back.innerHTML = myDeck.cards[0].definition;
 }
-/* ***** ***** ***** *****
+/**
  * Reset the quiz
  */
 function reset() {
+    console.log('->reset');
     init();
 }
-/* ***** ***** ***** *****
+/**
  * Initialize the quiz
  */
 function init() {
+    console.log('->init');
+    // Define user config settings
+    // defineUserSettings(); // TODO
+    // Assign user config settings
+    assignUserSettings();
     // Reset deck mastery
     myDeck.reset();
     // Set initial UI state
@@ -305,36 +363,41 @@ function init() {
 
 // The timer variable
 var myTimer;
-/* ***** ***** ***** *****
+/**
  * Initialize the timer
  */
 function initTimer() {
+    console.log('->initTimer');
     setStartTime();
     clearDurationTime();
     startTimer();
 }
-/* ***** ***** ***** *****
+/**
  * Clear the duration time
  */
 function clearDurationTime() {
+    console.log('->clearDurationTime');
     config.timerDuration = 0;
 }
-/* ***** ***** ***** *****
+/**
  * Set the start time
  */
 function setStartTime() {
+    console.log('->setStartTime');
     config.timerStart = new Date();
 }
-/* ***** ***** ***** *****
+/**
  * Start the timer
  */
 function startTimer() {
+    console.log('->startTimer');
     myTimer = setInterval(incrementTimer, config.timerIncrement);
 }
-/* ***** ***** ***** *****
+/**
  * Increment the timer
  */
 function incrementTimer() {
+    // console.log('->incrementTimer');
     var timer = document.getElementById("timer");
     config.timerDuration += config.timerIncrement;
     var secOverTen  =             ( config.timerDuration / 100 )         % 10;
@@ -342,23 +405,26 @@ function incrementTimer() {
     var mins        = Math.floor( ( config.timerDuration / 1000 ) / 60 ) % 60;
     timer.innerHTML = mins + ":" + secs + ":" + secOverTen;
 }
-/* ***** ***** ***** *****
+/**
  * Destroy the timer
  */
 function destroyTimer() {
+    console.log('->destroyTimer');
     stopTimer();
     setEndTime();
 }
-/* ***** ***** ***** *****
+/**
  * Stop the timer
  */
 function stopTimer() {
+    console.log('->stopTimer');
     clearInterval(myTimer);
 }
-/* ***** ***** ***** *****
+/**
  * Set the end time
  */
 function setEndTime() {
+    console.log('->setEndTime');
     config.timerEnd = new Date();
 }
 
@@ -432,13 +498,13 @@ if (!('webkitSpeechRecognition' in window)) {
     if (event.error == 'no-speech') {
       start_img.src = '../images/mic.gif';
       //showInfo('info_no_speech');
-      console.log('Speech not recognized.');
+      console.log('->Speech not recognized.');
       ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
       start_img.src = '../images/mic.gif';
       //showInfo('info_no_microphone');
-      console.log('No microphone detected.');
+      console.log('->No microphone detected.');
       ignore_onend = true;
     }
     if (event.error == 'not-allowed') {
