@@ -44,7 +44,7 @@ function userFlip() {
     console.log('->userFlip');
     // Display response modal if showing back of card
     if(current_card.classList.contains('flipped')) {
-        modal.style.display = "block";
+        _responseModal.style.display = "block";
     }
 }
 
@@ -65,8 +65,8 @@ function handleUserQuery( known ) {
     myDeck.cards[index].handleResponse( known );
     // Calculate the average response time
     myDeck.cards[index].calculateAverageAnswerTime( config.timerDuration );
-    // Close the modal
-    modal.style.display = "none";
+    // Close the Response Modal
+    _responseModal.style.display = "none";
     // Flip the card
     flipCard();
     // Handle the response in the UI
@@ -220,25 +220,114 @@ current_card.addEventListener('mouseout', function() {
 });
 
 // ********************************************************
-// *************************************** Modal operations 
+// *************************************** Response Modal operations 
 // ********************************************************
  
 // Get the modal elements
-var modal = document.getElementById('myModal');
+var _responseModal = document.getElementById('responseModal');
 var btn = document.getElementById("myBtn");
 
 /**
  * When the user clicks on the button, open the modal
  */ 
 btn.onclick = function() {
-    modal.style.display = "block";
+    _responseModal.style.display = "block";
 }
 /**
  * When the user clicks anywhere outside of the modal, close it
  */
 window.onclick = function( event ) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target === _responseModal) {
+        _responseModal.style.display = "none";
+    }
+}
+
+// ********************************************************
+// *************************************** Config Modal operations 
+// ********************************************************
+ 
+// Get the modal elements
+var _configModal = document.getElementById('configModal');
+var configBtn = document.getElementById("config_settings");
+
+/**
+ * When the user clicks on the button, open the modal
+ */ 
+configBtn.onclick = function() {
+    _configModal.style.display = "block";
+}
+/*
+ * When the user clicks on <span> (x), close the modal
+ */
+config_close.onclick = function() {
+    _configModal.style.display = "none";
+}
+/**
+ * Handle a toggle button click
+ */
+function handleToggle( event ) {
+    console.log('->handleToggle');
+    // Get reference to the circle in the toggle button
+    var _toggle = (!event.target.firstElementChild) ? 
+        ((event.target.previousElementSibling) ?
+            event.target.previousElementSibling :
+            event.target) : 
+        event.target.firstElementChild;
+    // Get a reference to the whole toggle button
+    var _button = _toggle.parentElement;
+    // Get a reference to the text inside the toggle button
+    var _span   = _button.children[1];
+    // Get the previous state of the toggle button
+    var _state   = _toggle.dataset.value;
+    switch (_state) {
+        case 'true':
+            toggleOff(_toggle, _button, _span);
+            break;
+        case 'false':
+            toggleOn(_toggle, _button, _span);
+            break;
+        default:
+            console.error("Error setting toggle.");
+    }
+}
+/**
+ * Set toggle to 'YES'
+ */
+function toggleOn(_toggle, _button, _span) {
+    console.log('->toggleOn');
+    var _text = 'YES';
+    // Move the toggle
+    _toggle.classList.add('toggle_toggle_right');
+    _toggle.classList.remove('toggle_toggle_left');
+    // Change the color
+    _button.classList.add('toggle_on');
+    _button.classList.remove('toggle_off');
+    // Change the text & set teh current state
+    _span.textContent = _text;
+    _toggle.dataset.value = 'true';
+}
+/**
+ * Set toggle to 'NO'
+ */
+function toggleOff(_toggle, _button, _span) {
+    console.log('->toggleOff');
+    var _text = 'NO';
+    // Move the toggle
+    _toggle.classList.remove('toggle_toggle_right');
+    _toggle.classList.add('toggle_toggle_left');
+    // Change the color
+    _button.classList.remove('toggle_on');
+    _button.classList.add('toggle_off');
+    // Change the text & set teh current state
+    _span.textContent = _text;
+    _toggle.dataset.value = 'false';
+}
+/**
+ * When the user clicks anywhere outside of the modal, close it
+ */
+window.onclick = function( event ) {
+    if (event.target === _configModal) {
+        _configModal.style.display = "none";
     }
 }
 
@@ -293,6 +382,30 @@ function setUIInitState() {
     current_card.classList.remove('flipped')
 }
 /**
+ * Assign default settings
+ */
+function assignDefaultSettings() {
+    console.log('->assignDefaultSettings');
+    // Set the cycle type
+    config.cycle = config.default.cycle;
+    // Set response flash duration
+    config.flashDuration = config.default.flashDuration;
+    // Set card flip duration
+    config.flipDuration = config.default.flipDuration;
+    // Flip card on hover?
+    config.flipOnHover = config.default.flipOnHover;
+    // Define the flip type
+    config.flipType =config.default.flipType;
+    // Define deck mastery level
+    config.masteryLevel = config.default.masteryLevel;
+    // Show response counts?
+    config.showReponseCount = config.default.showReponseCount;
+    // Show response indicators?
+    config.showReponseIndicators = config.default.showReponseIndicators;
+    // Show the timer?
+    config.showTimer = config.default.showTimer;
+}
+/**
  * Define user settings
  */
 function defineUserSettings() {
@@ -321,8 +434,46 @@ function defineUserSettings() {
  */
 function assignUserSettings() {
     console.log('->assignUserSettings');
+}
+/**
+ * Apply user settings
+ */
+function applySettings( lifecycle ) {
+    console.log('->applySettings');
+    // Update the UI
+    var _func;
+    switch (lifecycle) {
+        case 'init':
+            _func = setToggleFromConfig;
+            break;
+        case 'run-time':
+            _func = setConfigFromToggle;
+            break;
+        default:
+            console.error("Error applying settings");
+    }
+    _func( flipOnHover );
+    _func( showReponseCount );
+    _func( showReponseIndicators );
+    _func( showTimer );
     // Set the deck mastery level
     myDeck.setMasteryLevel( config.masteryLevel );
+    _configModal.style.display = "none";
+}
+/*
+ * Set the toggle based on the config settings
+ */
+function setToggleFromConfig( element ) {
+    var event = {};
+    event.target = element.nextElementSibling;
+    element.nextElementSibling.firstElementChild.dataset.value = !config[element.id];
+    handleToggle( event );
+}
+/*
+ * Set the config settings based on the toggles
+ */
+function setConfigFromToggle( element ) {
+    config[element.id] = element.nextElementSibling.firstElementChild.dataset.value;
 }
 /**
  * Set the initial card
@@ -345,10 +496,12 @@ function reset() {
  */
 function init() {
     console.log('->init');
-    // Define user config settings
+    // Assign default config settings
+    assignDefaultSettings();
+    // Define & assign user config settings
     // defineUserSettings(); // TODO
-    // Assign user config settings
-    assignUserSettings();
+    // Apply settings
+    applySettings( 'init' );
     // Reset deck mastery
     myDeck.reset();
     // Set initial UI state

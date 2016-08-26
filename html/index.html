@@ -24,6 +24,58 @@
     <!-- Timer -->
     <div id="timer" class="nav_left">0:0:0</div>
     
+    <!-- Config Settings -->
+    <div id="configModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header-1">
+          <span id="config_close" class="close">×</span>
+          <h2>Configuration Settings</h2>
+        </div>
+        <div class="modal-body">
+            <div class="toggle_span">
+                <div class="toggle_label left" id="flipOnHover">Flip Card on Hover</div>
+                &nbsp;&nbsp;
+                <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
+                    <div class="toggle_text">NO</div>
+                </div>
+            </div>
+            <div class="toggle_span">
+                <div class="toggle_label left" id="showReponseCount">Show Response Count</div>
+                &nbsp;&nbsp;
+                <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
+                    <div class="toggle_text">NO</div>
+                </div>
+            </div>
+            <div class="toggle_span">
+                <div class="toggle_label left" id="showReponseIndicators">Show Response Indicators</div>
+                &nbsp;&nbsp;
+                <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
+                    <div class="toggle_text">NO</div>
+                </div>
+            </div>
+            <div class="toggle_span">
+                <div class="toggle_label left" id="showTimer">Show Timer</div>
+                &nbsp;&nbsp;
+                <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
+                    <div class="toggle_text">NO</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer-1">
+            <div class="sidebyside">
+                <div class="user_yes-1 left pop_out" onclick="applySettings('run-time')">ACCEPT</div>
+                &nbsp;&nbsp;
+                <div class="user_no-1 right pop_out" onclick="">CANCEL</div>
+            </div>
+        </div>
+      </div>
+    </div>
+    
     <!-- Test Controls -->
     <div id="test_control" class="sidebyside">
         <button class="test" onclick="handleResponse(big_check)">Correct</button>
@@ -36,7 +88,7 @@
     </div>
 
     <!-- User Input Modal -->
-    <div id="myModal" class="modal">
+    <div id="responseModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
@@ -73,6 +125,7 @@
     <!-- Navigation Control -->
     <div id="nav_control" class="sidebyside">
         <span id="reset_button" class="nav nav_left pop_out" onclick="reset()">&#8634;</span>
+        <span id="config_settings" class="nav nav_left pop_out" onclick=""></span>
         <span id="prev" class="nav nav_left pop_out" onclick="cycleCardBackward()">&larr;</span>
         &nbsp;&nbsp;
         <span id="flip" class="nav nav_center pop_out" onclick="flipCard()">&#8631;</span>
