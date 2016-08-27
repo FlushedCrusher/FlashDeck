@@ -233,14 +233,6 @@ var btn = document.getElementById("myBtn");
 btn.onclick = function() {
     _responseModal.style.display = "block";
 }
-/**
- * When the user clicks anywhere outside of the modal, close it
- */
-window.onclick = function( event ) {
-    if (event.target === _responseModal) {
-        _responseModal.style.display = "none";
-    }
-}
 
 // ********************************************************
 // *************************************** Config Modal operations 
@@ -254,13 +246,15 @@ var configBtn = document.getElementById("config_settings");
  * When the user clicks on the button, open the modal
  */ 
 configBtn.onclick = function() {
+    console.log('->configBtn');
+    stopTimer();
     _configModal.style.display = "block";
 }
 /*
  * When the user clicks on <span> (x), close the modal
  */
 config_close.onclick = function() {
-    _configModal.style.display = "none";
+    closeConfigModal();
 }
 /**
  * Handle a toggle button click
@@ -323,12 +317,12 @@ function toggleOff(_toggle, _button, _span) {
     _toggle.dataset.value = 'false';
 }
 /**
- * When the user clicks anywhere outside of the modal, close it
+ * Close configmodal
  */
-window.onclick = function( event ) {
-    if (event.target === _configModal) {
-        _configModal.style.display = "none";
-    }
+function closeConfigModal() {
+    console.log('->closeConfigModal');
+    _configModal.style.display = "none";
+    startTimer();
 }
 
 // ********************************************************
@@ -386,24 +380,9 @@ function setUIInitState() {
  */
 function assignDefaultSettings() {
     console.log('->assignDefaultSettings');
-    // Set the cycle type
-    config.cycle = config.default.cycle;
-    // Set response flash duration
-    config.flashDuration = config.default.flashDuration;
-    // Set card flip duration
-    config.flipDuration = config.default.flipDuration;
-    // Flip card on hover?
-    config.flipOnHover = config.default.flipOnHover;
-    // Define the flip type
-    config.flipType =config.default.flipType;
-    // Define deck mastery level
-    config.masteryLevel = config.default.masteryLevel;
-    // Show response counts?
-    config.showReponseCount = config.default.showReponseCount;
-    // Show response indicators?
-    config.showReponseIndicators = config.default.showReponseIndicators;
-    // Show the timer?
-    config.showTimer = config.default.showTimer;
+    for(setting in config.default) {
+        config[setting] = config.default[setting];
+    }
 }
 /**
  * Define user settings
@@ -447,6 +426,7 @@ function applySettings( lifecycle ) {
             _func = setToggleFromConfig;
             break;
         case 'run-time':
+            startTimer();
             _func = setConfigFromToggle;
             break;
         default:
@@ -473,7 +453,8 @@ function setToggleFromConfig( element ) {
  * Set the config settings based on the toggles
  */
 function setConfigFromToggle( element ) {
-    config[element.id] = element.nextElementSibling.firstElementChild.dataset.value;
+    var val = element.nextElementSibling.firstElementChild.dataset.value;
+    config[element.id] = (val === 'true') ? true : false;
 }
 /**
  * Set the initial card
