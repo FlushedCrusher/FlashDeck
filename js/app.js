@@ -436,6 +436,11 @@ function applySettings( lifecycle ) {
     _func( showReponseCount );
     _func( showReponseIndicators );
     _func( showTimer );
+    setVisibility( correct );
+    setVisibility( in_correct );
+    setVisibility( timer );
+    setVisibility( big_check );
+    setVisibility( big_exx );
     // Set the deck mastery level
     myDeck.setMasteryLevel( config.masteryLevel );
     _configModal.style.display = "none";
@@ -455,6 +460,14 @@ function setToggleFromConfig( element ) {
 function setConfigFromToggle( element ) {
     var val = element.nextElementSibling.firstElementChild.dataset.value;
     config[element.id] = (val === 'true') ? true : false;
+}
+/**
+ * Set visibility of features
+ */
+function setVisibility( element ) {
+    var setting = element.dataset.name;
+    var val = (config[setting]) ? 'visible' : 'hidden';
+    element.style.visibility = val;
 }
 /**
  * Set the initial card

@@ -22,7 +22,7 @@
     </div>
     
     <!-- Timer -->
-    <div id="timer" class="nav_left">0:0:0</div>
+    <div id="timer" class="nav_left" data-name="showTimer">0:0:0</div>
     
     <!-- Config Settings -->
     <div id="configModal" class="modal">
@@ -108,7 +108,7 @@
     
     <!-- Card and response count -->
     <div class="card_row">
-        <div id="correct" class="left side_bar">
+        <div id="correct" class="left side_bar" data-name="showReponseCount">
             0
         </div>
         <div class="left card_container">
@@ -117,7 +117,7 @@
                 <span id="back"></span>
             </div>
         </div>
-        <div id="in_correct" class="left side_bar">
+        <div id="in_correct" class="left side_bar" data-name="showReponseCount">
             0
         </div>
     </div> 
@@ -135,7 +135,7 @@
     
     <!-- Speech box & response indicators --> 
     <div class="footer">
-        <div id="big_check" class="l_response left" data-count-id="correct">
+        <div id="big_check" class="l_response left" data-count-id="correct" data-name="showReponseIndicators">
             <img src="../images/check.png">
         </div>
         
@@ -149,7 +149,7 @@
             </div>
         </div>
         
-        <div id="big_exx" class="r_response right" data-count-id="in_correct">
+        <div id="big_exx" class="r_response right" data-count-id="in_correct" data-name="showReponseIndicators">
             <img src="../images/exx.png">
         </div>
     </div>
