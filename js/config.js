@@ -1,5 +1,20 @@
+var cycleEnum = {
+    FORWARD: {
+        name: 'Forward',
+        value: 'forward'
+    },
+    BACKWARD: {
+        name: 'Backward',
+        value: 'backward'
+    },
+    RANDOM: {
+        name: 'Random',
+        value: 'random'
+    }
+};
+
 var config = {
-    cycle                   : 'forward',
+    cycle                   : cycleEnum.FORWARD,
     endMessageFront         : 'Congratulations!',
     endMessageBack          : 'You did it!',
     flashDuration           : 750,

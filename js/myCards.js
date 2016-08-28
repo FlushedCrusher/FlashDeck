@@ -41,6 +41,6 @@ var myCards = [
     // { phrase:"solve",definition:"find an answer"},
     // { phrase:"test",definition:"evaluate; examine"},
     // { phrase:"trace",definition:"to copy or find by searching"},
-    // { phrase:"track",definition:"observe or plot the path of"},
+    { phrase:"track",definition:"observe or plot the path of"},
     { phrase:"update",definition:"modernize; make current"}
 ];

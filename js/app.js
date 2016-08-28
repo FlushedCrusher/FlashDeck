@@ -149,7 +149,7 @@ function getNextcard() {
         return;
     }
     // Cycle the card based on config settings
-    switch (config.cycle) {
+    switch (config.cycle.value) {
         case 'forward':
             cycleCardForward();
             break;
