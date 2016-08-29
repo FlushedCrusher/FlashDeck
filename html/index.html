@@ -32,7 +32,7 @@
           <span id="config_close" class="close">×</span>
           <h2>Settings</h2>
         </div>
-        <div class="modal-body">
+        <div id="settings_body" class="modal-body">
             <div class="toggle_span">
                 <div class="toggle_label left" id="flipOnHover">Flip Card on Hover</div>
                 &nbsp;&nbsp;
@@ -44,31 +44,37 @@
             <div class="toggle_span">
                 <div class="toggle_label left" id="showReponseCount">Show Response Count</div>
                 &nbsp;&nbsp;
-                <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
-                    <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
+                <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
                     <div class="toggle_text">NO</div>
                 </div>
             </div>
             <div class="toggle_span">
                 <div class="toggle_label left" id="showReponseIndicators">Show Response Indicators</div>
                 &nbsp;&nbsp;
-                <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
-                    <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
+                <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
                     <div class="toggle_text">NO</div>
                 </div>
             </div>
             <div class="toggle_span">
                 <div class="toggle_label left" id="showTimer">Show Timer</div>
                 &nbsp;&nbsp;
-                <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
-                    <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
+                <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
                     <div class="toggle_text">NO</div>
                 </div>
+            </div>
+            <div id="card_input_setting" class="toggle_span_always_on blue_back">
+                <div class="toggle_label left" id="importCards">Import Cards</div>
+                &nbsp;&nbsp;
+                <label for="card_input" id="card_input_button">Choose a file</label>
+                <input type="file" id="card_input" onchange="loadCardHandler(this.files)">
             </div>
         </div>
         <div class="modal-footer-1">
             <div class="sidebyside">
-                <div class="user_yes-1 left pop_out" onclick="applySettings('run-time')">APPLY</div>
+                <div class="user_yes-1 left pop_out" onclick="applySettings()">APPLY</div>
                 &nbsp;&nbsp;
                 <div class="user_no-1 right pop_out" onclick="closeConfigModal()">CANCEL</div>
             </div>
@@ -164,7 +170,9 @@
     </div>    
 </body>
 
+<!--
 <script type="text/javascript" src="../js/myCards.js"></script>
+-->
     
 <script type="text/javascript" src="../js/Card.js"></script>
 <script type="text/javascript" src="../js/Deck.js"></script>
@@ -177,14 +185,7 @@
 <script type="text/javascript">
         
     var myDeck = new Deck();
-    
-    myCards.forEach(function( card ) {
-        myDeck.addCard( new Card(card.phrase, card.definition));
-    });
-    
-    (function() {
-        init();
-    })();
+    var myCards;
     
 </script>
 

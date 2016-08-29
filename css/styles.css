@@ -393,6 +393,17 @@ body {
     z-index: 1;
     margin-top: 5px;
     margin-bottom: 5px;
+    display: none;
+    width: 100%;
+    min-height: 25px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.toggle_span_always_on {
+    z-index: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
     display: inline-block;
     width: 100%;
     min-height: 25px;

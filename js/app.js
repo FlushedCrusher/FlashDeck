@@ -12,10 +12,19 @@ function flipCard() {
     // Toggle flipped state
     current_card.classList.toggle('flipped');
     // Return if the quiz has ended
-    if(config.quizFinished) {
-        return;
+    switch (config.appState.value) {
+        case 'quizzing':
+            handleFlip();
+            break;
+        default:
+            return;
     }
-    // Perform additional flip operations
+}
+/**
+ * Handle the flip operations
+*/
+function handleFlip() {
+    console.log('->handleFlip');
     switch (config.flipType) {
         case 'test':
             quickFlip();
@@ -273,6 +282,8 @@ function handleToggle( event ) {
     var _span   = _button.children[1];
     // Get the previous state of the toggle button
     var _state   = _toggle.dataset.value;
+    // Get a reference to the Label and and setting id
+    var _setting = _button.parentElement.firstElementChild;
     switch (_state) {
         case 'true':
             toggleOff(_toggle, _button, _span);
@@ -283,6 +294,7 @@ function handleToggle( event ) {
         default:
             console.error("Error setting toggle.");
     }
+    setConfigFromToggle( _setting );
 }
 /**
  * Set toggle to 'YES'
@@ -322,7 +334,9 @@ function toggleOff(_toggle, _button, _span) {
 function closeConfigModal() {
     console.log('->closeConfigModal');
     _configModal.style.display = "none";
-    startTimer();
+    if(config.appState.value === 'quizzing') {
+        startTimer();
+    }
 }
 
 // ********************************************************
@@ -337,8 +351,8 @@ function setUIEndState() {
     // Set card content
     front.innerHTML = config.endMessageFront;
     back.innerHTML  = config.endMessageBack;
-    // Set quiz finished boolean
-    config.quizFinished = true;
+    // Set app state
+    config.appState = stateEnum.FINISHED;
     // Show the fireworks
     fireworks.style.visibility = 'visible';
     fireworks_window.style.visibility = 'visible';
@@ -359,13 +373,11 @@ function setUIInitState() {
     correct.innerHTML = 0;
     in_correct.innerHTML = 0;
     // Set card content
-    if(config.quizFinished) {
+    if(config.appState.value === 'finished') {
         setTimeout( setCardInit, config.flipDuration / 2);
     } else {
         setCardInit();
     }
-    // Set quiz finished boolean
-    config.quizFinished = false;
     // Hide the fireworks
     fireworks.style.visibility = 'hidden';
     fireworks_window.style.visibility = 'hidden';
@@ -381,7 +393,7 @@ function setUIInitState() {
 function assignDefaultSettings() {
     console.log('->assignDefaultSettings');
     for(setting in config.default) {
-        config[setting] = config.default[setting];
+        config[setting] = (typeof config[setting] === 'undefined') ? config.default[setting] : config[setting];
     }
 }
 /**
@@ -417,21 +429,36 @@ function assignUserSettings() {
 /**
  * Apply user settings
  */
-function applySettings( lifecycle ) {
+function applySettings() {
     console.log('->applySettings');
     // Update the UI
     var _func;
-    switch (lifecycle) {
-        case 'init':
-            _func = setToggleFromConfig;
+    switch (config.appState.value) {
+        case 'firstLoad':
+            if(myCards) {
+                config.appState = stateEnum.INITIAL;
+                init();
+            }
             break;
-        case 'run-time':
+        case 'initial':
+            config.appState = stateEnum.QUIZING;
+            _func = setToggleFromConfig;
+            handleApplySettings( _func );
+            break;
+        case 'quizzing':
             startTimer();
             _func = setConfigFromToggle;
+            handleApplySettings( _func );
             break;
         default:
             console.error("Error applying settings");
     }
+    _configModal.style.display = "none";
+}
+/**
+ * Handle Apply Settings
+*/
+function handleApplySettings( _func ) {
     _func( flipOnHover );
     _func( showReponseCount );
     _func( showReponseIndicators );
@@ -443,9 +470,8 @@ function applySettings( lifecycle ) {
     setVisibility( big_exx );
     // Set the deck mastery level
     myDeck.setMasteryLevel( config.masteryLevel );
-    _configModal.style.display = "none";
 }
-/*
+/**
  * Set the toggle based on the config settings
  */
 function setToggleFromConfig( element ) {
@@ -454,7 +480,7 @@ function setToggleFromConfig( element ) {
     element.nextElementSibling.firstElementChild.dataset.value = !config[element.id];
     handleToggle( event );
 }
-/*
+/**
  * Set the config settings based on the toggles
  */
 function setConfigFromToggle( element ) {
@@ -483,7 +509,8 @@ function setCardInit() {
  */
 function reset() {
     console.log('->reset');
-    init();
+    config.appState = stateEnum.FIRSTLOAD;
+    applySettings();
 }
 /**
  * Initialize the quiz
@@ -495,13 +522,65 @@ function init() {
     // Define & assign user config settings
     // defineUserSettings(); // TODO
     // Apply settings
-    applySettings( 'init' );
+    applySettings();
     // Reset deck mastery
     myDeck.reset();
     // Set initial UI state
     setUIInitState();
     // Initialize the timer
     initTimer();
+}
+/**
+ * Load card handler
+ */
+function loadCardHandler( files ) {
+    console.log('->loadCardHandler');
+    var reader = new FileReader
+    reader.onload = function(e) {
+      afterLoadHandler( reader.result );
+    }
+    reader.readAsText(files[0], 'UTF-8');
+    addNameToDom( files[0].name );
+}
+/**
+ * Perform operations after cards loaded
+ */
+function afterLoadHandler( results ) {
+    console.log('->afterLoadHandler');
+    myCards = results.split('\n');
+    addToDeck( myCards );
+}
+/**
+ * Add cards to deck
+ */
+function addToDeck( cards ) {
+    console.log('->addToDeck');
+    myCards.forEach( function( card ) {
+        var _card = card.split(',');
+        myDeck.addCard( new Card(_card[0], _card[1]));
+    });
+    showConfigSettings();
+}
+/**
+ * Show the config settings
+ */
+function showConfigSettings() {
+    console.log('->showConfigSettings');
+    var elements = document.getElementsByClassName('toggle_span');
+    for(var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        element.style.display = 'inline-block';
+    }
+}
+/**
+ * Added laoded filenme to DOM
+ */
+function addNameToDom( name ) {
+    console.log('->addNameToDom');
+    var tmp         = document.createElement('span');
+    tmp.textContent = name;
+    tmp.id          = 'loaded_cards';
+    settings_body.appendChild(tmp);
 }
 
 // ********************************************************

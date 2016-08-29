@@ -127,3 +127,35 @@
     background-color: rgb(242, 242, 242);
     color: black;
 }
+
+.blue_back {
+    width: 440px;
+    padding: 15px;
+    background-color: #087eff;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+#card_input_button {
+    cursor: pointer;
+    background-color: rgb(220, 220, 220);
+    border-radius: 5px;
+    color: black;
+    font-weight: 600;
+    padding: 5px;
+    position: absolute;
+    right: 30px;
+}
+
+#card_input {
+    position: absolute;
+    opacity: 0.0;
+    z-index: -1;
+}
+
+#loaded_cards {
+    font-style: italic;
+    font-size: 12px;
+    float: right;
+}
