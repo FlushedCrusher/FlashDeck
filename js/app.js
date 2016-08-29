@@ -515,6 +515,7 @@ var myTimer;
  */
 function initTimer() {
     console.log('->initTimer');
+    destroyTimer();
     setStartTime();
     clearDurationTime();
     startTimer();
