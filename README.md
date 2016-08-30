@@ -27,3 +27,13 @@ Navigat to: [http-server address]/html/
 OR
 
 $PATH_TO_PROJECT/html/index.html
+
+## TODO ##
+
+    * Add DeckLimit to config settings
+    * Add Pause / Continue functionality
+    * Refactor Config Setting Dailauge to use Pause / Continue functionality
+    * Add Deck reset button to config setting dailauge
+    * Refactor to use HTML5 import
+    * Add speech recognition functionality
+    * Add Keyboard event listener controls
