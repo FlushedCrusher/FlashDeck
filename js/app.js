@@ -1,4 +1,87 @@
 // ********************************************************
+// *********************************** Window Event Listeners (Keyboard Controls) 
+// ********************************************************
+
+window.addEventListener('load', function() {
+    addWindowKeyListener();
+});
+
+window.addEventListener('onunload', function() {
+    removeWindowKeyListener();
+    window.removeEventListener('load', function() {
+        console.log('->window load event removed');
+    });
+    window.removeEventListener('onunload', function() {
+        console.log('->windoe unload event removed');
+    });
+});
+/**
+ * Add the keypress listener for window controls
+ */
+function addWindowKeyListener() {
+    document.addEventListener("keyup", windowKeyHandler);
+}
+/**
+ * Remove the keypress listener for window controls
+ */
+function removeWindowKeyListener() {
+    document.removeEventListener("keyup", windowKeyHandler);
+}
+/**
+ * Add the keypress listener for response modal controls
+ */
+function addResponseKeyListener() {
+    document.addEventListener("keyup", responseKeyHandler);
+}
+/**
+ * Remove the keypress listener for response modal controls
+ */
+function removeResponseKeyListener() {
+    document.removeEventListener("keyup", responseKeyHandler);
+}
+/**
+ * Window key listener handler
+ */
+function windowKeyHandler( event ) {
+    console.log('->windowKeyHandler');
+    switch (event.keyCode) {
+        case 32: // Start or Stop the timer (SPACE)
+            toggleTimer();
+            break;
+        case 37: // Cycle cards backward    (LEFT ARROW)
+            cycleCardBackward();
+            break;
+        case 38: // Flip card               (UP ARROW)
+            flipCard();
+            break;
+        case 39: // Cycle cards forward     (RIGHT ARROW)
+            cycleCardForward();
+            break;
+        default:
+            break;
+    }
+}
+/**
+ * Response modal key listener handleResponse
+*/
+function responseKeyHandler( event ) {
+    console.log('->responseKeyHandler');
+    switch (event.keyCode) {
+        case 13: // Respond YES (ENTER)
+            handleUserQuery(true);
+            break;
+        case 37: // Respond YES (LEFT ARROW)
+            handleUserQuery(true);
+            break;
+        case 39: // Respond NO  (RIGHT ARROW)
+            handleUserQuery(false);
+            break;
+        default:
+            break;
+    }
+} 
+
+// ********************************************************
 // *********************************** Card flip operations 
 // ********************************************************
  
@@ -53,7 +136,14 @@ function userFlip() {
     console.log('->userFlip');
     // Display response modal if showing back of card
     if(current_card.classList.contains('flipped')) {
+        // Apply proper key controls
+        removeWindowKeyListener();
+        addResponseKeyListener();
         _responseModal.style.display = "block";
+    } else {   
+        // Apply proper key controls
+        removeResponseKeyListener();
+        addWindowKeyListener();
     }
 }
 
@@ -731,6 +821,7 @@ function destroyTimer() {
 function stopTimer() {
     console.log('->stopTimer');
     clearInterval(myTimer);
+    myTimer = null;
 }
 /**
  * Set the end time
@@ -738,6 +829,16 @@ function stopTimer() {
 function setEndTime() {
     console.log('->setEndTime');
     config.timerEnd = new Date();
+}
+/**
+ * Toggle the interval
+ */
+function toggleTimer() {
+    if(!myTimer) {
+        startTimer();
+    } else {
+        stopTimer();
+    }
 }
 
 // ********************************************************
