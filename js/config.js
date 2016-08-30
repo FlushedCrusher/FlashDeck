@@ -42,6 +42,7 @@ var config = {
     flipDuration            : 2000,
     flipOnHover             : undefined,
     flipType                : 'userInput',
+    fromSavedState          : undefined,
     masteryLevel            : 3,
     showReponseCount        : undefined,
     showReponseIndicators   : undefined,

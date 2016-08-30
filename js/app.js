@@ -263,6 +263,7 @@ var configBtn = document.getElementById("config_settings");
 configBtn.onclick = function() {
     console.log('->configBtn');
     stopTimer();
+    if(config.appState.value !== 'firstLoad') { showConfigSettings(); }
     _configModal.style.display = "block";
 }
 /*
@@ -381,8 +382,10 @@ function setUIEndState() {
 function setUIInitState() {
     console.log('->setUIInitState');
     // Reset response counts
-    correct.innerHTML = 0;
-    in_correct.innerHTML = 0;
+    if(!config.fromSavedState) {
+        correct.innerHTML = 0;
+        in_correct.innerHTML = 0;
+    }
     // Set card content
     if(config.appState.value === 'finished') {
         setTimeout( setCardInit, config.flipDuration / 2);
@@ -446,7 +449,7 @@ function applySettings() {
     var _func;
     switch (config.appState.value) {
         case 'firstLoad':
-            if(myDeck) {
+            if(myDeck.cards.length > 0) {
                 config.appState = stateEnum.INITIAL;
                 init();
             }
@@ -523,6 +526,8 @@ function reset() {
     config.appState = stateEnum.FIRSTLOAD;
     // Reset deck mastery
     myDeck.reset()
+    // Document that we are not loading saved data
+    config.fromSavedState = false;
     applySettings();
 }
 /**
@@ -553,15 +558,14 @@ function onAppLoad() {
         // Print information
         console.log('Loading saved application state...');
         console.log('Last saved on:',new Date(appData.timestamp));
-        // Build the application
-        console.log('Loading configuration settings...');
         config = appData.config;
-        console.log('Setting app state...');
+        // Document that we are loading saved data
+        config.fromSavedState = true;
+        // Build the application
         config.appState = stateEnum.FIRSTLOAD;
-        console.log('Loading user deck...');
-        myDeck = new Deck();
         loadDeck(appData.deck);
-        console.log('Starting app...');
+        correct.textContent = appData.correct;
+        in_correct.textContent  = appData.inCorrect;
         applySettings();
     }
 }
@@ -573,7 +577,9 @@ function onAppUnload() {
     // Save app data
     var json = {
         'config'    : config,
+        'correct'   : correct.textContent,
         'deck'      : myDeck,
+        'inCorrect' : in_correct.textContent,
         'timestamp' : Date.now(),
         'version'   : config.version
     };
@@ -585,9 +591,12 @@ function onAppUnload() {
  */
 function loadCardHandler( files ) {
     console.log('->loadCardHandler');
+    config.appState = stateEnum.FIRSTLOAD;
     var reader = new FileReader
     reader.onload = function(e) {
-      afterLoadHandler( reader.result );
+        // Document that we are not loading saved data
+        config.fromSavedState = false;
+        afterLoadHandler( reader.result );
     }
     reader.readAsText(files[0], 'UTF-8');
     addNameToDom( files[0].name );
