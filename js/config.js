@@ -35,6 +35,7 @@ var stateEnum = {
 var config = {
     appState                : stateEnum.FIRSTLOAD,
     cycle                   : cycleEnum.FORWARD,
+    deckLimit               : Number.MAX_VALUE,
     endMessageFront         : 'Congratulations!',
     endMessageBack          : 'You did it!',
     flashDuration           : 750,
@@ -48,7 +49,8 @@ var config = {
     timerDuration           : 0,
     timerEnd                : 0,
     timerStart              : 0,
-    timerIncrement          : 100
+    timerIncrement          : 100,
+    varsion                 : '1.0.0'
 };
 
 config.default = {

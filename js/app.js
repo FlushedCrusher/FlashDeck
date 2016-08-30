@@ -190,7 +190,7 @@ function cycleCardBackward() {
     // Get the index of the current card
     var index = parseInt(current_card.dataset.index);
     // If index is 0, set index to one mare than last index
-    if(index === 0) { index = myDeck.numCards(); }
+    if(index === 0) { index = setLength(); }
     // Cycle the card
     cycleCard( index, -1 );
 }
@@ -208,7 +208,7 @@ function cycleCard( index, val ) {
     console.log('->cycleCard');
     // Increment / Decrement the index, taking the number of cards
     // in the deck into account
-    index = (index + val) % myDeck.numCards();
+    index = (index + val) % setLength();
     // Assign the new index to the card element
     current_card.dataset.index = index;
     // If not, assign the card new values
@@ -218,6 +218,12 @@ function cycleCard( index, val ) {
     current_card.classList.remove("grayout");
     // Start the timer for the new card
     initTimer();
+}
+/**
+ * Returns the length of the set of cards or deck length
+ */
+function setLength() {
+    return Math.min( myDeck.numCards(), config.deckLimit );
 }
 
 // Card hover events
@@ -343,6 +349,11 @@ function closeConfigModal() {
 // *********************************** Quiz / UI operations 
 // ********************************************************
 
+// Perform operations when the app loads
+flashDeckApp.onload = onAppLoad;
+// Perform operations when the app is closed
+flashDeckApp.onunload = onAppUnload;
+
 /**
  * Set the UI to the end state
  */
@@ -435,7 +446,7 @@ function applySettings() {
     var _func;
     switch (config.appState.value) {
         case 'firstLoad':
-            if(myCards) {
+            if(myDeck) {
                 config.appState = stateEnum.INITIAL;
                 init();
             }
@@ -510,6 +521,8 @@ function setCardInit() {
 function reset() {
     console.log('->reset');
     config.appState = stateEnum.FIRSTLOAD;
+    // Reset deck mastery
+    myDeck.reset()
     applySettings();
 }
 /**
@@ -522,13 +535,50 @@ function init() {
     // Define & assign user config settings
     // defineUserSettings(); // TODO
     // Apply settings
-    applySettings();
-    // Reset deck mastery
-    myDeck.reset();
+    applySettings();;
     // Set initial UI state
     setUIInitState();
     // Initialize the timer
     initTimer();
+}
+/**
+ * Perform app operations on load
+ */
+function onAppLoad() {
+    console.log('->onAppLoad');
+    // Check for saved app data.
+    if(localStorage.flashDeck) {
+        // Get saved data
+        var appData = JSON.parse(localStorage.flashDeck);
+        // Print information
+        console.log('Loading saved application state...');
+        console.log('Last saved on:',new Date(appData.timestamp));
+        // Build the application
+        console.log('Loading configuration settings...');
+        config = appData.config;
+        console.log('Setting app state...');
+        config.appState = stateEnum.FIRSTLOAD;
+        console.log('Loading user deck...');
+        myDeck = new Deck();
+        loadDeck(appData.deck);
+        console.log('Starting app...');
+        applySettings();
+    }
+}
+/**
+ * Perform app operations on unload
+ */
+function onAppUnload() {
+    console.log('->onAppUnload');
+    // Save app data
+    var json = {
+        'config'    : config,
+        'deck'      : myDeck,
+        'timestamp' : Date.now(),
+        'version'   : config.version
+    };
+    localStorage.flashDeck = JSON.stringify(json);
+    
 }
 /**
  * Load card handler
@@ -547,6 +597,7 @@ function loadCardHandler( files ) {
  */
 function afterLoadHandler( results ) {
     console.log('->afterLoadHandler');
+    myDeck = new Deck();
     myCards = results.split('\n');
     addToDeck( myCards );
 }
@@ -555,11 +606,36 @@ function afterLoadHandler( results ) {
  */
 function addToDeck( cards ) {
     console.log('->addToDeck');
-    myCards.forEach( function( card ) {
+    cards.forEach( function( card ) {
         var _card = card.split(',');
         myDeck.addCard( new Card(_card[0], _card[1]));
     });
     showConfigSettings();
+}
+/**
+ * Load deck to application
+ */
+function loadDeck( deck ) {
+    console.log('->loadDeck');
+    var cards = deck.cards;
+    var mastered = deck.mastered;
+    cards.forEach(function( card ) {
+        var tmp = new Card(card.phrase, card.definition);
+        tmp.timesCorrect        = card.timesCorrect;
+        tmp.timesIncorrect      = card.timesIncorrect;
+        tmp.averageAnswerTime   = card.averageAnswerTime;
+        tmp.masteryLevel        = card.masteryLevel;
+        myDeck.addCard( tmp )
+    });
+    mastered.forEach(function( card ) {
+        var tmp = new Card(card.phrase, card.definition);
+        tmp.timesCorrect        = card.timesCorrect;
+        tmp.timesIncorrect      = card.timesIncorrect;
+        tmp.averageAnswerTime   = card.averageAnswerTime;
+        tmp.masteryLevel        = card.masteryLevel;
+        myDeck.addCard( tmp )
+        myDeck.addToMastered( myDeck.cards.length - 1 );
+    });
 }
 /**
  * Show the config settings
