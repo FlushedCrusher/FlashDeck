@@ -11,12 +11,6 @@ You can also run from file by opening html/index.html in a browser (Prefferably 
 npm install
 ```
 
-OR
-
-```dart
-npm install --only=dev
-```
-
 ## Usage ##
 
 ```dart
