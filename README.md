@@ -36,5 +36,5 @@ $PATH_TO_PROJECT/html/index.html
     * Add speech recognition functionality
     * Refactor Config Setting Dailauge to use Pause / Continue functionality
     * Refactor to use HTML5 import
-    * <del>Add Pause / Continue functionality</del>
-    * <del>Add Keyboard event listener controls</del>
+    ~~Add Pause / Continue functionality~~
+    ~~<del>Add Keyboard event listener controls~~
