@@ -2,19 +2,25 @@
 // *********************************** Window Event Listeners (Keyboard Controls) 
 // ********************************************************
 
+/**
+ * Add the event listeners to the app
+ */
 window.addEventListener('load', function() {
     addWindowKeyListener();
+    addWindowPauseListener();
 });
-
-window.addEventListener('onunload', function() {
-    removeWindowKeyListener();
-    window.removeEventListener('load', function() {
-        console.log('->window load event removed');
-    });
-    window.removeEventListener('onunload', function() {
-        console.log('->windoe unload event removed');
-    });
-});
+/**
+ * Add the pause listener for window control
+ */
+function addWindowPauseListener() {
+    document.addEventListener("keyup", windowPauseHandler);
+}
+/**
+ * Remove the pause listener for window control
+ */
+function removeWindowPauseListener() {
+    document.removeEventListener("keyup", windowPauseHandler);
+}
 /**
  * Add the keypress listener for window controls
  */
@@ -40,14 +46,24 @@ function removeResponseKeyListener() {
     document.removeEventListener("keyup", responseKeyHandler);
 }
 /**
+ * Window pause listener handler
+ */
+function windowPauseHandler( event ) {
+    console.log('->windowPauseHandler');
+    switch (event.keyCode) {
+        case 32: // Start or Stop the timer (SPACE)
+            toggleTimer();
+            break;
+        default:
+            break;
+    }
+}
+/**
  * Window key listener handler
  */
 function windowKeyHandler( event ) {
     console.log('->windowKeyHandler');
     switch (event.keyCode) {
-        case 32: // Start or Stop the timer (SPACE)
-            toggleTimer();
-            break;
         case 37: // Cycle cards backward    (LEFT ARROW)
             cycleCardBackward();
             break;
@@ -91,7 +107,7 @@ function responseKeyHandler( event ) {
 function flipCard() {
     console.log('->flipCard');
     // Stop the timer
-    destroyTimer();
+    destroyTimer(); // TODO refactor to toggle
     // Toggle flipped state
     current_card.classList.toggle('flipped');
     // Return if the quiz has ended
@@ -138,11 +154,13 @@ function userFlip() {
     if(current_card.classList.contains('flipped')) {
         // Apply proper key controls
         removeWindowKeyListener();
+        removeWindowPauseListener();
         addResponseKeyListener();
         _responseModal.style.display = "block";
     } else {   
         // Apply proper key controls
         removeResponseKeyListener();
+        addWindowPauseListener();
         addWindowKeyListener();
     }
 }
@@ -352,7 +370,7 @@ var configBtn = document.getElementById("config_settings");
  */ 
 configBtn.onclick = function() {
     console.log('->configBtn');
-    stopTimer();
+    stopTimer(); // TODO refactor to toggle
     if(config.appState.value !== 'firstLoad') { showConfigSettings(); }
     _configModal.style.display = "block";
 }
@@ -769,7 +787,7 @@ var myTimer;
  */
 function initTimer() {
     console.log('->initTimer');
-    destroyTimer();
+    destroyTimer(); // TODO refactor to toggle
     setStartTime();
     clearDurationTime();
     startTimer();
@@ -835,8 +853,12 @@ function setEndTime() {
  */
 function toggleTimer() {
     if(!myTimer) {
+        pause_screen.style.visibility = 'hidden';
+        addWindowKeyListener()
         startTimer();
     } else {
+        pause_screen.style.visibility = 'visible';
+        removeWindowKeyListener()
         stopTimer();
     }
 }
