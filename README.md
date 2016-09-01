@@ -41,16 +41,14 @@ $PATH_TO_PROJECT/html/index.html
 
 ### Version 1.0.0 ###
 
-X Add Deck reset button to config setting dailauge
-
-~~ Add Random Cycling to quizzing: The application should allow for random selection of cards~~
-
 * Add quiz cycle type to config settings
     * User should be able to select cycle type: forward, backward, random
 
+~~Add Deck reset button to config setting dailauge~~
 ~~Add keyboard helper overlay~~
-~~Add Pause / Continue functionality~~
 ~~Add Keyboard event listener controls~~
+~~Add Pause / Continue functionality~~
+~~Add Random Cycling to quizzing~~
 ~~Refactor Config Setting Dailauge to use Pause / Continue functionality~~
 
 ### Version 1.1.0 ###
