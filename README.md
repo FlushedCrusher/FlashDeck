@@ -2,6 +2,14 @@
 
 A project for quizzing & mastering flash cards.
 
+Version 1.0.0
+
++ Load user created Decks
++ Keyboard controlled
++ Pause functionality
++ Configurable Cycle Method and UI
++ Instant feedback and card progression
+
 ## Installation ##
 
 This is an optional step, if you want to serve the app statically.
@@ -41,19 +49,7 @@ $PATH_TO_PROJECT/html/index.html
 
 ### Version 1.0.0 ###
 
-X Add quiz cycle type to config settings
 
-X Add Deck reset button to config setting dailauge
-
-X Add keyboard helper overlay
-
-X Add Keyboard event listener controls
-
-X Add Pause / Continue functionality
-
-X Add Random Cycling to quizzing
-
-X Refactor Config Setting Dailauge to use Pause / Continue functionality
 
 ### Version 1.1.0 ###
 
