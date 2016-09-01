@@ -45,10 +45,15 @@ $PATH_TO_PROJECT/html/index.html
     * User should be able to select cycle type: forward, backward, random
 
 X Add Deck reset button to config setting dailauge
+
 X Add keyboard helper overlay
+
 X Add Keyboard event listener controls
+
 X Add Pause / Continue functionality
+
 X Add Random Cycling to quizzing
+
 X Refactor Config Setting Dailauge to use Pause / Continue functionality
 
 ### Version 1.1.0 ###
