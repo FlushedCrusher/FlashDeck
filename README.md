@@ -29,13 +29,13 @@ OR
 $PATH_TO_PROJECT/html/index.html
 
 *   Load deck of cards using the upload feature in the Settings modal.
-**  Two sample decks are provided; short & long
+    *  Two sample decks are provided; short & long
 *   Click the 'Apply' button and get goin!
 *   Keyboard controls are easiest:
-**  Space Bar   : Pause
-**  Left Arrow  : Cycle Backward
-**  Up Arrow    : Flip Card and Respond
-**  Right Arrow : Cycle Forward
+    *  Space Bar   : Pause
+    *  Left Arrow  : Cycle Backward
+    *  Up Arrow    : Flip Card and Respond
+    *  Right Arrow : Cycle Forward
 
 ## TODO ##
 
