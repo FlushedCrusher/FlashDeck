@@ -130,7 +130,7 @@ kh_tab.onclick = function() {
 function flipCard() {
     console.log('->flipCard');
     // Stop the timer
-    destroyTimer(); // TODO refactor to toggle
+    destroyTimer();
     // Toggle flipped state
     current_card.classList.toggle('flipped');
     // Return if the quiz has ended
@@ -330,7 +330,7 @@ function cycleCardBackward() {
  */
 function cycleCardRandom() {
     console.log('->cycleCardRandom');
-    // TODO
+    // TODO randomCard
 }
 /**
  * Cycle card
@@ -393,9 +393,11 @@ var configBtn = document.getElementById("config_settings");
  */ 
 configBtn.onclick = function() {
     console.log('->configBtn');
-    stopTimer(); // TODO refactor to toggle
+    if(config.appState.value === 'quizzing') {
+        toggleTimer();
+    }
     if(config.appState.value !== 'firstLoad') { showConfigSettings(); }
-    _configModal.style.display = "block";
+    _configModal.style.display = _configModal.style.display === 'none' ? 'block' : 'none';
 }
 /*
  * When the user clicks on <span> (x), close the modal
@@ -473,7 +475,7 @@ function closeConfigModal() {
     console.log('->closeConfigModal');
     _configModal.style.display = "none";
     if(config.appState.value === 'quizzing') {
-        startTimer();
+        toggleTimer();
     }
 }
 
@@ -540,30 +542,6 @@ function assignDefaultSettings() {
     for(setting in config.default) {
         config[setting] = (typeof config[setting] === 'undefined') ? config.default[setting] : config[setting];
     }
-}
-/**
- * Define user settings
- */
-function defineUserSettings() {
-    console.log('->defineUserSettings');
-    // Set the cycle type
-    config.cycle = config.cycle;
-    // Set response flash duration
-    config.flashDuration = config.flashDuration;
-    // Set card flip duration
-    config.flipDuration = config.flipDuration;
-    // Flip card on hover?
-    config.flipOnHover = config.flipOnHover;
-    // Define the flip type
-    config.flipType =config.flipType;
-    // Define deck mastery level
-    config.masteryLevel = config.masteryLevel;
-    // Show response counts?
-    config.showReponseCount = config.showReponseCount;
-    // Show response indicators?
-    config.showReponseIndicators = config.showReponseIndicators;
-    // Show the timer?
-    config.showTimer = config.showTimer;
 }
 /**
  * Assign user settings
@@ -668,8 +646,6 @@ function init() {
     console.log('->init');
     // Assign default config settings
     assignDefaultSettings();
-    // Define & assign user config settings
-    // defineUserSettings(); // TODO
     // Apply settings
     applySettings();;
     // Set initial UI state
@@ -810,7 +786,7 @@ var myTimer;
  */
 function initTimer() {
     console.log('->initTimer');
-    destroyTimer(); // TODO refactor to toggle
+    destroyTimer();
     setStartTime();
     clearDurationTime();
     startTimer();

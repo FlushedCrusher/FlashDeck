@@ -28,13 +28,35 @@ OR
 
 $PATH_TO_PROJECT/html/index.html
 
+*   Load deck of cards using the upload feature in the Settings modal.
+**  Two sample decks are provided; short & long
+*   Click the 'Apply' button and get goin!
+*   Keyboard controls are easiest:
+**  Space Bar   : Pause
+**  Left Arrow  : Cycle Backward
+**  Up Arrow    : Flip Card and Respond
+**  Right Arrow : Cycle Forward
+
 ## TODO ##
 
-    * Add DeckLimit to config settings
-    * Add Deck reset button to config setting dailauge
-    * Add keyboard helper overlay
-    * Add speech recognition functionality
-    * Refactor Config Setting Dailauge to use Pause / Continue functionality
-    * Refactor to use HTML5 import
-    X Add Pause / Continue functionality
-    X Add Keyboard event listener controls
+### Version 1.0.0 ###
+
+* Add Deck reset button to config setting dailauge
+X Add keyboard helper overlay
+X Add Pause / Continue functionality
+X Add Keyboard event listener controls
+X Refactor Config Setting Dailauge to use Pause / Continue functionality
+
+### Version 1.1.0 ###
+
+* Add DeckLimit to config settings
+* Refactor to use HTML5 import
+
+### Varsion 2.0.0 ###
+    
+* Add speech recognition functionality
+    
+    
+
+
+
