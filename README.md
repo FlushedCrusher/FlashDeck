@@ -43,6 +43,7 @@ $PATH_TO_PROJECT/html/index.html
 
 * Add quiz cycle type to config settings
     * User should be able to select cycle type: forward, backward, random
+
 X Add Deck reset button to config setting dailauge
 X Add keyboard helper overlay
 X Add Keyboard event listener controls
