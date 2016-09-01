@@ -330,7 +330,17 @@ function cycleCardBackward() {
  */
 function cycleCardRandom() {
     console.log('->cycleCardRandom');
-    // TODO randomCard
+    // Get the index of the current card
+    var index = parseInt(current_card.dataset.index);
+    var newIndex = index;
+    var tmp;
+    while (index === newIndex) {
+        tmp = myDeck.getRandomCard();
+        newIndex = myDeck.getCardIndex( tmp );
+    }
+    // Assign the new index to the card element
+    current_card.dataset.index = newIndex;
+    setCard( tmp );
 }
 /**
  * Cycle card
@@ -342,13 +352,20 @@ function cycleCard( index, val ) {
     index = (index + val) % setLength();
     // Assign the new index to the card element
     current_card.dataset.index = index;
-    // If not, assign the card new values
-    front.innerHTML = myDeck.cards[index].phrase;
-    back.innerHTML = myDeck.cards[index].definition;
+    setCard( myDeck.getCard(index) );
     // Un-grayout the card
     current_card.classList.remove("grayout");
     // Start the timer for the new card
     initTimer();
+}
+/**
+ * Set card
+ */
+function setCard( card ) {
+    console.log('->setCard');
+    // If not, assign the card new values
+    front.innerHTML = card.phrase;
+    back.innerHTML = card.definition;
 }
 /**
  * Returns the length of the set of cards or deck length
@@ -577,6 +594,7 @@ function applySettings() {
             console.error("Error applying settings");
     }
     _configModal.style.display = "none";
+    onResume();
 }
 /**
  * Handle Apply Settings
@@ -628,15 +646,24 @@ function setCardInit() {
     back.innerHTML = myDeck.cards[0].definition;
 }
 /**
+ * Reset the deck without starting quiz
+ */
+function softReset() {
+    console.log('->softReset');
+    config.appState = stateEnum.FIRSTLOAD;
+    // Reset deck mastery
+    myDeck.reset()
+    // Set initial UI state
+    setUIInitState();
+    // Document that we are not loading saved data
+    config.fromSavedState = false;
+}
+/**
  * Reset the quiz
  */
 function reset() {
     console.log('->reset');
-    config.appState = stateEnum.FIRSTLOAD;
-    // Reset deck mastery
-    myDeck.reset()
-    // Document that we are not loading saved data
-    config.fromSavedState = false;
+    softReset();
     applySettings();
 }
 /**
@@ -647,7 +674,7 @@ function init() {
     // Assign default config settings
     assignDefaultSettings();
     // Apply settings
-    applySettings();;
+    applySettings();
     // Set initial UI state
     setUIInitState();
     // Initialize the timer
@@ -852,14 +879,26 @@ function setEndTime() {
  */
 function toggleTimer() {
     if(!myTimer) {
-        pause_screen.style.visibility = 'hidden';
-        addWindowKeyListener()
+        onResume();
         startTimer();
     } else {
-        pause_screen.style.visibility = 'visible';
-        removeWindowKeyListener()
+        onPause();
         stopTimer();
     }
+}
+/**
+ * Pause quiz
+ */
+function onPause() {
+    pause_screen.style.visibility = 'visible';
+    removeWindowKeyListener();
+}
+/**
+ * Resume quiz
+ */
+function onResume() {
+    pause_screen.style.visibility = 'hidden';
+    addWindowKeyListener();
 }
 
 // ********************************************************

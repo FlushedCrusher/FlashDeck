@@ -52,6 +52,14 @@
 
 .modal-body {padding: 2px 16px;}
 
+/* Soft Reset Button */
+#soft_reset {
+    position: absolute;
+    margin-right: 15px;
+    font-size: 20px;
+    float: left;
+}
+
 /* The Close Button */
 .close {
     color: white;

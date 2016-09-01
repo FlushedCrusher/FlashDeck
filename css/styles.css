@@ -389,7 +389,7 @@ body {
  * Toggle Button Style
  ***** ***** ***** ***** */
 
-.toggle_span {
+.toggle_span, select_span {
     z-index: 1;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -411,7 +411,7 @@ body {
     vertical-align: middle;
 }
 
-.toggle_label {
+.toggle_label, select_label {
     line-height: 25px;
 }
 
@@ -463,6 +463,16 @@ body {
 .toggle_off {
     color: black;
     background-color: rgb(220, 220, 220);
+}
+ 
+.select_box {
+    cursor: pointer;
+    width: 100px;
+    height: 25px;
+    margin-right: 20px;
+    vertical-align: middle;
+    line-height: 25px;
+    font-weight: bold;
 }
  
 /* ***** ***** ***** *****

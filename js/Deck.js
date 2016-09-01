@@ -10,15 +10,19 @@ Deck.prototype.getMastered = function() { return this.mastered; };
 
 // A way to get a single card
 Deck.prototype.getCard = function( index ) {
-    return (index) ? this.cards[index] : this.getCards;
+    return (typeof index !== 'undefined') ? this.cards[index] : this.getCards;
 };
 
 // A way to get a single card at random
 Deck.prototype.getRandomCard = function() {
-    var index = Math.round(Math.random()*this.numCards()) + 1;
+    var index = Math.round( Math.random() * this.numCards() ) + 1;
     return this.cards[index];
 };
 
+// A way to get the index of a card
+Deck.prototype.getCardIndex = function( card ) {
+    return this.cards.indexOf( card );
+};
 // A way to get the number of cards in a deck & the number of cards mastered in a deck
 Deck.prototype.numCards = function() { return this.cards.length; };
 Deck.prototype.numMastered = function() { return this.mastered.lengh; };
@@ -51,6 +55,9 @@ Deck.prototype.isMastered = function() {
 // A way to reset the mastery of a deck
 Deck.prototype.reset = function() {
     var self = this;
+    this.cards.forEach( function( card ) {
+        card.reset();
+    });
     this.mastered.forEach( function( card ) {
         card.reset();
         self.cards.push( card );

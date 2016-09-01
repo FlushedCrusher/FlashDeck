@@ -41,9 +41,9 @@ $PATH_TO_PROJECT/html/index.html
 
 ### Version 1.0.0 ###
 
-* Add Deck reset button to config setting dailauge
-* Add Random Cycling to quizzing
-    * The application should allow for random selection of cards
+X Add Deck reset button to config setting dailauge
+X Add Random Cycling to quizzing
+~~The application should allow for random selection of cards~~
 * Add quiz cycle type to config settings
     * User should be able to select cycle type: forward, backward, random
 X Add keyboard helper overlay
@@ -62,7 +62,9 @@ X Refactor Config Setting Dailauge to use Pause / Continue functionality
 * Document Sequence Diagrams for Application events
 
 ### Version 2.0.0 ###
-    
+
+* Add mobile device support to UI
+    * Application should be usable via mobile devices
 * Add speech recognition functionality (Chrome Only)
     * User should be able to respond via voice
 * Add learn mode to application
@@ -78,3 +80,7 @@ X Refactor Config Setting Dailauge to use Pause / Continue functionality
     * The application should periodically reassess mastered cards
     * Correct reassessments should be disqualified for one rotation of reassessment
     * Incorrect reassessments should reenter quiz at a decreased mastery level
+* Add method for deck / card management
+    * The user should be able to modify decks and cards within decks from a UI
+* Add database persistance to application
+    * Users should be able to load quizes from any location and pick up where they left off
