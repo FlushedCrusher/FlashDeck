@@ -52,6 +52,7 @@ function windowPauseHandler( event ) {
     console.log('->windowPauseHandler');
     switch (event.keyCode) {
         case 32: // Start or Stop the timer (SPACE)
+            triggerHighlight( kh_space );
             toggleTimer();
             break;
         default:
@@ -65,12 +66,15 @@ function windowKeyHandler( event ) {
     console.log('->windowKeyHandler');
     switch (event.keyCode) {
         case 37: // Cycle cards backward    (LEFT ARROW)
+            triggerHighlight( kh_left );
             cycleCardBackward();
             break;
         case 38: // Flip card               (UP ARROW)
+            triggerHighlight( kh_up );
             flipCard();
             break;
         case 39: // Cycle cards forward     (RIGHT ARROW)
+            triggerHighlight( kh_right );
             cycleCardForward();
             break;
         default:
@@ -96,6 +100,25 @@ function responseKeyHandler( event ) {
             break;
     }
 } 
+/**
+ * Trigger a quick highlight of the passed in element
+ */
+function triggerHighlight( element ) {
+    element.classList.toggle('highlight');
+    setTimeout(function() {
+        element.classList.toggle('highlight');
+    }, 200);
+}
+
+// Toggle the keyboard helper modal
+kh_tab.onclick = function() {
+    keyboard_helper.classList.toggle('slide_right');
+    if(keyboard_helper.classList.contains('slide_right')) {
+        kh_tab.innerHTML = '&laquo;';
+    } else {
+        kh_tab.innerHTML = '&raquo;';
+    }
+};
 
 // ********************************************************
 // *********************************** Card flip operations 
