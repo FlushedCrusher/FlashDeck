@@ -2,53 +2,157 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Flash Deck v 0.0.1">
+    <meta name="description" content="Flash Deck v 1.0.0">
     <meta name="author" content="Daniel J. Montanez">
     
-    <title>Flash Deck v 0.0.1</title>
+    <title>Flash Deck v 1.0.0</title>
 
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/fireworks.css">
+    <link rel="stylesheet" href="../css/pause.css">
+    <link rel="stylesheet" href="../css/keyboard.css">
 
 </head>
 
-<body>
-    <h1 class="center" id="headline">Flash Deck v 0.0.1</h1>
+<body id="flashDeckApp">
+    <h1 class="center" id="headline">Flash Deck v 1.0.0</h1>
+    
+    <!-- Pause Graphic -->
+    <div id="pause_screen"></div>
+    
+    <!-- Fireworks -->
+    <div id="fireworks_window">
+        <div id="fireworks" class="pyro"></div>
+    </div>
+    
+    <!-- Timer -->
+    <div id="timer" class="nav_left" data-name="showTimer">0:0:0</div>
+    
+    <!-- Config Settings -->
+    <div id="configModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header-1">
+          <span id="config_close" class="close">×</span>
+          <span id="soft_reset" class="close" onclick="softReset()">&#8634;</span>
+          <h2>Settings</h2>
+        </div>
+        <div id="settings_body" class="modal-body"> 
+            <div class="select_span">
+                <div class="select_label left" id="cardCycleMethod">Cycle Method</div>
+                &nbsp;&nbsp;
+                <select id="select_cycle" data-name="cycle" onchange="updateSelection(this)" class="select_box right"></select>
+            </div>
+            <div class="toggle_span">
+                <div class="toggle_label left" id="flipOnHover">Flip Card on Hover</div>
+                &nbsp;&nbsp;
+                <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
+                    <div class="toggle_text">NO</div>
+                </div>
+            </div>
+            <div class="toggle_span">
+                <div class="toggle_label left" id="showReponseCount">Show Response Count</div>
+                &nbsp;&nbsp;
+                <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
+                    <div class="toggle_text">NO</div>
+                </div>
+            </div>
+            <div class="toggle_span">
+                <div class="toggle_label left" id="showReponseIndicators">Show Response Indicators</div>
+                &nbsp;&nbsp;
+                <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
+                    <div class="toggle_text">NO</div>
+                </div>
+            </div>
+            <div class="toggle_span">
+                <div class="toggle_label left" id="showTimer">Show Timer</div>
+                &nbsp;&nbsp;
+                <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
+                    <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
+                    <div class="toggle_text">NO</div>
+                </div>
+            </div>
+            <div id="card_input_setting" class="toggle_span_always_on blue_back">
+                <div class="toggle_label left" id="importCards">Import Cards</div>
+                &nbsp;&nbsp;
+                <label for="card_input" id="card_input_button">Choose a file</label>
+                <input type="file" id="card_input" onchange="loadCardHandler(this.files)">
+            </div>
+        </div>
+        <div class="modal-footer-1">
+            <div class="sidebyside">
+                <div class="user_yes-1 left pop_out" onclick="applySettings()">APPLY</div>
+                &nbsp;&nbsp;
+                <div class="user_no-1 right pop_out" onclick="closeConfigModal()">CANCEL</div>
+            </div>
+        </div>
+      </div>
+    </div>
     
     <!-- Test Controls -->
-    <div class="sidebyside">
+    <div id="test_control" class="sidebyside">
         <button class="test" onclick="handleResponse(big_check)">Correct</button>
         <button class="test" onclick="handleResponse(big_exx)">Incorrect</button>
         <button class="test" onclick="reset()">Reset</button>
         <button class="test" onclick="cycleCardForward()">Cycle Card Forward</button>
         <button class="test" onclick="cycleCardBackward()">Cycle Card Backward</button>
         <button class="test" onclick="flipCard()">Flip Card</button>
+        <button class="test" id="myBtn">Open Modal</button>
     </div>
+
+    <!-- User Input Modal -->
+    <div id="responseModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Did you know this one?</h2>
+        </div>
+        <div class="modal-body">
+            <div class="sidebyside">
+                <div class="user_yes left pop_out" onclick="handleUserQuery(true)">YES</div>
+                &nbsp;&nbsp;
+                <div class="user_no right pop_out" onclick="handleUserQuery(false)">NO</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+    
     <!-- Card and response count -->
     <div class="card_row">
-        <div id="correct" class="left side_bar">
+        <div id="correct" class="left side_bar" data-name="showReponseCount">
             0
         </div>
         <div class="left card_container">
             <div id="current_card" class="card" data-index="0">
-                <span id="front">FRONT</span>
-                <span id="back">BACK</span>
+                <span id="front"></span>
+                <span id="back"></span>
             </div>
         </div>
-        <div id="in_correct" class="left side_bar">
+        <div id="in_correct" class="left side_bar" data-name="showReponseCount">
             0
         </div>
     </div> 
+    
     <!-- Navigation Control -->
-    <div class="sidebyside">
-        <span id="prev" class="nav nav_left style_prevu_kit" onclick="cycleCardBackward()">&larr;</span>
+    <div id="nav_control" class="sidebyside">
+        <span id="reset_button" class="nav nav_left pop_out" onclick="reset()">&#8634;</span>
+        <span id="config_settings" class="nav nav_left pop_out" onclick=""></span>
+        <span id="prev" class="nav nav_left pop_out" onclick="cycleCardBackward()">&larr;</span>
         &nbsp;&nbsp;
-        <span id="prev" class="nav nav_center style_prevu_kit" onclick="flipCard()">&#8631;</span>
+        <span id="flip" class="nav nav_center pop_out" onclick="flipCard()">&#8631;</span>
         &nbsp;&nbsp;
-        <span id="next" class="nav nav_right style_prevu_kit" onclick="cycleCardForward()">&rarr;</span>
+        <span id="next" class="nav nav_right pop_out" onclick="cycleCardForward()">&rarr;</span>
     </div>
+    
     <!-- Speech box & response indicators --> 
     <div class="footer">
-        <div id="big_check" class="l_response left" data-count-id="correct">
+        <div id="big_check" class="l_response left" data-count-id="correct" data-name="showReponseIndicators">
             <img src="../images/check.png">
         </div>
         
@@ -61,10 +165,12 @@
               <p>
             </div>
         </div>
-        <div id="big_exx" class="r_response right" data-count-id="in_correct">
+        
+        <div id="big_exx" class="r_response right" data-count-id="in_correct" data-name="showReponseIndicators">
             <img src="../images/exx.png">
         </div>
     </div>
+    
     <!-- Language control -->
     <div class="base center">
         <div id="div_language">
@@ -74,6 +180,25 @@
         </div>
     </div>    
 </body>
+
+    <!-- Keyboard Helper Overlay -->
+    <div id="keyboard_helper" class="slide_right">
+        <div id="kh_tab"    class="kh_icon"     >&laquo;</div>
+        <div class="kh_label_container">
+            <div class="kh_label">Pause</div>
+            <div class="kh_label">Cycle Back</div>
+            <div class="kh_label">Flip Card</div>
+            <div class="kh_label">Cycle Forward</div>
+        </div>
+        <div id="kh_space"  class="kh_icon left">SPACE</div>
+        <div id="kh_left"   class="kh_icon left">&#8678;</div>
+        <div id="kh_up"     class="kh_icon left">&#8679;</div>
+        <div id="kh_right"  class="kh_icon left">&#8680;</div>
+    </div>
+
+<!--
+<script type="text/javascript" src="../js/myCards.js"></script>
+-->
     
 <script type="text/javascript" src="../js/Card.js"></script>
 <script type="text/javascript" src="../js/Deck.js"></script>
@@ -84,49 +209,10 @@
 <script type="text/javascript" src="../js/app.js"></script>
     
 <script type="text/javascript">
-    var myCards = [
-        {
-            phrase      : "1 phrase",
-            definition  : "1"
-        },{
-            phrase      : "2 phrase",
-            definition  : "2"
-        },{
-            phrase      : "3 phrase",
-            definition  : "3"
-        },{
-            phrase      : "4 phrase",
-            definition  : "4"
-        },{
-            phrase      : "5 phrase",
-            definition  : "5"
-        },{
-            phrase      : "6 phrase",
-            definition  : "6"
-        },{
-            phrase      : "7 phrase",
-            definition  : "7"
-        },{
-            phrase      : "8 phrase",
-            definition  : "8"
-        },{
-            phrase      : "9 phrase",
-            definition  : "9"
-        },{
-            phrase      : "10 phrase",
-            definition  : "10"
-        }
-    ];
-    
+        
     var myDeck = new Deck();
+    var myCards;
     
-    myCards.forEach(function( card ) {
-        myDeck.addCard( new Card(card.phrase, card.definition));
-    });
-    
-    (function() {
-        init();
-    })();
 </script>
 
 </html>

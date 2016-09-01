@@ -1,0 +1,30 @@
+{
+  "name": "flashdeck",
+  "version": "1.0.0",
+  "description": "A project for storing and quizzing flash cards.",
+  "main": "html/index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "http-server": "^0.9.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlushedCrusher/FlashDeck.git"
+  },
+  "keywords": [
+    "learn",
+    "quiz",
+    "flash",
+    "card",
+    "knowledge"
+  ],
+  "author": "Daniel J. Montanez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FlushedCrusher/FlashDeck/issues"
+  },
+  "homepage": "https://github.com/FlushedCrusher/FlashDeck#readme"
+}

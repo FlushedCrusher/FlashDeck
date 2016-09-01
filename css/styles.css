@@ -57,8 +57,9 @@ a:hover {
 }
 
 .sidebyside {
-    z-index: -99;
+  z-index: 1;
   margin-top: 15px;
+  margin-bottom: 15px;
   display: inline-block;
   width: 100%;
   min-height: 40px;
@@ -94,13 +95,14 @@ a:hover {
  * Custom CSS
  ***** ***** ***** ***** */
 
-.s_response, #div_language {
+.s_response, #div_language, #test_control {
     display: none;
 }
 
 body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 /* ***** ***** ***** *****
@@ -187,11 +189,24 @@ body {
 }
 
 #correct {
-    color: green;
+    color: #36c77a;
 }
 
 #in_correct {
-    color: red;
+    color: #fb523f;
+}
+
+.grayout {
+    opacity: 0.6; /* Real browsers */
+    filter: alpha(opacity = 60); /* MSIE */
+}
+
+/* ***** ***** ***** *****
+ * Footer / Response Style
+ ***** ***** ***** ***** */
+
+ #div_language {
+    margin-top: 15px;
 }
 
 .l_response {
@@ -225,6 +240,61 @@ body {
     height: 195px;
 }
 
+.footer {
+    z-index: -1;
+    position:fixed;
+    bottom: 15px;;
+    width: 100%;
+    height: 15%;
+}
+
+.base {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+#big_check, #big_exx {
+    z-index: 9999;
+}
+
+.flash {
+    -webkit-animation-name: example; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: .75s; /* Chrome, Safari, Opera */
+    animation-name: example;
+    animation-duration: .75s;
+}
+
+@-webkit-keyframes example {
+    0%   {   opacity: 0.0;
+             transform:translateY(100%);
+         }
+    50%  {   opacity: 1.0;
+             transform:translateY(0);
+             padding-bottom: 5px;
+         }
+    100% {   opacity: 0.0;
+             transform:translateY(100%);
+         }
+}
+
+@keyframes example {
+    0%   {   opacity: 0.0;
+             transform:translateY(100%);
+         }
+    50%  {   opacity: 1.0;
+             transform:translateY(0);
+             padding-bottom: 5px;
+         }
+    100% {   opacity: 0.0;
+             transform:translateY(100%);
+         }
+}
+
+/* ***** ***** ***** *****
+ * Navigation Style
+ ***** ***** ***** ***** */
+
 .nav {
     font-size: 60px;
     color:#333; 
@@ -251,62 +321,32 @@ body {
     text-shadow: 4px 4px 5px rgba(150, 150, 150, 0.65);
 }
 
-#div_language {
-    margin-top: 15px;
+#reset_button {
+    visibility: hidden;
+    font-size: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 15px;
 }
 
-.footer {
-    position:fixed;
-    bottom: 15px;;
-    width: 100%;
-    height: 15%;
+#config_settings {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    margin: 15px;
+    font-size: 20px;
+    background:transparent url('../images/gear.png') no-repeat center;
+    background-size:20px 20px;
 }
 
-.flash {
-    -webkit-animation-name: example; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: .75s; /* Chrome, Safari, Opera */
-    animation-name: example;
-    animation-duration: .75s;
-}
-
-.grayout {
-    opacity: 0.6; /* Real browsers */
-    filter: alpha(opacity = 60); /* MSIE */
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes example {
-    0%   {   opacity: 0.0;
-             transform:translateY(100%);
-         }
-    50%  {   opacity: 1.0;
-             transform:translateY(0);
-             padding-bottom: 5px;
-         }
-    100% {   opacity: 0.0;
-             transform:translateY(100%);
-         }
-}
-
-/* Standard syntax */
-@keyframes example {
-    0%   {   opacity: 0.0;
-             transform:translateY(100%);
-         }
-    50%  {   opacity: 1.0;
-             transform:translateY(0);
-             padding-bottom: 5px;
-         }
-    100% {   opacity: 0.0;
-             transform:translateY(100%);
-         }
-}
-
-.style_prevu_kit
+.pop_out
 {
     display:inline-block;
     border:0;
-    width:100px;;
+    width:100px;
     height:60px;
     position: relative;
     -webkit-transition: all 200ms ease-in;
@@ -319,7 +359,8 @@ body {
     transform: scale(1);   
 
 }
-.style_prevu_kit:hover
+
+.pop_out:hover
 {
     text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 2;
@@ -333,16 +374,115 @@ body {
     transform: scale(1.5);
 }
 
+/* ***** ***** ***** *****
+ * Timer Style
+ ***** ***** ***** ***** */
+ 
+#timer {
+    text-align: center;
+    margin: 15px;
+    font-size: 20px;
+    color: #555;
+}
+ 
+/* ***** ***** ***** *****
+ * Toggle Button Style
+ ***** ***** ***** ***** */
+
+.toggle_span, select_span {
+    z-index: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: none;
+    width: 100%;
+    min-height: 25px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.toggle_span_always_on {
+    z-index: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 100%;
+    min-height: 25px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.toggle_label, select_label {
+    line-height: 25px;
+}
+
+.toggle_text {
+    position: relative;
+    top: -25px;
+    text-align: center;
+    line-height: 25px;
+}
+
+.toggle_button {
+    cursor: pointer;
+    width: 100px;
+    height: 25px;
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    margin-right: 20px;
+    vertical-align: middle;
+    line-height: 25px;
+    font-weight: bold;
+}
+ 
+.toggle_toggle {
+    position: relative;
+    z-index: 1;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 7px;
+    transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+}
+ 
+.toggle_toggle_left {
+    left: 0;
+}
+ 
+.toggle_toggle_right {
+    left: 75px;
+}
+ 
+.toggle_on {
+    color: white;
+    background-color: rgb(8, 126, 255);
+}
+
+.toggle_off {
+    color: black;
+    background-color: rgb(220, 220, 220);
+}
+ 
+.select_box {
+    cursor: pointer;
+    width: 110px;
+    height: 25px;
+    margin-right: 20px;
+    vertical-align: middle;
+    line-height: 25px;
+    font-weight: bold;
+}
+ 
+/* ***** ***** ***** *****
+ * Test Button Style
+ ***** ***** ***** ***** */
+
 .test {
     opacity: 0.2;
 }
 
 .test:hover {
     opacity: 1.0;
-}
-
-.base {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
 }

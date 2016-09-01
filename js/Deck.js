@@ -10,15 +10,19 @@ Deck.prototype.getMastered = function() { return this.mastered; };
 
 // A way to get a single card
 Deck.prototype.getCard = function( index ) {
-    return (index) ? this.cards[index] : this.getCards;
+    return (typeof index !== 'undefined') ? this.cards[index] : this.getCards;
 };
 
 // A way to get a single card at random
 Deck.prototype.getRandomCard = function() {
-    var index = Math.round(Math.random()*this.numCards()) + 1;
+    var index = Math.round( Math.random() * this.numCards() ) + 1;
     return this.cards[index];
 };
 
+// A way to get the index of a card
+Deck.prototype.getCardIndex = function( card ) {
+    return this.cards.indexOf( card );
+};
 // A way to get the number of cards in a deck & the number of cards mastered in a deck
 Deck.prototype.numCards = function() { return this.cards.length; };
 Deck.prototype.numMastered = function() { return this.mastered.lengh; };
@@ -29,19 +33,34 @@ Deck.prototype.removeCard = function( index ) { this.cards.splice(index, 1); };
 
 // A way to add to the mastered cards in a deck
 Deck.prototype.addToMastered = function( index ) {
-    this.mastered.push( cards[index] );
+    this.mastered.push( this.cards[index] );
     this.removeCard( index );
 };
 
+// A way to modify the mastery level of the deck
+Deck.prototype.setMasteryLevel = function( val ) {
+    this.cards.forEach( function( card ) {
+        card.setMasteryLevel( val );
+    });
+    this.mastered.forEach( function( card ) {
+        card.setMasteryLevel( val );
+    });
+}
+
 // A way to tell if a deck is mastered
 Deck.prototype.isMastered = function() {
-    return this.numCards.length === 0;
+    return this.numCards() === 0;
 };
 
 // A way to reset the mastery of a deck
-Deck.prototype.resetDeck = function() {
+Deck.prototype.reset = function() {
+    var self = this;
+    this.cards.forEach( function( card ) {
+        card.reset();
+    });
     this.mastered.forEach( function( card ) {
-        this.cards.push( card );
+        card.reset();
+        self.cards.push( card );
     });
     this.mastered = [];
 };
