@@ -406,6 +406,20 @@ var _configModal = document.getElementById('configModal');
 var configBtn = document.getElementById("config_settings");
 
 /**
+ * Populate the selection option boxes in the config settings
+ */
+populateSelections();
+function populateSelections() {
+    console.log('->populateSelections');
+    // Populate cycle method selections
+    for (var property in cycleEnum) {
+        if (cycleEnum.hasOwnProperty(property)) {
+            var tmp = cycleEnum[property];
+            select_cycle.options.add( new Option( tmp.name, property ) );
+        }
+    }
+}
+/**
  * When the user clicks on the button, open the modal
  */ 
 configBtn.onclick = function() {
@@ -495,6 +509,13 @@ function closeConfigModal() {
         toggleTimer();
     }
 }
+/*
+ * Performthis when selections are updated.
+ */
+function updateSelection( element ) {
+    console.log('->updateSelection');
+    setConfigFromSelect( element );
+}
 
 // ********************************************************
 // *********************************** Quiz / UI operations 
@@ -582,13 +603,13 @@ function applySettings() {
             break;
         case 'initial':
             config.appState = stateEnum.QUIZING;
-            _func = setToggleFromConfig;
-            handleApplySettings( _func );
+            handleApplySelect( setSelectFromConfig );
+            handleApplyToggle( setToggleFromConfig );
             break;
         case 'quizzing':
             startTimer();
-            _func = setConfigFromToggle;
-            handleApplySettings( _func );
+            handleApplySelect( setConfigFromSelect );
+            handleApplyToggle( setConfigFromToggle );
             break;
         default:
             console.error("Error applying settings");
@@ -597,9 +618,37 @@ function applySettings() {
     onResume();
 }
 /**
- * Handle Apply Settings
+ * Handle Apply Select
 */
-function handleApplySettings( _func ) {
+function handleApplySelect( _func ) {
+    _func( select_cycle );
+}
+/*
+ * Set the select options from the config setting
+ */
+function setSelectFromConfig( element ) {
+    var setting = element.dataset.name;
+    element.value = config[setting].name;
+}
+/*
+ * Set the config settings from the select options
+ */
+function setConfigFromSelect( element ) {
+    var setting = element.dataset.name;
+    var pool;
+    switch( setting ) {
+        case 'cycle':
+            pool = cycleEnum;
+            break;
+        default:
+            break;
+    }
+    config[setting] = pool[element.value];
+}
+/**
+ * Handle Apply Toggle
+*/
+function handleApplyToggle( _func ) {
     _func( flipOnHover );
     _func( showReponseCount );
     _func( showReponseIndicators );
@@ -609,8 +658,6 @@ function handleApplySettings( _func ) {
     setVisibility( timer );
     setVisibility( big_check );
     setVisibility( big_exx );
-    // Set the deck mastery level
-    myDeck.setMasteryLevel( config.masteryLevel );
 }
 /**
  * Set the toggle based on the config settings

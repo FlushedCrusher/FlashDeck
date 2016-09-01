@@ -1,14 +1,14 @@
 var cycleEnum = {
     FORWARD: {
-        name: 'Forward',
+        name: 'FORWARD',
         value: 'forward'
     },
     BACKWARD: {
-        name: 'Backward',
+        name: 'BACKWARD',
         value: 'backward'
     },
     RANDOM: {
-        name: 'Random',
+        name: 'RANDOM',
         value: 'random'
     }
 };
