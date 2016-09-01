@@ -9,6 +9,7 @@ Version 1.0.0
 + Pause functionality
 + Configurable Cycle Method and UI
 + Instant feedback and card progression
++ Session saved in browser Cache
 
 ## Installation ##
 
