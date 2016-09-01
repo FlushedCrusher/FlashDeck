@@ -41,8 +41,7 @@ $PATH_TO_PROJECT/html/index.html
 
 ### Version 1.0.0 ###
 
-* Add quiz cycle type to config settings
-    * User should be able to select cycle type: forward, backward, random
+X Add quiz cycle type to config settings
 
 X Add Deck reset button to config setting dailauge
 
