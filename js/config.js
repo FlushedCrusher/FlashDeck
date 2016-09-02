@@ -32,6 +32,21 @@ var stateEnum = {
     }
 };
 
+var quizEnum = {
+    TEST: {
+        name: 'TEST',
+        value: 'test'
+    },
+    STANDARD: {
+        name: 'STANDARD',
+        value: 'standard'
+    },
+    REVIEW: {
+        name: 'REVIEW',
+        value: 'review'
+    }
+};
+
 var config = {
     appState                : stateEnum.FIRSTLOAD,
     cycle                   : cycleEnum.FORWARD,
@@ -41,9 +56,11 @@ var config = {
     flashDuration           : 750,
     flipDuration            : 2000,
     flipOnHover             : undefined,
-    flipType                : 'userInput',
     fromSavedState          : undefined,
     masteryLevel            : 3,
+    quizType                : quizEnum.REVIEW,
+    saveConfig              : true,
+    saveDeck                : true,
     showReponseCount        : undefined,
     showReponseIndicators   : undefined,
     showTimer               : undefined,

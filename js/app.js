@@ -147,12 +147,15 @@ function flipCard() {
 */
 function handleFlip() {
     console.log('->handleFlip');
-    switch (config.flipType) {
+    switch (config.quizType.value) {
         case 'test':
             quickFlip();
             break;
-        case 'userInput':
+        case 'standard':
             userFlip();
+            break;
+        case 'review':
+            reviewFlip();
             break;
         default:
             console.error('Error flipping card.');
@@ -183,6 +186,22 @@ function userFlip() {
     } else {   
         // Apply proper key controls
         removeResponseKeyListener();
+        addWindowPauseListener();
+        addWindowKeyListener();
+    }
+}
+/**
+ * Review flip
+ */
+function reviewFlip() {
+    console.log('->reviewFlip');
+    // Simply show the definition
+    if(current_card.classList.contains('flipped')) {
+        // Apply proper key controls
+        removeWindowKeyListener();
+        removeWindowPauseListener();
+    } else {   
+        // Apply proper key controls
         addWindowPauseListener();
         addWindowKeyListener();
     }
@@ -733,13 +752,16 @@ function init() {
 function onAppLoad() {
     console.log('->onAppLoad');
     // Check for saved app data.
-    if(localStorage.flashDeck) {
+    if(localStorage.flashDeck && config.saveDeck) {
         // Get saved data
         var appData = JSON.parse(localStorage.flashDeck);
         // Print information
         console.log('Loading saved application state...');
         console.log('Last saved on:',new Date(appData.timestamp));
-        config = appData.config;
+        if(config.saveConfig) {
+            appData.config.saveConfig = true;
+            config = appData.config;
+        }
         // Document that we are loading saved data
         config.fromSavedState = true;
         // Build the application
