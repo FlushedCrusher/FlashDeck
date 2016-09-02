@@ -51,7 +51,7 @@ var config = {
     timerEnd                : 0,
     timerStart              : 0,
     timerIncrement          : 100,
-    varsion                 : '1.0.0'
+    version                 : '1.0.0'
 };
 
 config.default = {

@@ -1,0 +1,252 @@
+A-B Design[]a pre-treatment baseline condition (A) followed by a condition treatment (B)
+A-B-A Design[]an initial baseline phase (A) until stead state responding is obtained, an intervention phase in which the treatment condition (B) is implemented until the behavior has changed and steady responding is obtained, and a return to baseline conditions (A) by withdrawing the independent variable to see whether responding "reverses" to levels observed in initial baseline phase
+A-B-A-B Design[]an initial baseline phase (A) until stead state responding is obtained, an intervention phase in which the treatment condition (B) is implemented until the behavior has changed and steady responding is obtained, and a return to baseline conditions (A) by withdrawing the independent variable to see whether responding "reverses" to levels observed in initial baseline phase, and a second intervention phase (B) is implemented to see whether initial treatment effects are replicated
+Abative Effect[]a decrease in the current frequency of behavior that has been reinforced by the stimulus
+Abolishing Operation[]a motivating operation that decreases the reinforcing effectiveness of a stimulus, object, or event
+Accuracy (of measurement)[]the extent to which observed values, the data produced by measuring an event, match the true state, or true values, of the event as it exists in nature
+Adjunctive Behavior[]behavior that occurs as a collateral effect of a schedule of periodic reinforcement for other behavior(time-filling or interim activities)
+Affirmation of the Consequent[]a 3-step form of reasoning that begins with a true antecedent - consequent (if A then B) statement and proceeds as follows: (1) if A is true, then B is true; (2) B is found to be true; (3) therefore, A is true. Although other factors could be responsible for the truthfulness of A, a sound experiment affirms several if-A-then-B possibilities, each one reducing the likelihood of factors other than the independent variable being responsible for the observed changes in behavior
+Alternating Treatment Designs[]when 2+ conditions are presented in rapidly alternating succession independent of the level of responding; differences in responding between or among conditions are attributed to the effects of the conditions
+Alternative Schedule[]provides reinforcement whenever the requirement of either a ratio schedule or an interval schedule is met, regardless of which is met first
+Antecedent[]the stimulus that happens before the behavior
+Antecedent Intervention[]a behavior change strategy that manipulates contingency-independent antecedent stimuli (MOs)
+Antecedent Stimulus Class[]a set of stimuli that share a common relationship, evoke the same operant behavior or elicit the same responding behavior
+Applied Behavior Analysis (ABA)[]the science in which tactics derived from the principles of behavior are applied to improve socially significant behavior and experimentation is used to identify the variables responsible for the improvement in behavior
+Arbitrary Stimulus Class[]antecedents that evoke the same response but do not resemble each other in physical form or share a relational aspect such as bigger or under
+Artifact[]an outcome or result that appears to exist behavior of the way it is measured bu in fact does not correspond to what actually occurred
+Ascending Baseline[]a data path that shows an increasing trend in the response measure over time
+Audience[]anyone who functions as an Sd evoking verbal behavior. different audiences may control different verbal behavior about the same topic because of a differential reinforcement history
+Autoclitic[]a secondary verbal operant in which some aspect of a speaker's own verbal behavior functions as an Sd or an MO for additional speaker verbal behavior.
+Automatic Punishment[]punishment that occurs independent of the social mediation by others (i.e. a response product serves as a punisher independent of the social environment)
+Automatic Reinforcement[]reinforcement that occurs independent of the social mediation of others (i.e. scratching an insect bite relieves the itch)
+Automaticy (of reinforcement)[]refers to the fact that behavior is modified by its consequences irrespective of the person's awareness; a person does not have to recognize or verbalize the relation between her behavior and a reinforcing consequence or even know that a consequence has occurred, for reinforcement to "work"
+Aversive Stimulus[]a stimulus change or condition that functions (a) to evoke a behavior that has terminated it in the past; (b) as a punisher when presented following behavior, and/or (c) as a reinforcer when withdrawn following behavior
+Avoidance Contingency[]a contingency in which a response prevents or postpone the presentation of a stimulus
+B-A-B Design[]a design that begins with the treatment phase, after steady state responding has been obtained during the initial treatment phase (B) the treatment variable is withdrawn (A) to see whether responding changes in the absence of the independent variable, the treatment variable is then reintroduced (B) in an attempt to recapture the level of responding obtained during the first treatment phase.
+Backup Reinforces[]tangible objects, activities, or privileges that serve as reinforcers and that can be purchased with tokens
+Backwards Chaining[]the trainer completes all but the last behavior in a chain, which is performed by the learner, who then receives reinforcement for completing the chain. when they have that step mastered then the step before it is trained and so on
+Backwards Chaining with Leaps Ahead[]backwards chaining in which some steps are skipped if they are in the learner repertoire
+Bar Graph[]used for summarizing behavioral data, aka a histogram
+Baseline[]no IV (used to determine the effects of the IV), also could be the control group and have a treatment in place already
+Baseline Logic[]the experimental reasoning inherent in single-subject experimental design (prediction, verification, and replication)
+Behavior[]what people do and say, "that portion of an organism's interaction with its environment that is characterized by detectable displacement in space through time of some part of the organism and that results in a measurable change in at least one aspect of the environment"
+Behavior-Altering Effect[]an change in the frequency of behavior that has been reinforced by the stimulus because of the effectiveness of the stimulus
+Behavior Chain[]a sequence of responses in which each response produces a stimulus change that functions as conditioned reinforcement for that response and as a Sd for the next response in the chain.
+Behavior Chain Interruption Strategy[]an intervention that relies on the participant's skill in performing the critical elements of a chain independently; the chain is interrupted occasionally so that another behavior can be emitted
+Behavior Chain with a Limited Hold[]a contingency that specifies a time interval by which a behavior chain must be completed for reinforcement to be delivered
+Behavior Change Tactic[]a behavior changing method derived from 1+ principles of behavior, good for different subjects, settings, and behaviors
+Behavior Checklist[]provides descriptions of specific skills and the conditions under which each skill should be observed
+Behavior Trap[]an interrelated community of contingencies of reinforcement that can be especially powerful, producing substantial and long-lasting behavior change. They have to have:1) baited with irresistible reinforcers2) requires a low response effort3) interrelated contingencies keep them there and make them learn4) can stay in that state for a long time b/c few (if any)satiation effects
+Behavioral Assessment[]involves a full range of methods (observation, interviews, etc) to identify probably antecedent and consequent controlling variables
+Behavioral Contrast[]change in one component of a multiple schedule that increases or decreases the rate of responding on that component is accompanied by a change in the response rate in the opposite direction on the other, unrelated component of the schedule
+Behavioral Cusp[]a behavior that has sudden and dramatic consequences that extend well beyond the idiosyncratic change itself because it exposes the person to new environments, reinforcers, contingencies, responses, and stimulus control
+Behavioral Momentum[]a rate of responding and its resistance to change following an alteration in reinforcement conditions
+Behaviorism[]the philosophy of the science of behavior
+Believability[]the extent to which the researcher convinces herself and others that the data are trustworthy and deserve interpretation (IOA)
+Bonus Response Cost[]used during response cost procedures in which the person is given extra reinforcers that are removed based on the contingency for the behavior
+Calibration[]any procedure used to evaluate the accuracy of a measurement system and, when sources of error are found, to use that information to correct or improve the measurement system
+Celeration[]the change in rate of responding over time, based on count per unit of time, expressed as a factor by which responding is accelerating or decelerating, used in Standard Celeration Charts
+Celeration Time Period[]a unit of time (week, day, etc) in which celeration is plotted on a Standard Celeration Chart
+Celeration Trend Line[]measured as a factor by which rate multiplies or divides across the celeration time periods
+Chained Schedule[]when the response requirement for 2+ basic schedules must meet in a specific sequence before reinforcement is delivered, and Sd is used with each component
+Chaining[]procedures for teaching behavior chains
+Changing Criterion Design[]a design in which an initial baseline phase is followed by a series of treatment phases consisting of successive and gradual changing criterion for reinforcement or punishment, experimental control is evident when responding matches the criterion.
+Clicker Training[]coined by Pryor (1999), used to shape behavior using conditioned reinforcement in the form of auditory stimulus, a handheld device produces a click should when pressed, the trainer pairs other forms of reinforcement with the click sounds so that the sound becomes a CR
+Component Analysis[]a design to identify the active elements of a treatment conditions, the relative contributions of different variables in a treatment package, and/or the necessary and sufficient components of an intervention, compare levels of responding across successive phases in which the intervention is implemented with 1+ components left out
+Compound Schedule[]a schedule of reinforcement consisting of 2+ elements (CRF, FR, FI, VR, VI, DRH, DRL, and extinction, can occur successively or simultaneously, with or without and SD, can either meet one component or all components
+Concept Formation[]a complex example of stimulus control that requires stimulus generalization within a class of stimulus and discrimination between classes of stimuli
+Concurrent Schedule (conc)[]2+ contingencies of reinforcement operate independently and simultaneously for 2+ behaviors
+Conditional Probability[]the likelihood that a target behavior will occur in a given circumstance; computed by calculating (a) the proportion of occurrences of behavior that were preceded by a specific antecedent variable, and (b) the proportion of occurrences of problem behavior that were followed by a specific consequence
+Conditioned MO[]the value-altering affect depends on a learning history
+Conditioned Negative Reinforcer[]a previously neutral stimulus change that functions as a negative reinforcer because of prior pairing with 1+ negative reinforcers
+Conditioned Punisher[]a previously neutral stimulus that functions as a punisher because of prior pairing with 1+ punisher (aka secondary or learned punisher)
+Conditioned Reflex[]a learner stimulus-response functional relation consisting of an antecedent stimulus and the response it elicits, each person's repertoire of conditioned reflexes is the product of his/her history of interactions with the environment (ontogeny)
+Conditioned Reinforcer[]a previously neutral stimulus that functions as a reinforcer because of prior pairing with 1+ reinforcer (aka secondary or learned reinforcer)
+Conditioned Stimulus[]the stimulus component of a conditioned reflex; a previously neutral stimulus that elicits respondent behavior only after it has been paired with a unconditioned stimulus or another CS
+Confidentiality[]describes a situation of trust insofar as any information regarding a person receiving or having received services may not be discussed with or otherwise made available to another person or group, unless that person has provided explicit authorization for release of such information
+Conflict of Interest[]a situation in which a person in a position of responsibility or trust has competing professional or person interests that make it difficult to fulfill his or her duties impartially
+Confounding Variable[]an uncontrolled factor known or suspected to exert influence on the DV
+Consequence[]a stimulus that follows a behavior of interest
+Contingency[]refers to dependent and/or temporal relations between operant behavior and its controlling variables
+Contingency Contract[]a mutual agreement upon document between parties that specifies a contingent relationship between the completion of specific behavior(s) and access to specific reinforcer(s)
+Contingency Reversal[]exchanging the reinforcement contingencies for 2 topographically different responses
+Contingent[]describes reinforcement (or punishment) that is delivered only after the target behavior has occurred
+Contingent Observation[]a procedure for implementing timeout in which the person is repositioned within an existing setting such that observation of ongoing activities remains, but access to reinforcement is lost
+Continuous Measurement[]all instances of the response class(es) of interest are detected during the observation period
+Continuous Reinforcement (CRF)[]each occurrence of the target behavior is reinforced
+Contrived Contingency[]any contingency of reinforcement (or punishment) designed and implemented by a behavior analyst or practitioner to achieve the acquisition, maintenance, and/or generalization of a targeted behavior change
+Contrived Mediating Stimulus[]any stimulus made functional for the target behavior in the instructional setting that later prompts or aids the learner in performing the target behavior in a generalization setting
+Copying a Text[]a verbal operant that is evoked by a nonverbal Sd that has point-to-point correspondence and formal similarity
+Count[]a tally of the number of occurrences of a behavior
+Counting Time[]the period of time in which a count of the number of responses emitted was recorded
+Cumulative Record[]a type of graph on which the cumulative number of responses emitted is represented on the vertical axis, steeper slope=greater response rate
+Cumulative Recorder[]a device that automatically draws cumulative graphs that shows the rate of response in real time
+Data[]the results for measurements, usually in quantifiable form; measures of some quantifiable dimension of a behavior
+Data Path[]Level and trend of behavior between successive data points
+Delayed Multiple Baseline Design[]initial baseline, and perhaps intervention, are begun for one behavior/setting/subject and subsequent baselines for additional behaviors are begun in a staggered or delayed fashion
+Dependent Group Contingency[]when the reinforcement for all members of a group is dependent on the behavior of one member of the group or the behavior of a select group of members within the larger group
+Dependent Variable[]some measure of a socially significant behavior, measured to determine if it changes as a result of manipulations of the IV
+Deprivation[]the state of an organism with respect to how much time has elapsed
+Descending Baseline[]a data path that shows a decreasing trend in the response measure over time
+Descriptive Functional Behavior Assessment[]direct observation of problem behavior and the antecedent and consequent events under naturally occurring consequences
+Determinism[]the assumption that the universe is a lawful and orderly place in which phenomena occur in relation to other events and not in a willy-nilly, accidental fashion
+Differential Reinforcement[]reinforcing only those responses within a response class that meet a specific criterion along some dimension and placing all other responses in the class on extinction
+Differential Reinforcement of Alternative Behavior (DRA)[]reinforcement is delivered for a behavior that serves as a desirable alternative to the behavior targeted for reduction and withheld following instances of the problem behavior
+Differential Reinforcement for Diminished Rates (DRD)[]reinforcement is provided at the end of a predetermined interval contingent on the number of responses emitted during the interval being fewer than a gradually decreasing criterion based on the individual's performance in previous intervals
+Differential Reinforcement for High Rates (DRH)[]reinforcement is provided at the end of a predetermined interval contingent on the number of responses emitted during the interval being greater than a gradually increasing criterion based on the individual's performance in previous intervals
+Differential Reinforcement for Incompatible Behavior (DRI)[]reinforcement is delivered for a behavior that is topographically incompatible with the behavior targeted for reduction and withheld following instances of the problem behavior
+Differential Reinforcement for Low Rates (DRL)[]reinforcement (a) follows each occurrence of the target behavior that is separated from the previous response by a minimum IRT or (b) in contingent on the number of responses within a period of time not exceeding a predetermined criterion, not meant to eliminate the behavior
+Differential Reinforcement of Other Behaivor (DRO)[]reinforcement is contingent on the absence of the problem behavior during or at specific times (ie momentary DRO)
+Direct Measurement[]when the behavior that is measured is the same as the behavior that is the focus of the investigation
+Direct Replication[]an experiment in which the researcher attempts to duplicate exactly the conditions of an earlier experiment
+Discontinuous Measurement[]conducted in a matter such that some instances of the response class(es) of interest may not be detected
+Discrete Trial[]any operant whose response rate is controlled by a given opportunity to emit the response, each discrete response occurs when an opportunity to response exists
+Discriminated Avoidance[]a contingency in which responding in the presence of a signal prevent the onset of a stimulus from which escape is a reinforcer
+Discriminated Operant[]an operant that occurs more frequently under some antecedent conditions than under others
+Discriminative Stimulus (Sd)[]a stimulus in the presence of which response of some type have been reinforced and in the absence of which the same type of response have occurred and not been reinforced
+Double-Blind Control[]prevents the subject and the observer(s) from detecting the presence or absences of the treatment variable, used to eliminate confounding of results by expectations, differential treatment by others, and observer bias
+DRI/DRA Reversal Technique[]demonstrates the effects of reinforcement, uses DRI or DRA as a control condition instead of a no-reinforcement (baseline) condition, shows more of a contingent relationship rather than a present or absent relationship
+DRO Technique[]demonstrates the effects of reinforcement, uses DRO as a control condition instead of a no-reinforcement (baseline) condition, shows more of a contingent relationship rather than a present or absent relationship
+Duration[]a measure of the total extent of time in which a behavior occurs
+Echoic[]an operant involving a response that is evoked by a verbal Sd that has point-to-point correspondence and formal similarity with the response
+Ecological Assessment[]an assessment that acknowledges complex interrelationships between environment and behavior, obtains data across multiple settings and persons
+Empiricism[]the objective observation of the phenomena of interest, objective observations are "independent of the individual prejudices, tastes, and private opinions of the scientists...results are objective in that they are open to anyone's observation and do not depend on the subjective belief of the individual scientist"
+Environment[]the conglomerate of real circumstances in which the organism or referenced part of the organism exists; behavior cannon occur in the absence of environment
+Escape Contingency[]when a response terminates an ongoing stimulus
+Escape Extinction[]behaviors that are maintained by negative reinforcement are not followed by termination of the aversive stimulus
+Establishing Operation (EO)[]establishes (increases) the effectiveness of some stimulus, object, or event as a reinforcer
+Ethical Codes of Behavior[]statements that provide guidelines for members of professional associations when deciding a course of action or conducting professional duties; standards by which graduated sanctions can be imposed for deviating from the code
+Ethics[]behaviors, practices, and decisions that address such basic and fundamental questions as: what's the right thing to do? what's worth doing? what does it mean to be a good behavior analytic practitioner?
+Event Recording[]obtaining a tally or count of the number of times a behavior occurs
+Evocative Effect[]an increase in the current frequency of behavior that has been reinforced by the stimulus that is increased in reinforcing effectiveness by the same motivating operation
+Exact Count-Per-Interval IOA[]the percentage of total intervals in which 2 observers record the same count; most stringent
+Exclusion Time-out[]contingent on the occurrence of a target behavior, the person is removed physically from the current environment for a specified period
+Experiment[]a carefully controlled comparison of some measure of the phenomenon of interest under 2+ different conditions in which only one factor at a time differs from one condition to another
+Experimental Analysis of Behavior (EAB)[]a natural science approach to the study of behavior as a subject matter in its own right founded my B.F. Skinner
+Experimental Control[]2 meanings (a) the outcome of an experiment that demonstrates convincingly a functional relation (i.e. when a predictable change in behavior can be reliably produced by manipulating a specific aspect of the environment AND (b) the extent to which a researcher maintains precise control of the IV by presenting it, withdrawing it, and/or varying its value, and also eliminating or holding constant all confounding and extraneous variables
+Experimental Design[]a particular type and sequence of conditions in a study so that meaningful comparisons of the effects of the presence and absence (or different values) of the IV can be measured
+Explanatory Fiction[]a fictitious or hypothetical variable that often takes the form of another name for the observed phenomenon in claims to explain and contributes nothing to a functional account or understanding of the phenomenon (i.e. intelligence)
+External Validity[]the degree to which study's findings have generality to other subjects, settings, and/or behaviors
+Extinction[]discontinuing of a reinforcement of a previously reinforced behavior, leads to a decrease in frequency to criterion
+Extinction Burst[]an increase in the frequency of responding when an extinction procedure is initially implemented
+Extraneous Variable[]any aspect of the experimental setting that must be held constant to prevent unplanned environmental variations
+Fading[]transferring stimulus control in which features of an antecedent stimulus controlling a behavior are gradually changed to a new stimulus while maintaining the current behavior, stimulus features can be faded in or out
+Feature stimulus Class[]Stimuli that share common physical forms or structures or common relative relations
+Fixed Interval (FI)[]reinforcement is delivered for the first response emitted following the passage of a fixed duration of time since the last response was reinforced
+Fixed-Interval DRO (FI-DRO)[]reinforcement is available at the end of intervals of fixed duration and delivered contingent on the absence of the problem behavior during each interval
+Fixed-Momentary DRO (FM-DRO)[]reinforcement is available at specific moments of time, which are separated by a fixed amount of time, and delivered contingent on the problem behavior no occurring at those moments
+Fixed-Time Schedule[]delivery of non-contingent stimuli in which a time interval remains the same from one delivery to the next
+Formal Similarity[]when the controlling antecedent and the response or response product (a) share the same sense mode and (b) physically resemble each other
+Free Operant[]any operant behavior that results in minimal displacement of the participant in time and space, can be emitted at any time, discrete, requires minimal time to complete, and can produce a wide range of response rates (i.e. the # of words read during a 1-min counting period)
+Free-Operant Avoidance[]when responses at any time during an interval prior to the scheduled onset of an aversive stimulus delays the presentation of the aversive stimulus
+Full Session DRL[]reinforcement is delivered at the end of the session if the total number of response emitted during the session does not exceed a criterion limit
+Function-Altering Effect[]a change in the MO, stimulus, and response relations; caused by reinforcement, punishment, an extinction procedure, or a recovery from punishment procedure; results from the pairing and un-pairing of antecedent stimuli
+Functional Behavior Assessment (FBA)[]A method of assessment for obtaining information about the purposes a problem behavior serves for a person; used to design the treatment
+Functional Communication Training (FCT)[]an antecedent intervention in which an appropriate communicative behavior is taught as a replacement behavior for problem behavior usually evoked by an EO; involved DRA
+Functional Relation[]when a change in once event (DV) can be produced by manipulating another event (IV) and the change in the DV was unlikely the result of other factors (controlling variables)
+Functional Equivalent[]serving the same function of purpose/produce the same consequences
+General Case Analysis[]a systematic process for identifying and selecting teaching examples that represent the full range of stimulus variations and response requirements in the generalization setting(s)
+Generalization Across Subjects[]changed in the behavior of people not directly treated by an intervention as a function of treatment contingencies applied to other people
+Generalization Probe[]any measurement of a learner's performance of a target behavior in a setting and/or stimulus situation in which direct training has not been provided
+Generalization Setting[]any place or stimulus situation that differs in some meaningful way from the instructional setting in which performance of the target behavior is desired
+Generalized Behavior Change[]a behavior change that has not been taught directly; takes 1+ of response maintenance, stimulus/setting generalization, and response generalization
+Generic (Tact) Extension[]a tact evoked by a novel stimulus that shares all of the relevant or defining features associated with the original stimulus
+Group Contingency[]reinforcement for all members of a group is dependent on the behavior of (a) a person within the group, (b) a select group of members within the larger group, or (c) each member of the group meeting a performance criterion
+Habilitation[]when a person's repertoire has been changed such that short- and long-term reinforcers are maximized and short- and long-term punishers are minimized
+Habit Reversal[]a multiple-component treatment package for reducing unwanted habits; includes self-awareness training (identify triggers and responses), competing response training, and motivation techniques (either self or socially mediated)
+Habituation[]a decrease in responsiveness to repeated presentation of a stimulus
+Hero Procedure[]aka dependent group contingency
+High-Probability (high-p) Request Sequence[]an antecedent intervention in which 2-5 easy tasks with a known history of learner compliance are presented in quick succession immediately before presenting the target task (interspersing)
+History of Reinforcement[]all of a person's learning experiences and more specifically to past conditioning with respect to particular response classes or aspects of a person's repertoire
+Hypothetical Construct[]a presumed unobserved process or entity (id, ego, super ego)
+Impure Tact[]a response that is evoked by both an MO and a nonverbal stimulus (part mand, part tact)
+Independent Group Contingency[]reinforcement for each member of a group is dependent on that person's meeting a performance criterion that is in effect for all members of the group
+Indirect Functional Assessment[]structured interviews, checklists, rating scales, or questionnaires used to obtain information from people who are familiar with the person exhibiting the problem behavior; used to identify conditions or events in the natural environment that correlate with the problem behavior
+Indirect Measurement[]when the behavior that is measured is in some way different from the behavior of interest; considered less valid than direct b/c it inters about relations between the data obtained and the actual behavior of interest
+Indiscriminable Contingency[]a contingency that makes it difficult for the learner to discriminate whether the next response will produce reinforcement (intermittent reinforcement and delayed rewards)
+Informed Consent[]then the potential recipient of services or participant in a research study gives his explicit permission before any assessment or treatment is provided; full disclosure of effects and side effects must be provided; to give consent the person must (a) demonstrate the capacity to decide, (b) do so voluntarily, and (c) have adequate knowledge of all salient aspects of the treatment
+Interdependent Group Contingency[]reinforcement for all members of a group is dependent on each member of the group meeting a performance criterion that is in effect for all members of the group
+Internal Validity[]the extent to which an experiment shows convincingly that changes in the behavior are a function of the IV and not the result of uncontrolled or unknown variables
+Interval-by-Interval IOA[]an index of agreement between observers for data obtained by interval recording or time sampling measurement; compare the 2 observers recordings of the occurrence or nonoccurrence of the behavior in each observation interval and dividing the number of intervals of agreement by the total number of intervals and multiplying by 100
+Interval DRL[]when the total session is divided into equal intervals and reinfcorcement is provided at the end of each interval in with the number of responses during the interval is equal to or below a criterion limit
+Irreversibility[]when the level of responding observed in a previous phase cannot be reproduced even though the experimental conditions are the same as they were during the earlier phase
+Lag Reinforcement Schedule[]reinforcement is contingent on a response being different in some specified way from the previous response (Lag 1) or a specified number of previous responses (Lag 2+)
+Level[]the value on the vertical axis around which a series of behavioral measures converge
+Level System[]a component of some token economy systems in which participants advance up (or down) through a succession of levels contingent on their behavior at the current level (gets harder the higher you get up but the reinforcers are better)
+Limited Hold[]reinforcement is available ONLY during a finite time following the elapse of an FI or VI interval, reinforcement is withheld until the next interval
+Listener[]someone who provides reinforcement for verbal behavior, may also serve as an audience
+Local Response Rate[]the average rate of responding during a smaller period of time within a larger period of which an overall response rate has been given
+Maintenance[](a) extent to which the learner continues to perform the target behavior after a portion or all of the intervention has been terminated and (b) a condition in which treatment has been discontinued or partially withdrawn
+Massed Practice[]a self-directed behavior change technique in which the person forces himself to perform an undesired behavior repeatedly, which sometimes decreases the future frequency of the behavior
+Matching Law[]the allocation of responses to choices available on concurrent schedules of reinforcement; rates of responding across choices are distributed in proportions that match the rates of reinforcement received from each choice alternative
+Mean Count-Per-Interval IOA[]the average percentage of agreement between the counts reported by 2 observers in a measurement period comprised of a series of smaller counting times, more conservative measure than total count IOA
+Mean Duration-Per-Occurrence IOA[]calculated by average percentage of agreement of the durations, more conservative and meaningful assessment
+Mentalism[]an approach to explaining behavior that assumes that a mental, or "inner", dimensions exists that differs from a behavioral dimension and that phenomena in this dimension either directly cause or at least mediate some forms of behavior, if not all
+Metaphorical (Tact) Extension[]a tact evoked by a novel stimulus that shares some, but not all, of the relevant features of the original stimulus
+Methodological Behaviorism[]a philosophical position that views behavioral events that cannot be publicly observed as outside the realm of science
+Metonymical (Tact) Extension[]a tact evoked by a novel stimulus that shares none of the relevant features of the original stimulus configuration, but some irrelevant yet related feature has acquired stimulus control
+Mixed Schedule (Mix)[]consisting of 2+ basic schedules of reinforcement that occur in an alternating, usually random, sequence; no Sd is correlated with the presence or absence of each element of the schedule and reinforcement is delivered for meeting the response requirements of the element in effect at any time
+Multiple Control (of Verbal Behavior)[]2 Types1) Convergent multiple control: when a single verbal response is a function of more than 1 variable and what is said has more than one antecedent source of control2) Divergent multiple control: when a single antecedent variable affects the strength of more than one response
+Multiple Probe Design[]a variation of the multiple baseline design; features intermittent measures, or probes, during baseline; used to evaluate the effects of instruction on skill sequence in which it is unlikely that the subject can improve performance on later steps in the sequence before learning prior steps
+Multiple Schedule (Mult)[]consisting of 2+ basic schedules of reinforcement that occur in an alternating, usually random, sequence; a Sd is correlated with the presence or absence of each element of the schedule and reinforcement is delivered for meeting the response requirements of the element in effect at any time
+Multiple Treatment Interference[]the effects of one treatment on a subject's behavior being confounded by the influence of another treatment administered in the same study
+Naturally Existing Contingency[]any contingency of reinforcement (or punishment) that operates independent of the behavior analyst's or practitioner's efforts; includes socially mediated contingencies contrived by other people and already in effect in the relevant setting
+Non-contingent Reinforcement (NCR) Reversal Technique[]uses NCR as a control condition instead of a no-reinforcement (baseline) condition; this shows that if the behavior changes it is b/c of the contingency not the contact with the reinforcement
+Normalization[]the philosophy, principle, and belief that people with disabilities should, to the maximum extent possible, be physically and socially integrated into the mainstream of society regardless of the degree or type of disability; use progressively more typical settings and procedures to help them be as normal as possible
+Ontogeny[]the history of the development of an individual organism during its lifetime
+Operant Conditioning[]consequences result in an increased or decreased frequency of the same type of behavior under similar motivational and environmental conditions in the future
+Parametric Analysis[]an experimental design to discover the differential effects of a range of values of an IV
+Philosophic Doubt[]an attitude that the truthfulness and validity of all scientific theory and knowledge should be continually questioned
+Phylogeny[]the history of the natural evolution of a species
+Pivotal Behavior[]a behavior that, when learned, produces corresponding modifications or co-variation in other untrained behaviors
+Planned Ignoring[]a time-out procedure in which social reinforcers are withheld for a brief period contingent on the occurrence of the target behavior
+Point-to-Point Corresponding[]a relation between the stimulus and the response or response product that occurs when the beginning, middle, and end of the verbal stimulus matches the beginning, middle, and end of the verbal response
+Positive Practice Over-correction[]contingent on an occurrence of the target behavior, the learner is required to repeat a correct form of the behavior, or a behavior incompatible with the problem behavior, a specified number of times
+Post-reinforcement Pause[]the absence of responding for a period of time following reinforcement; common during FI and FR
+Practice Effects[]improvements in performance resulting from opportunities to perform a behavior repeatedly so that baseline measures can be obtained
+Principle of Behavior[]a statement describing a functional relation between behavior and 1+ of its controlling variables with generality across organisms, species, settings, behaviors, and time
+Programming Common Stimuli[]used to promote setting/situation generalization by making the instructional setting similar to the generalization setting1) identify salient stimuli that characterize the generalization setting2)incorporate those stimuli into the instructional setting
+Progressive Schedule of Reinforcement[]things each successive reinforcement opportunity independent of the individual's behavior (PR and PI)
+Reflex[]a stimulus-response relation consisting of an antecedent stimulus and the respondent behavior it elicits; both UR and CR; protect against harmful stimuli, help regulate the internal balance and economy of the organism, and promote reproduction
+Reflexive Conditioned Motivating Operation (CMO-R)[]a stimulus that acquires MO effectiveness by preceding some form of worsening or improvement; like a warning stimulus
+Reflexivity[]a type of stimulus-to-stimulus relation in which the learner, without any prior training or reinforcement for doing so, selects a comparison stimulus that is the same as the sample stimulus
+Relevance of Behavior Rule[]only behaviors likely to produce reinforcement in the person's natural environment should be targeted for change
+Repeatability[]the fact that a behavior can occur repeatedly throughout time
+Replication[](a) repeating conditions within an experiment to determine the reliability of effects and increase internal validity, (b) repeating whole experiments to determine the generality of findings of previous experiments to other subjects, settings, and/or behaviors
+Respondent Conditioning[]a stimulus-stimulus pairing procedure in which a NS is presented with an US until the NS becomes a CS that elicits the CR
+Response Class[]a group of responses of varying topography, all of which produce the same effect on the environment
+Response-Deprivation Hypothesis[]a way to predict whether contingent access to one behavior will function as reinforcement for engaging in another behavior based on whether access to the contingent behavior represents a restriction of the activity compared to the baseline level of engagement (premack principle)
+Response Differentiation[]a behavior change produced by differential reinforcement; reinforced members of the current response class occur with great frequency, and unreinforced members occur less frequently; produces a new response class
+Restitutional Over-correction[]contingent on problem behavior, the individual has to restore the destruction and then make it better than it was before
+Rule-Governed Behavior[]behavior governed by rules; enables human behavior to come under the indirect control of temporally remote or improbably but potentially significant consequences
+Science[]a systematic approach to the understanding of natural phenomena (as evidenced by description, prediction, and control) that relies on determinism as its fundamental assumption, empiricism as its primary rule, experimentation as its basic strategy, replication as its requirement for believability, parsimony as a value, and philosophic doubt as its guiding conscience
+Selection by Consequences[]the idea that all forms of behavior are selected, shaped, and maintained by their consequences during an individual's lifetime
+Self-Control[]1) a person's ability to "delay gratification" by emitting a response that will produce a better delayed reward over a response that produces a smaller but immediate reward (i.e. impluse control)2) a person's behaving in a certain way so as to change a subsequent behavior (i.e to self-manage her own behavior)
+Self-Evaluation[]a person compares his performance of a target behavior with a predetermined goal or standard
+Self-Instruction[]self-generated verbal responses, covert or overt, that function as rules or response prompts for a desired behavior; can be used in chains of behaviors
+Self-Management[]the personal application of behavior change tactics that produce a desired change in behavior
+Single-Subject Design[]a wide variety of research designs that use a form of experimental reasoning called baseline logic to demonstrate the effects of the IV on the behavior of individual subjects
+Solistic (Tact) Extension[]a verbal response evoked by a stimulus property that is only indirectly related to the proper relation
+Split-Middle Line of Progress[]a line drawn through a series of graphed data points that shows the overall trend in the data; drawn through the intersections of the vertical and horizontal middles of each hald of the charted data and then adjusted up or down so that half of all the data points fall on or above and half fall on or below the line
+Standard Celeration Chart[]a multiply-divide chart with 6 base-10 (or x10, divide by 10) cycles on the vertical axis that can accommodate response rates as low as 1 per 24 hours to as high as 1,000 per min
+Steady State Strategy[]repeatedly exposing a subject to a given condition while trying to eliminate or control extraneous influences on the behavior and obtaining a stable pattern of responding before introducing the next condition
+Stimulus Equivalence[]the emergence of accurate responding to untrained and non-reinforced stimulus-stimulus relations following the reinforcement of responses to some stimulus-stimulus relations
+Stimulus-Stimulus Pairing[]when 2 stimuli are presented at the same time, usually repeatedly for a number of trials, which often results in one stimulus acquiring the function of the other stimulus
+Surrogate Conditioned Motivating Operations (CMO-S)[]a stimulus that acquires its MO effectiveness by being paired with another MO and has the same value-altering and behavior-altering effects as the MO with which it was paired
+Systematic Desensitization[]treats fears, anxieties, and phobias and involves substituting one response, generally muscle relaxation, for the unwanted behavior- fear and anxiety
+Tandum Schedule[]the response requirements for 2+ basic schedules mys be met in a specific sequence before reinforcement is delivered, no Sd
+Teaching Loosely[]Randomly varying functionally irrelevant stimuli within and across teaching sessions; promote setting/situation generalization by reducing the likelihood that (a) a single or small group of non-critical stimuli will acquire exclusive control over the target behavior and (b) the learner's performance of the target behavior will be impeded or "thrown off" should he encounter any of the "loose" stimuli n the generalization setting
+Temporal Extent[]every instance of behavior occurs during some amount of time
+Temporal Locus[]every instance of behavior occurs at a certain point in time with respect to other events; often measured in latency and IRT
+Time-out Ribbon[]a ribbon is worn to indicate that reinforcement is available and taken off contingent on problem behavior to indicate that reinforcement is no longer available
+Transitive Conditioned Motivating Operation (CMO-T)[]an environmental variable that, as a result of learning history, establishes (or abolishes) the reinforcing effectiveness of another stimulus and evokes (or abates) the behavior that has been reinforced by other stimulus
+Trial-by-Trial IOA[]for discrete trial data based on comparing the observers' count (0 or 1) on a trial-by-trial, or item-by-item, basis
+Type I Error[]when a researcher concludes that the IV had an effect on the DV when it didn't (i.e. false positive)
+Type II Error[]when a researcher concludes that the IV didn't have an effect on the DV when it did (i.e. false negative)
+Unpairing[]2 types1) the occurrence alone of a stimulus that acquires its function by being paired with an already effective stimulus2) the occurrence of the stimulus in the absence as well as in the presence of the effective stimulusBoth undo the results of pairing
+Validity (of measurement)[]the extent to which data obtained from measurement are directly relevance tot the target behavior of interest and to the reason(s) for measuring it
+Variability[]the frequency and extent to which multiple measures of behavior yield different outcomes
+Interval Schedules[]remember that it is for the FIRST RESPONSE after the interval is over
+Variable-Momentary DRO (VM-DRO)[]reinforcement is available at specific moments of time, which are separated by variable amounts of time in random sequence, and delivered if the problem is not occurring at those times
+Variable-Time Schedule[]a schedule for the delivery of noncontingent stimuli in which the interval of time from one delivery to the next randomly varies around a given time
+Verification[]1 of 3 components of the experimental reasoning, or baseline logic, used in single-subject research designs; accomplished by demonstrating that the prior level of baseline responding would have remained unchanged hat the IV not been introduced; reduces the probability that some uncontrolled variable was responsible for the observed change in behavior

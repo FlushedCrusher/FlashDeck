@@ -1,44 +1,44 @@
-fabricate,build; manufacture; invent
-form,give shape to; establish
-formulate,to put together add express
-generate,produce; cause to be
-identify,to show or to find
-implement,to carry out; put into practice
-install,place; put into position
-inspect,examine carefully or officially
-institute,set up; establish; begin
-interpret,explain the meaning of
-inquire,ask; make a search of
-integrate,to add parts to make whole
-investigate,search into; examine closely
-judge,decide; form an estimate of
-make,cause to come into being
-maintain,to keep in an existing state; to continue in; carry on
-manufacture,fabricate from raw materials
-modify,to change; alter
-monitor,to watch or observe
-notice,comment upon; review
-observe,inspect; watch
-originate,initiate; to give rise to
-organize,integrate; arrange in a coherent unit
-perform,do; carry out; accomplish
-plan,devise a scheme for doing; making; arranging activities to achieve objectives
-probe,investigate thoroughly
-produce,give birth or rise to
-pursue,seek; obtain or accomplish
-reason,think; influence another's actions
-resolve,reduce by analysis; clear up
-record,set down in writing or act of electronic reproduction of communications
-recommend,advise; attract favor of
-review,inspection; examination or evaluation
-revise,to correct; improve
-study,careful examination or analysis
-seek,try to discover; make an attempt
-search,examine to find something
-scan,look through hastily; examine intently
-screen,to separate; present; or shield
-solve,find an answer
-test,evaluate; examine
-trace,to copy or find by searching
-track,observe or plot the path of
-update,modernize; make current
+fabricate[]build; manufacture; invent
+form[]give shape to; establish
+formulate[]to put together add express
+generate[]produce; cause to be
+identify[]to show or to find
+implement[]to carry out; put into practice
+install[]place; put into position
+inspect[]examine carefully or officially
+institute[]set up; establish; begin
+interpret[]explain the meaning of
+inquire[]ask; make a search of
+integrate[]to add parts to make whole
+investigate[]search into; examine closely
+judge[]decide; form an estimate of
+make[]cause to come into being
+maintain[]to keep in an existing state; to continue in; carry on
+manufacture[]fabricate from raw materials
+modify[]to change; alter
+monitor[]to watch or observe
+notice[]comment upon; review
+observe[]inspect; watch
+originate[]initiate; to give rise to
+organize[]integrate; arrange in a coherent unit
+perform[]do; carry out; accomplish
+plan[]devise a scheme for doing; making; arranging activities to achieve objectives
+probe[]investigate thoroughly
+produce[]give birth or rise to
+pursue[]seek; obtain or accomplish
+reason[]think; influence another's actions
+resolve[]reduce by analysis; clear up
+record[]set down in writing or act of electronic reproduction of communications
+recommend[]advise; attract favor of
+review[]inspection; examination or evaluation
+revise[]to correct; improve
+study[]careful examination or analysis
+seek[]try to discover; make an attempt
+search[]examine to find something
+scan[]look through hastily; examine intently
+screen[]to separate; present; or shield
+solve[]find an answer
+test[]evaluate; examine
+trace[]to copy or find by searching
+track[]observe or plot the path of
+update[]modernize; make current

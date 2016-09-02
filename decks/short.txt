@@ -1,2 +1,2 @@
-fabricate,build; manufacture; invent
-form,give shape to; establish
+fabricate[]build; manufacture; invent
+form[]give shape to; establish

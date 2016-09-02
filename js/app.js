@@ -797,7 +797,7 @@ function afterLoadHandler( results ) {
 function addToDeck( cards ) {
     console.log('->addToDeck');
     cards.forEach( function( card ) {
-        var _card = card.split(',');
+        var _card = card.split('[]');
         myDeck.addCard( new Card(_card[0], _card[1]));
     });
     showConfigSettings();
