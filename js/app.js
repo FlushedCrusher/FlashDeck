@@ -837,6 +837,11 @@ function showConfigSettings() {
         var element = elements[i];
         element.style.display = 'inline-block';
     }
+     var elements = document.getElementsByClassName('select_span');
+    for(var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        element.style.display = 'inline-block';
+    }
 }
 /**
  * Added laoded filenme to DOM

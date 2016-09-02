@@ -389,7 +389,7 @@ body {
  * Toggle Button Style
  ***** ***** ***** ***** */
 
-.toggle_span, select_span {
+.toggle_span, .select_span {
     z-index: 1;
     margin-top: 5px;
     margin-bottom: 5px;
