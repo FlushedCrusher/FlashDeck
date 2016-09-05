@@ -49,41 +49,8 @@
     
 <script type="text/javascript">
     var config = new Config();
-    
-   //         <div class="toggle_span">
-   //             <div class="toggle_label left" id="flipOnHover">Flip Card on Hover</div>
-   //             &nbsp;&nbsp;
-   //             <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
-   //                 <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
-   //                 <div class="toggle_text">NO</div>
-   //             </div>
-   //         </div>
-   //         <div class="toggle_span">
-   //             <div class="toggle_label left" id="showReponseCount">Show Response Count</div>
-   //             &nbsp;&nbsp;
-   //             <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
-   //                 <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
-   //                 <div class="toggle_text">NO</div>
-   //             </div>
-   //         </div>
-   //         <div class="toggle_span">
-   //             <div class="toggle_label left" id="showReponseIndicators">Show Response Indicators</div>
-   //             &nbsp;&nbsp;
-   //             <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
-   //                 <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
-   //                 <div class="toggle_text">NO</div>
-   //             </div>
-   //         </div>
-   //         <div class="toggle_span">
-   //             <div class="toggle_label left" id="showTimer">Show Timer</div>
-   //             &nbsp;&nbsp;
-   //             <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
-   //                 <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
-   //                 <div class="toggle_text">NO</div>
-   //             </div>
-   //         </div>
-    
-    var select1 = ElementFactory('select', { 
+
+    var select_cycle = ElementFactory('select', { 
         id      : 'cardCycleMethod',
         label   : 'Cycle Method',
         handler : function() { console.log('handler'); },
@@ -91,15 +58,33 @@
         name    : 'cycle',
         options : config.cycleEnum
     });
-    var toggle1 = ElementFactory('toggle', { 
+    var toggle_flip = ElementFactory('toggle', { 
         id      : 'flipOnHover',
         label   : 'Flip Card on Hover',
-        handler : function() { console.log('handler'); },
-        value   : 'false',
-        text    : 'NO'
+        handler : function() { console.log('handler'); }
     });
-    settings_body.appendChild(select1);
-    settings_body.appendChild(toggle1);
+    var toggle_counts = ElementFactory('toggle', { 
+        id      : 'showReponseCount',
+        label   : 'Show Response Count',
+        handler : function() { console.log('handler'); }
+    });
+    var toggle_indicators = ElementFactory('toggle', { 
+        id      : 'showReponseIndicators',
+        label   : 'Show Response Indicators',
+        handler : function() { console.log('handler'); }
+    });
+    var toggle_timer = ElementFactory('toggle', { 
+        id      : 'showTimer',
+        label   : 'Show Timer',
+        handler : function() { console.log('handler'); }
+    });
+    
+    settings_body.appendChild(select_cycle.element);
+    settings_body.appendChild(toggle_flip.element);
+    settings_body.appendChild(toggle_counts.element);
+    settings_body.appendChild(toggle_indicators.element);
+    settings_body.appendChild(toggle_timer.element);
+    
 </script>
 
 </html>

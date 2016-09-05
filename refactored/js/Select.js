@@ -10,31 +10,34 @@
  */
 function Select( attrs ) {
     
-    var self = document.createElement('div');
-    self.classList.add('select_span');
+    var self = this;
     
-    var _label = document.createElement('div');
-    _label.classList.add('select_label');
-    _label.classList.add('left');
-    _label.id = attrs.id;
-    _label.textContent = attrs.label;
+    this.element = document.createElement('div');
+    this.element.classList.add('select_span');
     
-    var select = document.createElement('select');
-    select.classList.add('select_box');
-    select.classList.add('right');
-    select.onchange = attrs.handler;
-    select.id = attrs.sId;
-    select.dataset.name = attrs.name;
+    this.label = document.createElement('div');
+    this.label.classList.add('select_label');
+    this.label.classList.add('left');
+    this.label.id = attrs.id;
+    this.label.textContent = attrs.label;
     
-    self.appendChild(_label);
-    self.appendChild(select);
+    this.select = document.createElement('select');
+    this.select.classList.add('select_box');
+    this.select.classList.add('right');
+    this.select.onchange = function() {
+        attrs.handler();
+    };
+    this.select.id = attrs.sId;
+    this.select.dataset.name = attrs.name;
+    
+    this.element.appendChild(this.label);
+    this.element.appendChild(this.select);
     
     for (var property in attrs.options) {
         if (attrs.options.hasOwnProperty(property)) {
             var tmp = attrs.options[property];
-            select.options.add( new Option( tmp.name, property ) );
+            this.select.options.add( new Option( tmp.name, property ) );
         }
     }
-    
-    return self;
+
 }
