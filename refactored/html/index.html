@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Flash Deck v 1.0.0">
+    <meta name="author" content="Daniel J. Montanez">
+    
+    <title>Flash Deck v 1.0.0</title>
+
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/modal.css">
+    <link rel="stylesheet" href="../../css/fireworks.css">
+    <link rel="stylesheet" href="../../css/pause.css">
+    <link rel="stylesheet" href="../../css/keyboard.css">
+
+</head>
+
+<body id="flashDeckApp">
+    <h1 class="center" id="headline">Flash Deck v 1.0.0</h1>
+    <div id='FlashDeckMain'>
+        <!-- Config Settings -->
+    <div id="configModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header-1">
+          <span id="config_close" class="close">×</span>
+          <span id="soft_reset" class="close" onclick="softReset()">&#8634;</span>
+          <h2>Settings</h2>
+        </div>
+        <div id="settings_body" class="modal-body"> 
+            
+        </div>
+        <div class="modal-footer-1">
+            <div class="sidebyside">
+                <div class="user_yes-1 left pop_out" onclick="applySettings()">APPLY</div>
+                &nbsp;&nbsp;
+                <div class="user_no-1 right pop_out" onclick="closeConfigModal()">CANCEL</div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</body>
+    
+<script type="text/javascript" src="../js/Config.js"></script>
+<script type="text/javascript" src="../js/Select.js"></script>
+<script type="text/javascript" src="../js/Toggle.js"></script>
+<script type="text/javascript" src="../js/ElementFactory.js"></script>
+    
+<script type="text/javascript">
+    var config = new Config();
+    
+   //         <div class="toggle_span">
+   //             <div class="toggle_label left" id="flipOnHover">Flip Card on Hover</div>
+   //             &nbsp;&nbsp;
+   //             <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
+   //                 <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
+   //                 <div class="toggle_text">NO</div>
+   //             </div>
+   //         </div>
+   //         <div class="toggle_span">
+   //             <div class="toggle_label left" id="showReponseCount">Show Response Count</div>
+   //             &nbsp;&nbsp;
+   //             <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
+   //                 <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
+   //                 <div class="toggle_text">NO</div>
+   //             </div>
+   //         </div>
+   //         <div class="toggle_span">
+   //             <div class="toggle_label left" id="showReponseIndicators">Show Response Indicators</div>
+   //             &nbsp;&nbsp;
+   //             <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
+   //                 <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
+   //                 <div class="toggle_text">NO</div>
+   //             </div>
+   //         </div>
+   //         <div class="toggle_span">
+   //             <div class="toggle_label left" id="showTimer">Show Timer</div>
+   //             &nbsp;&nbsp;
+   //             <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
+   //                 <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
+   //                 <div class="toggle_text">NO</div>
+   //             </div>
+   //         </div>
+    
+    var select1 = ElementFactory('select', { 
+        id      : 'cardCycleMethod',
+        label   : 'Cycle Method',
+        handler : function() { console.log('handler'); },
+        sId     : 'select_cycle',
+        name    : 'cycle',
+        options : config.cycleEnum
+    });
+    var toggle1 = ElementFactory('toggle', { 
+        id      : 'flipOnHover',
+        label   : 'Flip Card on Hover',
+        handler : function() { console.log('handler'); },
+        value   : 'false',
+        text    : 'NO'
+    });
+    settings_body.appendChild(select1);
+    settings_body.appendChild(toggle1);
+</script>
+
+</html>
