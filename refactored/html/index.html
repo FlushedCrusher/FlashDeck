@@ -19,26 +19,26 @@
     <h1 class="center" id="headline">Flash Deck v 1.0.0</h1>
     <div id='FlashDeckMain'>
         <!-- Config Settings -->
-    <div id="configModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header-1">
-          <span id="config_close" class="close">×</span>
-          <span id="soft_reset" class="close" onclick="softReset()">&#8634;</span>
-          <h2>Settings</h2>
-        </div>
-        <div id="settings_body" class="modal-body"> 
-            
-        </div>
-        <div class="modal-footer-1">
-            <div class="sidebyside">
-                <div class="user_yes-1 left pop_out" onclick="applySettings()">APPLY</div>
-                &nbsp;&nbsp;
-                <div class="user_no-1 right pop_out" onclick="closeConfigModal()">CANCEL</div>
+        <div id="configModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header-1">
+              <span id="config_close" class="close">×</span>
+              <span id="soft_reset" class="close" onclick="softReset()">&#8634;</span>
+              <h2>Settings</h2>
             </div>
+            <div id="settings_body" class="modal-body"> 
+
+            </div>
+            <div class="modal-footer-1">
+                <div class="sidebyside">
+                    <div class="user_yes-1 left pop_out" onclick="applySettings()">APPLY</div>
+                    &nbsp;&nbsp;
+                    <div class="user_no-1 right pop_out" onclick="closeConfigModal()">CANCEL</div>
+                </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
     </div>
 </body>
     
@@ -50,33 +50,31 @@
 <script type="text/javascript">
     var config = new Config();
 
-    var select_cycle = ElementFactory('select', { 
-        id      : 'cardCycleMethod',
+    var select_cycle = ElementFactory('select', {
         label   : 'Cycle Method',
         handler : function() { console.log('handler'); },
-        sId     : 'select_cycle',
         name    : 'cycle',
         options : config.cycleEnum
     });
-    var toggle_flip = ElementFactory('toggle', { 
-        id      : 'flipOnHover',
+    var toggle_flip = ElementFactory('toggle', {
         label   : 'Flip Card on Hover',
-        handler : function() { console.log('handler'); }
+        handler : function() { console.log('handler'); },
+        name    : 'flipOnHover',
     });
-    var toggle_counts = ElementFactory('toggle', { 
-        id      : 'showReponseCount',
+    var toggle_counts = ElementFactory('toggle', {
         label   : 'Show Response Count',
-        handler : function() { console.log('handler'); }
+        handler : function() { console.log('handler'); },
+        name    : 'showReponseCount',
     });
-    var toggle_indicators = ElementFactory('toggle', { 
-        id      : 'showReponseIndicators',
+    var toggle_indicators = ElementFactory('toggle', {
         label   : 'Show Response Indicators',
-        handler : function() { console.log('handler'); }
+        handler : function() { console.log('handler'); },
+        name    : 'showReponseIndicators',
     });
-    var toggle_timer = ElementFactory('toggle', { 
-        id      : 'showTimer',
+    var toggle_timer = ElementFactory('toggle', {
         label   : 'Show Timer',
-        handler : function() { console.log('handler'); }
+        handler : function() { console.log('handler'); },
+        name    : 'showTimer',
     });
     
     settings_body.appendChild(select_cycle.element);

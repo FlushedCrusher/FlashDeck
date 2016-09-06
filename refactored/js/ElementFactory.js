@@ -1,20 +1,22 @@
 /**
  * Element Factory
  *
- *  'toggle', { 
- *      id      : 'myId',
+ *  'toggle', {
+ *      label   : 'myLabel,
  *      handler : function() { console.log('handler'); },
- *      value   : 'myValue',
- *      text   : 'myText'
+ *      name    : 'myName'
  *  }
  *
- *  'select', { 
- *      id      : 'myId',
+ *  'select', {
  *      label   : 'myLabel'
  *      handler : function() { console.log('handler'); },
- *      sId     : 'mySID',
  *      name:   : 'myName',
- *      options : {}
+ *      options : {
+ *          O1: {
+ *              name    : 'myName',
+ *              value   : 'myValue'
+ *          }
+ *      }
  *  }
 */
 function ElementFactory( type, attrs ) {

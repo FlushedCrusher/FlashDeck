@@ -69,4 +69,6 @@ function Config() {
     this.showTimer             = undefined;
     this.version               = '1.0.0';
 }
-Config.prototype.setConfig = function( key, value ) {};
+Config.prototype.setConfig = function( key, value ) {
+    this[key] = value;
+};

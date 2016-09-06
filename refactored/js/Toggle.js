@@ -1,9 +1,9 @@
 /**
  * Toggle Element
  * @param {Object} attrs
- *  @id
  *  @label
  *  @handler
+ *  @name
  */
 function Toggle( attrs ) {
     
@@ -13,7 +13,6 @@ function Toggle( attrs ) {
     this.element.classList.add('toggle_span');
     
     this.label = document.createElement('div');
-    this.label.id = attrs.id;
     this.label.textContent = attrs.label;
     this.label.classList.add('toggle_label');
     this.label.classList.add('left');
@@ -31,6 +30,7 @@ function Toggle( attrs ) {
     this.toggle.classList.add('toggle_toggle');
     this.toggle.classList.add('toggle_toggle_left');
     this.toggle.dataset.value = 'false';
+    this.toggle.dataset.name = attrs.name;
     
     this.text = document.createElement('div');
     this.text.classList.add('toggle_text');
