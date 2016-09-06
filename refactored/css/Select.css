@@ -1,0 +1,22 @@
+.select_span {
+    z-index: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block; /* none; */
+    width: 100%;
+    min-height: 25px;
+    text-align: center;
+    vertical-align: middle;
+}
+.select_label {
+    line-height: 25px;
+}
+.select_box {
+    cursor: pointer;
+    width: 110px;
+    height: 25px;
+    margin-right: 20px;
+    vertical-align: middle;
+    line-height: 25px;
+    font-weight: bold;
+}

@@ -1,0 +1,66 @@
+.toggle_span {
+    z-index: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block; /* none; */
+    width: 100%;
+    min-height: 25px;
+    text-align: center;
+    vertical-align: middle;
+}
+.toggle_span_always_on {
+    z-index: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 100%;
+    min-height: 25px;
+    text-align: center;
+    vertical-align: middle;
+}
+.toggle_label {
+    line-height: 25px;
+}
+.toggle_button {
+    cursor: pointer;
+    width: 100px;
+    height: 25px;
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    margin-right: 20px;
+    vertical-align: middle;
+    line-height: 25px;
+    font-weight: bold;
+}
+.toggle_text {
+    position: relative;
+    top: -25px;
+    text-align: center;
+    line-height: 25px;
+}
+.toggle_toggle {
+    position: relative;
+    z-index: 1;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 7px;
+    transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+}
+.toggle_toggle_left {
+    left: 0;
+}
+.toggle_toggle_right {
+    left: 75px;
+}
+.toggle_off {
+    color: black;
+    background-color: rgb(220, 220, 220);
+}
+.toggle_on {
+    color: white;
+    background-color: rgb(8, 126, 255);
+}

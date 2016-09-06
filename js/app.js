@@ -422,7 +422,7 @@ btn.onclick = function() {
  
 // Get the modal elements
 var _configModal = document.getElementById('configModal');
-var configBtn = document.getElementById("config_settings");
+var configBtn = document.getElementById("config_button");
 
 /**
  * Populate the selection option boxes in the config settings

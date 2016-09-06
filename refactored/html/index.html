@@ -7,82 +7,125 @@
     
     <title>Flash Deck v 1.0.0</title>
 
-    <link rel="stylesheet" href="../../css/styles.css">
-    <link rel="stylesheet" href="../../css/modal.css">
-    <link rel="stylesheet" href="../../css/fireworks.css">
-    <link rel="stylesheet" href="../../css/pause.css">
-    <link rel="stylesheet" href="../../css/keyboard.css">
+    <link rel="stylesheet" href="../css/FlashDeckApp.css">
+    <link rel="stylesheet" href="../css/Element.css">
+    <link rel="stylesheet" href="../css/Select.css">
+    <link rel="stylesheet" href="../css/Toggle.css">
+    <link rel="stylesheet" href="../css/Modal.css">
+    <link rel="stylesheet" href="../css/Button.css">
+    <link rel="stylesheet" href="../css/Timer.css">
 
 </head>
 
 <body id="flashDeckApp">
     <h1 class="center" id="headline">Flash Deck v 1.0.0</h1>
-    <div id='FlashDeckMain'>
-        <!-- Config Settings -->
-        <div id="configModal" class="modal">
-          <!-- Modal content -->
-          <div class="modal-content">
-            <div class="modal-header-1">
-              <span id="config_close" class="close">×</span>
-              <span id="soft_reset" class="close" onclick="softReset()">&#8634;</span>
-              <h2>Settings</h2>
-            </div>
-            <div id="settings_body" class="modal-body"> 
-
-            </div>
-            <div class="modal-footer-1">
-                <div class="sidebyside">
-                    <div class="user_yes-1 left pop_out" onclick="applySettings()">APPLY</div>
-                    &nbsp;&nbsp;
-                    <div class="user_no-1 right pop_out" onclick="closeConfigModal()">CANCEL</div>
-                </div>
-            </div>
-          </div>
-        </div>
-    </div>
+    <div id='FlashDeckMain'></div>
 </body>
-    
-<script type="text/javascript" src="../js/Config.js"></script>
+
+
+<script type="text/javascript" src="../js/ElementFactory.js"></script>
+<script type="text/javascript" src="../js/Element.js"></script>
 <script type="text/javascript" src="../js/Select.js"></script>
 <script type="text/javascript" src="../js/Toggle.js"></script>
-<script type="text/javascript" src="../js/ElementFactory.js"></script>
+<script type="text/javascript" src="../js/Modal.js"></script>
+<script type="text/javascript" src="../js/Button.js"></script>
+<script type="text/javascript" src="../js/Timer.js"></script>
+
+<script type="text/javascript" src="../js/Config.js"></script>
     
 <script type="text/javascript">
     var config = new Config();
-
-    var select_cycle = ElementFactory('select', {
+    
+    // Register Elements
+    ElementFactory.registerElement('toggle', Toggle);
+    ElementFactory.registerElement('select', Select);
+    ElementFactory.registerElement('modal', Modal);
+    ElementFactory.registerElement('button', Button);
+    ElementFactory.registerElement('timer', Timer);
+    
+    // Create Elements
+    
+    // Modals
+    var response_modal = ElementFactory.createElement('modal', {
+        heading     : 'Did you know this one?',
+        okayText    : 'YES',
+        cancelText  : 'NO',
+        closeCallback   : function() { console.log('handler'); },
+        resetCallback   : function() { console.log('handler'); },
+        okayCallback    : function() { console.log('handler'); },
+        cancelCallback  : function() { console.log('handler'); }
+    });
+    response_modal.hide('reset_button');
+    response_modal.hide('close_button');
+    var config_modal = ElementFactory.createElement('modal',{
+        styleMod    : '1',
+        heading     : 'Settings',
+        okayText    : 'APPLY',
+        cancelText  : 'CANCEL',
+        closeCallback   : function() { console.log('handler'); },
+        resetCallback   : function() { console.log('handler'); },
+        okayCallback    : function() { console.log('handler'); },
+        cancelCallback  : function() { console.log('handler'); }
+    });
+    var config_button = ElementFactory.createElement('button', {
+        id          : 'config_button',
+        text        : '',
+        shadow      : 'left',
+        handler     : function() { config_modal.toggle(); }
+    });
+    
+    // Selects & Toggles
+    var select_cycle = ElementFactory.createElement('select', {
         label   : 'Cycle Method',
-        handler : function() { console.log('handler'); },
+        handler : function() {
+            config[this.select.dataset.name] = config.cycleEnum[this.select.value];
+        },
         name    : 'cycle',
         options : config.cycleEnum
     });
-    var toggle_flip = ElementFactory('toggle', {
+    var toggle_flip = ElementFactory.createElement('toggle', {
         label   : 'Flip Card on Hover',
-        handler : function() { console.log('handler'); },
+        handler : handleToggle,
         name    : 'flipOnHover',
     });
-    var toggle_counts = ElementFactory('toggle', {
+    var toggle_counts = ElementFactory.createElement('toggle', {
         label   : 'Show Response Count',
-        handler : function() { console.log('handler'); },
+        handler : handleToggle,
         name    : 'showReponseCount',
     });
-    var toggle_indicators = ElementFactory('toggle', {
+    var toggle_indicators = ElementFactory.createElement('toggle', {
         label   : 'Show Response Indicators',
-        handler : function() { console.log('handler'); },
+        handler : handleToggle,
         name    : 'showReponseIndicators',
     });
-    var toggle_timer = ElementFactory('toggle', {
+    var toggle_timer = ElementFactory.createElement('toggle', {
         label   : 'Show Timer',
-        handler : function() { console.log('handler'); },
+        handler : handleToggle,
         name    : 'showTimer',
     });
     
-    settings_body.appendChild(select_cycle.element);
-    settings_body.appendChild(toggle_flip.element);
-    settings_body.appendChild(toggle_counts.element);
-    settings_body.appendChild(toggle_indicators.element);
-    settings_body.appendChild(toggle_timer.element);
+    // Timer
+    var timer = ElementFactory.createElement('timer', {
+        text    : '0:0:0',
+        shadow  : 'left'
+    });
     
+    // Handlers
+    function handleToggle() {
+        var val = this.toggle.dataset.value;
+        config[this.toggle.dataset.name] = (val === 'true') ? true : false;
+    }
+    
+    config_modal.body.appendChild(select_cycle.element);
+    config_modal.body.appendChild(toggle_flip.element);
+    config_modal.body.appendChild(toggle_counts.element);
+    config_modal.body.appendChild(toggle_indicators.element);
+    config_modal.body.appendChild(toggle_timer.element);
+    
+    FlashDeckMain.appendChild(timer.element);
+    FlashDeckMain.appendChild(config_modal.element);
+    FlashDeckMain.appendChild(config_button.element);
+    FlashDeckMain.appendChild(response_modal.element);
 </script>
 
 </html>

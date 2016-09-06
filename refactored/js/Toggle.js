@@ -14,21 +14,17 @@ function Toggle( attrs ) {
     
     this.label = document.createElement('div');
     this.label.textContent = attrs.label;
-    this.label.classList.add('toggle_label');
-    this.label.classList.add('left');
+    this.label.classList.add('toggle_label', 'left');
     
     this.button = document.createElement('div');
-    this.button.classList.add('toggle_button');
-    this.button.classList.add('right');
-    this.button.classList.add('toggle_off');
+    this.button.classList.add('toggle_button', 'right', 'toggle_off');
     this.button.onclick = function() {
-        self.handleToggle( self.toggle, self.button, self.text );
-        attrs.handler();
+        self.handleToggle();
+        attrs.handler.call(self);
     };
     
     this.toggle = document.createElement('div');
-    this.toggle.classList.add('toggle_toggle');
-    this.toggle.classList.add('toggle_toggle_left');
+    this.toggle.classList.add('toggle_toggle', 'toggle_toggle_left');
     this.toggle.dataset.value = 'false';
     this.toggle.dataset.name = attrs.name;
     
@@ -43,39 +39,40 @@ function Toggle( attrs ) {
     this.element.appendChild(this.button);
         
 }
-Toggle.prototype.handleToggle = function( _toggle, _button, _text ) {
-    switch (_toggle.dataset.value) {
+Toggle.prototype = Object.create(Element.prototype);
+Toggle.prototype.handleToggle = function() {
+    switch (this.toggle.dataset.value) {
         case 'true':
-            this.toggleOff( _toggle, _button, _text );
+            this.toggleOff();
             break;
         case 'false':
-            this.toggleOn( _toggle, _button, _text );
+            this.toggleOn();
             break;
         default:
             console.error("Error setting toggle.");
     }
 };
-Toggle.prototype.toggleOn = function( _toggle, _button, _text ) {
+Toggle.prototype.toggleOn = function() {
     console.log('->toggleOn');
     // Move the toggle
-    _toggle.classList.add('toggle_toggle_right');
-    _toggle.classList.remove('toggle_toggle_left');
+    this.toggle.classList.add('toggle_toggle_right');
+    this.toggle.classList.remove('toggle_toggle_left');
     // Change the color
-    _button.classList.add('toggle_on');
-    _button.classList.remove('toggle_off');
+    this.button.classList.add('toggle_on');
+    this.button.classList.remove('toggle_off');
     // Change the text & set teh current state
-    _text.textContent = 'YES';
-    _toggle.dataset.value = 'true';
+    this.text.textContent = 'YES';
+    this.toggle.dataset.value = 'true';
 };
-Toggle.prototype.toggleOff = function( _toggle, _button, _text ) {
+Toggle.prototype.toggleOff = function() {
     console.log('->toggleOff');
     // Move the toggle
-    _toggle.classList.remove('toggle_toggle_right');
-    _toggle.classList.add('toggle_toggle_left');
+    this.toggle.classList.remove('toggle_toggle_right');
+    this.toggle.classList.add('toggle_toggle_left');
     // Change the color
-    _button.classList.remove('toggle_on');
-    _button.classList.add('toggle_off');
+    this.button.classList.remove('toggle_on');
+    this.button.classList.add('toggle_off');
     // Change the text & set teh current state
-    _text.textContent = 'NO';
-    _toggle.dataset.value = 'false';
+    this.text.textContent = 'NO';
+    this.toggle.dataset.value = 'false';
 };

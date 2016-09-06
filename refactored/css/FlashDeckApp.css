@@ -1,0 +1,56 @@
+* {
+  font-family:  Arial, Helvetica, sans-serif;
+}
+a:link {
+  color:#000;
+  text-decoration: none;
+}
+a:visited {
+  color:#000;
+}
+a:hover {
+  color:#33F;
+}
+.center {
+  padding: 10px;
+  text-align: center;
+}
+.sidebyside {
+  z-index: 1;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: inline-block;
+  width: 100%;
+  min-height: 40px;
+  text-align: center;
+  vertical-align: middle;
+}
+/*
+ * Heading
+ */
+#headline {
+  font-size: 40px;
+  font-weight: 300;
+}
+/*
+ * Buttons
+ */
+#config_button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    margin: 15px;
+    font-size: 20px;
+    background:transparent url('../images/gear.png') no-repeat center;
+    background-size:20px 20px;
+}
+#reset_button {
+    visibility: hidden;
+    font-size: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 15px;
+}

@@ -14,16 +14,14 @@ function Select( attrs ) {
     this.element.classList.add('select_span');
     
     this.label = document.createElement('div');
-    this.label.classList.add('select_label');
-    this.label.classList.add('left');
+    this.label.classList.add('select_label', 'left');
     this.label.textContent = attrs.label;
     
     this.select = document.createElement('select');
-    this.select.classList.add('select_box');
-    this.select.classList.add('right');
+    this.select.classList.add('select_box', 'right');
     this.select.onchange = function() {
         self.handleSelect();
-        attrs.handler();
+        attrs.handler.call(self);
     };
     this.select.id = 'select_' + attrs.name;
     this.select.dataset.name = attrs.name;
@@ -39,6 +37,7 @@ function Select( attrs ) {
     }
 
 }
+Select.prototype = Object.create(Element.prototype);
 Select.prototype.handleSelect = function() {
     console.log('->handleSelect');
 };

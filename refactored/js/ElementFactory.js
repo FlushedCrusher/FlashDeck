@@ -1,36 +1,22 @@
 /**
  * Element Factory
- *
- *  'toggle', {
- *      label   : 'myLabel,
- *      handler : function() { console.log('handler'); },
- *      name    : 'myName'
- *  }
- *
- *  'select', {
- *      label   : 'myLabel'
- *      handler : function() { console.log('handler'); },
- *      name:   : 'myName',
- *      options : {
- *          O1: {
- *              name    : 'myName',
- *              value   : 'myValue'
- *          }
- *      }
- *  }
 */
-function ElementFactory( type, attrs ) {
+var ElementFactory = (function() {
+    
     var self;
-    switch (type) {
-        case 'toggle':
-            self = new Toggle( attrs );
-            break;
-        case 'select':
-            self = new Select( attrs );
-            break;
-        default:
-            console.error('Error creating element.');
-            break;
+    var registeredElements = new Map();
+    
+    function registerElement( key, value ) {
+        registeredElements.set( key, value );
     }
-    return self;
-}
+    
+    function createElement( type, attrs ) {
+        var Cls = registeredElements.get(type);
+        return new Cls( attrs );
+    }
+    
+    return {
+        registerElement : registerElement,
+        createElement   : createElement
+    };
+})();
