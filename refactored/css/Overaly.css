@@ -1,0 +1,74 @@
+.pause {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background:rgba(0,0,0,0.75) url('../images/pause.png') no-repeat center;
+    background-size: 200px 200px;
+    width: 100%;
+    height: 100%;
+}
+.pyro {
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: transparent;
+    -webkit-transition: background 10.0s linear;
+    -moz-transition: background 10.0s linear;
+    -ms-transition: background 10.0s linear;
+    -o-transition: background 10.0s linear;
+    transition: background 10.0s linear;
+}
+.pyro:before, .pyro:after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: 207px -20px #44ff00, -268px -322px #00d0ff, -166px -308px #ffdd00, -95px -220px #ff00f7, 236px -115px #6600ff, 170px -271px #00bbff, -45px -263px #ff7b00, 192px -141px #7b00ff, -34px -113px #00ffee, -224px 73px #6aff00, 65px 4px #0040ff, 288px -9px #7b00ff, 180px 7px #00ccff, 128px -201px #00ffea, -168px -195px #d900ff, 165px -8px #c4ff00, -57px -132px #00aeff, 146px 37px #fff700, -182px -43px #00ff48, 132px -331px #ff4400, -268px -59px #2600ff, -31px 15px #ff007b, -246px -343px #dd00ff, -282px -124px #7300ff, 40px -160px #8800ff, 100px -257px #00ff5e, -18px 49px #ff6a00, -288px -468px #ff4400, -236px -57px #77ff00, 20px -181px #00bbff, -265px 1px #6a00ff, 86px -129px #00ff26, -54px -366px #00ff51, -186px -204px #ff00f7, 85px -135px #00ccff, 13px -209px #00d0ff, -83px -212px #66ff00, -70px -346px #d000ff, 82px -213px #9500ff, -170px -237px #ffee00, 21px -410px #00ff48, 265px -266px #ff00bb, -225px -344px #e6ff00, -50px -3px #00ffd0, 65px -176px #00ff84, -73px -224px #ff0011, 32px -254px #91ff00, 34px 86px #c8ff00, 208px 90px #00ff40, -25px -394px #00ff09, 147px -285px #00ff26, 121px -358px #4400ff, -219px -296px #b300ff, -113px -39px #ee00ff, 138px 43px #001eff, 170px -101px #a2ff00, 101px -133px #9d00ff, -249px -243px #00ff51, -212px -186px #c4ff00, -246px -214px #00ff0d, 125px 28px #eaff00;
+  animation: 1s  bang      ease-out  infinite backwards, 1s  gravity   ease-in   infinite backwards, 5s  position  linear    infinite backwards;
+}
+.stop_animation:before, .stop_animation:after {
+    animation-play-state: paused;
+}
+.pyro:after {
+  animation-delay: 2.25s, 2.25s, 2.25s;
+  animation-duration: 1.25s, 1.25s, 6.25s;
+}
+@keyframes bang {
+  from {
+    box-shadow: 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff;
+  }
+}
+@keyframes gravity {
+  to {
+    transform: translateY(700px);
+    opacity: 0;
+  }
+}
+@keyframes position {
+  0%, 19.9% {
+    margin-top: 50%;
+    margin-left: 60%;
+  }
+  20%, 39.9% {
+    margin-top: 10%;
+    margin-left: 30%;
+  }
+  40%, 59.9% {
+    margin-top: 60%;
+    margin-left: 70%;
+  }
+  60%, 79.9% {
+    margin-top: 30%;
+    margin-left: 40%;
+  }
+  80%, 99.9% {
+    margin-top: 30%;
+    margin-left: 80%;
+  }
+}
