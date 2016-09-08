@@ -4,11 +4,13 @@
  *  @label
  *  @handler
  *  @name
+ *  @link
+ *  @init
  */
 function Toggle( attrs ) {
     
     var self = this;
-    
+        
     this.element = document.createElement('div');
     this.element.classList.add('toggle_span');
     
@@ -20,7 +22,8 @@ function Toggle( attrs ) {
     this.button.classList.add('toggle_button', 'right', 'toggle_off');
     this.button.onclick = function() {
         self.handleToggle();
-        attrs.handler.call(self);
+        if(attrs.handler) { attrs.handler.call(self); }
+        if(attrs.link) { attrs.link.call(self); }
     };
     
     this.toggle = document.createElement('div');
@@ -37,7 +40,8 @@ function Toggle( attrs ) {
     
     this.element.appendChild(this.label);
     this.element.appendChild(this.button);
-        
+    
+    if(attrs.init) { attrs.init.call(this); };
 }
 Toggle.prototype = Object.create(Element.prototype);
 Toggle.prototype.handleToggle = function() {

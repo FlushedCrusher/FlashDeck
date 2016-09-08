@@ -1,0 +1,18 @@
+.side_bar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: calc((100% - 500px) / 2);
+    height: 100%;
+    font-size: 60px;
+    text-align: center;
+}
+.correct, .incorrect {
+    line-height: 250px;
+}
+.correct {
+    color: #36c77a;
+}
+.incorrect {
+    color: #fb523f;
+}

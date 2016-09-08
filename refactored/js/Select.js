@@ -5,6 +5,8 @@
  *  @handler
  *  @name
  *  @options
+ *  @link
+ *  @init
  */
 function Select( attrs ) {
     
@@ -21,7 +23,8 @@ function Select( attrs ) {
     this.select.classList.add('select_box', 'right');
     this.select.onchange = function() {
         self.handleSelect();
-        attrs.handler.call(self);
+        if(attrs.handler) { attrs.handler.call(self); }
+        if(attrs.link) { attrs.link.call(self); }
     };
     this.select.id = 'select_' + attrs.name;
     this.select.dataset.name = attrs.name;
@@ -36,6 +39,8 @@ function Select( attrs ) {
         }
     }
 
+    if(attrs.init) { attrs.init.call(this); };
+    
 }
 Select.prototype = Object.create(Element.prototype);
 Select.prototype.handleSelect = function() {

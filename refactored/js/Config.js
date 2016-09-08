@@ -1,10 +1,9 @@
-function Config() {
-    this.default = {
-        flipOnHover             : false,
-        showReponseCount        : true,
-        showReponseIndicators   : true,
-        showTimer               : true
-    };
+/**
+ * Config Object
+ * @param {Object} userState
+ */
+function Config( userState ) {
+    
     this.cycleEnum = {
         FORWARD: {
             name: 'FORWARD',
@@ -51,6 +50,7 @@ function Config() {
             value: 'review'
         }
     };
+    
     this.appState              = this.stateEnum.FIRSTLOAD;
     this.cycle                 = this.cycleEnum.FORWARD;
     this.deckLimit             = Number.MAX_VALUE;
@@ -67,8 +67,24 @@ function Config() {
     this.showReponseCount      = undefined;
     this.showReponseIndicators = undefined;
     this.showTimer             = undefined;
-    this.version               = '1.0.0';
+    this.version               = '1.1.0';
+    
+    this.default = {
+        flipOnHover             : false,
+        showReponseCount        : true,
+        showReponseIndicators   : true,
+        showTimer               : true
+    };
+    this.state = userState || this.default;
+    
+    this.applyState(this.state);
+    
 }
 Config.prototype.setConfig = function( key, value ) {
     this[key] = value;
+};
+Config.prototype.applyState = function( state ) {
+    for(setting in state) {
+        this.setConfig( setting, state[setting] );
+    }
 };
