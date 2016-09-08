@@ -21,6 +21,14 @@ Overlay.prototype.remove = function() {
     this.hide();
     this.pause();
 };
+Overlay.prototype.toggleOverlay = function() {
+    var elem = this.element;
+    if(elem.style.display === 'none') {
+        this.apply();
+    } else {
+        this.remove();
+    }
+};
 Overlay.prototype.play = function() {
     this.element.classList.remove('stop_animation');
 };

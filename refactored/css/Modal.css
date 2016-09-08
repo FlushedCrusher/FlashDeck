@@ -23,16 +23,6 @@
     animation-name: animatetop;
     animation-duration: 0.4s
 }
-.modal-header {
-    padding: 2px 16px;
-    background-color: rgba(0, 128, 255, 0.75);
-    color: white;
-}
-.modal-header-1 {
-    padding: 2px 16px;
-    background-color: rgb(242, 242, 242);
-    color: black;
-}
 .modal-body {
     padding: 2px 16px;
 }
@@ -56,6 +46,12 @@
     text-decoration: none;
     cursor: pointer;
 }
+/* Modal Style Default */
+.modal-header {
+    padding: 2px 16px;
+    background-color: rgba(0, 128, 255, 0.75);
+    color: white;
+}
 .user_yes, .user_no {
     display: flex;
     justify-content: center;
@@ -74,8 +70,19 @@
     box-shadow: -4px 4px 5px rgba(150, 150, 150, 0.65);
 }
 .user_no {
-    box-shadow: 4px 4px 5px rgba(150, 150, 150, 0.65);
     background-color: #fb523f;
+    box-shadow: 4px 4px 5px rgba(150, 150, 150, 0.65);
+}
+.modal-footer {
+    padding: 2px 16px;
+    background-color: rgba(0, 128, 255, 0.75);
+    color: white;
+}
+/* Modal Style 1 */
+.modal-header-1 {
+    padding: 2px 16px;
+    background-color: rgb(242, 242, 242);
+    color: black;
 }
 .user_yes-1, .user_no-1 {
     display: flex;
@@ -95,16 +102,43 @@
     box-shadow: -4px 4px 5px rgba(150, 150, 150, 0.65);
 }
 .user_no-1 {
-    box-shadow: 4px 4px 5px rgba(150, 150, 150, 0.65);
     background-color: #333;
-}
-.modal-footer {
-    padding: 2px 16px;
-    background-color: rgba(0, 128, 255, 0.75);
-    color: white;
+    box-shadow: 4px 4px 5px rgba(150, 150, 150, 0.65);
 }
 .modal-footer-1 {
     padding: 2px 16px;
     background-color: rgb(242, 242, 242);
+    color: black;
+}
+/* Modal Style 2 */
+.modal-header-2 {
+    padding: 2px 16px;
+    background-color: rgb(242, 242, 242);
+    color: black;
+}
+.user_yes-2, .user_no-2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+}
+.user_yes-2 {
+    background-color: #36c77a;
+    box-shadow: -4px 4px 5px rgba(150, 150, 150, 0.65);
+}
+.user_no-2 {
+    background-color: #fb523f;
+    box-shadow: 4px 4px 5px rgba(150, 150, 150, 0.65);
+}
+.modal-footer-2 {
+    padding: 2px 16px;
+    background-color: rgba(0, 128, 255, 0.75);
     color: black;
 }

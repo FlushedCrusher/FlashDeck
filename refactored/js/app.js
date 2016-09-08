@@ -1,4 +1,15 @@
 var config = new Config();
+var eventManager = new EventManager({
+    windowLeftKeyHandler    : function() { console.log('Event: window-left'); },
+    windowUpKeyHandler      : function() { console.log('Event: window-up'); },
+    windowRightKeyHandler   : function() { console.log('Event: window-right'); },
+    responseReturnHandler   : function() { console.log('Event: response-return'); },
+    responseLeftKeyHandler  : function() { console.log('Event: responseleft'); },
+    responseRightKeyHandler : function() { console.log('Event: responseright'); },
+    windowSpaceHandler      : windowSpaceHandler,
+});
+eventManager.addWindowKeyListeners();
+eventManager.addWindowPauseListener();
 
 // Register Elements
 ElementFactory.registerElement('toggle', Toggle);
@@ -8,12 +19,14 @@ ElementFactory.registerElement('button', Button);
 ElementFactory.registerElement('timer', Timer);
 ElementFactory.registerElement('overlay', Overlay);
 ElementFactory.registerElement('counter', Counter);
+ElementFactory.registerElement('loader', Loader);
 ElementFactory.registerElement('quiz', Quiz);
 
 // Create Elements
 
 // Modals
 var response_modal = ElementFactory.createElement('modal', {
+    styleMod    : '2',
     heading     : 'Did you know this one?',
     okayText    : 'YES',
     cancelText  : 'NO',
@@ -97,6 +110,14 @@ var incorrect = ElementFactory.createElement('counter', {
     style   : 'incorrect'
 });
 
+// Loader
+var deck_loader = ElementFactory.createElement('loader', {
+    label   : 'Import Deck',
+    text    : 'Choose a source',
+    handler : function() { console.log('handler'); },
+    link    : function() { console.log('link'); }
+});
+
 // Quiz
 var quiz = ElementFactory.createElement('quiz', {
     responseCallback    : handleResponse,
@@ -104,15 +125,15 @@ var quiz = ElementFactory.createElement('quiz', {
 });
 
 // Handlers & Callbacks
-function handleToggle() {
-    var val = this.toggle.dataset.value;
-    config[this.toggle.dataset.name] = (val === 'true') ? true : false;
-}
 function handleSelectCycle() {
     config[this.select.dataset.name] = config.cycleEnum[this.select.value];
 }
 function handleCycleChange() {
     quiz.setCycleMethod(config.cycleEnum[this.select.value]);
+}
+function handleToggle() {
+    var val = this.toggle.dataset.value;
+    config[this.toggle.dataset.name] = (val === 'true') ? true : false;
 }
 function handleResponseCountVisibility() {
     var val = this.toggle.dataset.value;
@@ -154,12 +175,16 @@ function toggleInit() {
 function selectInit() {
     
 }
+function windowSpaceHandler() {
+    pause_overlay.toggleOverlay();
+};
 
 config_modal.body.appendChild(select_cycle.element);
 config_modal.body.appendChild(toggle_flip.element);
 config_modal.body.appendChild(toggle_counts.element);
 config_modal.body.appendChild(toggle_indicators.element);
 config_modal.body.appendChild(toggle_timer.element);
+config_modal.body.appendChild(deck_loader.element);
 
 quiz.element.insertBefore(correct.element, quiz.card_container);
 quiz.element.appendChild(incorrect.element);
