@@ -53,12 +53,17 @@ function Quiz( attrs ) {
     this.element.appendChild(this.card_container);
 }
 Quiz.prototype = Object.create(Element.prototype);
+Quiz.prototype.getCurrentIndex = function() {
+    return parseInt( this.current_card.dataset.index );
+};
 Quiz.prototype.setDeck = function( deck ) {
     this.deck = deck;
+    this.setCard( this.deck.getCard( 0 ) );
 };
 Quiz.prototype.setCard = function( card ) {
     this.front.textContent = card.phrase;
     this.back.textContent = card.definition;
+    this.current_card.dataset.index = this.deck.getCardIndex( card );
 }
 Quiz.prototype.setCycleMethod = function( _cycleEnum ) {
     this.cycleMethod = _cycleEnum.value;
@@ -86,9 +91,13 @@ Quiz.prototype.cycleCard = function() {
 };
 Quiz.prototype.cycleForward = function() {
     console.log('->cycleForward');
+    var index = (this.getCurrentIndex() + 1) % this.deck.getCount();
+    this.setCard( this.deck.getCard( index ) );
 };
 Quiz.prototype.cycleBackward = function() {
     console.log('->cycleBackward');
+    var index = ((this.getCurrentIndex() || this.deck.getCount()) - 1) % this.deck.getCount();
+    this.setCard( this.deck.getCard( index ) );
 };
 Quiz.prototype.cycleRandom = function() {
     console.log('->cycleRandom');

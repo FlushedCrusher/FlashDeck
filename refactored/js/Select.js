@@ -43,6 +43,9 @@ function Select( attrs ) {
     
 }
 Select.prototype = Object.create(Element.prototype);
+Select.prototype.setSelect = function( val ) {
+    this.select.value = val;
+};
 Select.prototype.handleSelect = function() {
     console.log('->handleSelect');
 };

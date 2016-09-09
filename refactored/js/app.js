@@ -1,16 +1,36 @@
+/* ==================================================== */
 var config = new Config();
+
 var eventManager = new EventManager({
-    windowLeftKeyHandler    : function() { console.log('Event: window-left'); },
-    windowUpKeyHandler      : function() { console.log('Event: window-up'); },
-    windowRightKeyHandler   : function() { console.log('Event: window-right'); },
-    responseReturnHandler   : function() { console.log('Event: response-return'); },
-    responseLeftKeyHandler  : function() { console.log('Event: responseleft'); },
-    responseRightKeyHandler : function() { console.log('Event: responseright'); },
+    windowLeftKeyHandler    : windowLeftHandler,
+    windowUpKeyHandler      : windowUpHandler,
+    windowRightKeyHandler   : windowRightHandler,
+    responseReturnHandler   : responseReturnHandler,
+    responseLeftKeyHandler  : responseLeftHandler,
+    responseRightKeyHandler : responseRightHandler,
     windowSpaceHandler      : windowSpaceHandler,
 });
 eventManager.addWindowKeyListeners();
 eventManager.addWindowPauseListener();
 
+function windowLeftHandler() {
+    quiz.cycleBackward();
+};
+function windowUpHandler() {
+    quiz.flipCard();
+};
+function windowRightHandler() {
+    quiz.cycleForward();
+};
+function responseReturnHandler() {};
+function responseLeftHandler() {};
+function responseRightHandler() {};
+function windowSpaceHandler() {
+    pause_overlay.toggleOverlay();
+};
+
+
+/* ==================================================== */
 // Register Elements
 ElementFactory.registerElement('toggle', Toggle);
 ElementFactory.registerElement('select', Select);
@@ -22,8 +42,7 @@ ElementFactory.registerElement('counter', Counter);
 ElementFactory.registerElement('loader', Loader);
 ElementFactory.registerElement('quiz', Quiz);
 
-// Create Elements
-
+/* ==================================================== */
 // Modals
 var response_modal = ElementFactory.createElement('modal', {
     styleMod    : '2',
@@ -47,21 +66,44 @@ var config_modal = ElementFactory.createElement('modal',{
     okayCallback    : function() { console.log('handler'); },
     cancelCallback  : function() { console.log('handler'); }
 });
+
+/* ==================================================== */
+// Buttons
 var config_button = ElementFactory.createElement('button', {
     id          : 'config_button',
     text        : '',
     shadow      : 'left',
-    handler     : function() { config_modal.toggle(); }
+    handler     : onConfigPress
 });
 
-// Selects & Toggles
+function onConfigPress() {
+    config_modal.toggle();
+}
+
+/* ==================================================== */
+// Selects
 var select_cycle = ElementFactory.createElement('select', {
+    init    : selectInit,
     label   : 'Cycle Method',
     handler : handleSelectCycle,
     name    : 'cycle',
     options : config.cycleEnum,
     link    : handleCycleChange
 });
+
+function selectInit() {
+    var method = config[this.select.dataset.name];
+    this.setSelect( method.name );
+}
+function handleSelectCycle() {
+    config[this.select.dataset.name] = config.cycleEnum[this.select.value];
+}
+function handleCycleChange() {
+    quiz.setCycleMethod(config.cycleEnum[this.select.value]);
+}
+
+/* ==================================================== */
+// Toggles
 var toggle_flip = ElementFactory.createElement('toggle', {
     init    : toggleInit,
     label   : 'Flip Card on Hover',
@@ -89,47 +131,13 @@ var toggle_timer = ElementFactory.createElement('toggle', {
     link    : handleTimerVisibility
 });
 
-// Timer
-var timer = ElementFactory.createElement('timer', {
-    shadow  : 'left'
-});
-
-// Overlays
-var pause_overlay = ElementFactory.createElement('overlay', {
-    cls : 'pause'
-});
-var firework_overlay = ElementFactory.createElement('overlay', {
-    cls : 'pyro'
-});
-
-// Counters
-var correct = ElementFactory.createElement('counter', {
-    style   : 'correct'
-});
-var incorrect = ElementFactory.createElement('counter', {
-    style   : 'incorrect'
-});
-
-// Loader
-var deck_loader = ElementFactory.createElement('loader', {
-    label   : 'Import Deck',
-    text    : 'Choose a source',
-    handler : function() { console.log('handler'); },
-    link    : function() { console.log('link'); }
-});
-
-// Quiz
-var quiz = ElementFactory.createElement('quiz', {
-    responseCallback    : handleResponse,
-    resetCallback       : handleReset
-});
-
-// Handlers & Callbacks
-function handleSelectCycle() {
-    config[this.select.dataset.name] = config.cycleEnum[this.select.value];
-}
-function handleCycleChange() {
-    quiz.setCycleMethod(config.cycleEnum[this.select.value]);
+function toggleInit() {
+    var on = config[this.toggle.dataset.name];
+    if(on) {
+        this.toggleOn();
+    } else {
+        this.toggleOff();
+    }
 }
 function handleToggle() {
     var val = this.toggle.dataset.value;
@@ -153,6 +161,57 @@ function handleTimerVisibility() {
         timer.invisible();
     }
 }
+
+/* ==================================================== */
+// Timer
+var timer = ElementFactory.createElement('timer', {
+    shadow  : 'left'
+});
+
+/* ==================================================== */
+// Overlays
+var pause_overlay = ElementFactory.createElement('overlay', {
+    cls : 'pause'
+});
+var firework_overlay = ElementFactory.createElement('overlay', {
+    cls : 'pyro'
+});
+
+/* ==================================================== */
+// Counters
+var correct = ElementFactory.createElement('counter', {
+    style   : 'correct'
+});
+var incorrect = ElementFactory.createElement('counter', {
+    style   : 'incorrect'
+});
+
+/* ==================================================== */
+// Loader
+var deck_loader = ElementFactory.createElement('loader', {
+    label   : 'Import Deck',
+    text    : 'Choose a source',
+    handler : handleLoadDeck,
+    link    : function() { console.log('link'); }
+});
+
+function handleLoadDeck( result ) {
+    var deck = new Deck();
+    var cards = result.split('\n');
+    cards.forEach( function( card ) {
+        var _card = card.split('[]');
+        deck.addCard( new Card(_card[0], _card[1]));
+    });
+    quiz.setDeck( deck );
+}
+
+/* ==================================================== */
+// Quiz
+var quiz = ElementFactory.createElement('quiz', {
+    responseCallback    : handleResponse,
+    resetCallback       : handleReset
+});
+
 function handleResponse( known ) {
     if(known) {
         correct.increment();
@@ -164,21 +223,8 @@ function handleReset() {
     correct.clear();
     incorrect.clear();
 }
-function toggleInit() {
-    var on = config[this.toggle.dataset.name];
-    if(on) {
-        this.toggleOn();
-    } else {
-        this.toggleOff();
-    }
-}
-function selectInit() {
-    
-}
-function windowSpaceHandler() {
-    pause_overlay.toggleOverlay();
-};
 
+/* ==================================================== */
 config_modal.body.appendChild(select_cycle.element);
 config_modal.body.appendChild(toggle_flip.element);
 config_modal.body.appendChild(toggle_counts.element);
