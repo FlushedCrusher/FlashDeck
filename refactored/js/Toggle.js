@@ -10,7 +10,9 @@
 function Toggle( attrs ) {
     
     var self = this;
-        
+    
+    this.init = attrs.init;
+    
     this.element = document.createElement('div');
     this.element.classList.add('toggle_span');
     
@@ -41,9 +43,17 @@ function Toggle( attrs ) {
     this.element.appendChild(this.label);
     this.element.appendChild(this.button);
     
-    if(attrs.init) { attrs.init.call(this); };
+    if(this.init) { this.init(); };
 }
 Toggle.prototype = Object.create(Element.prototype);
+Toggle.prototype.setToggle = function( on ) {
+    if(!on) {
+        this.toggle.dataset.value = 'true';
+    } else {
+        this.toggle.dataset.value = 'false';
+    }
+    this.button.onclick();
+};
 Toggle.prototype.handleToggle = function() {
     switch (this.toggle.dataset.value) {
         case 'true':

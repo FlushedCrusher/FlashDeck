@@ -45,7 +45,7 @@ function Loader( attrs ) {
 }
 Loader.prototype = Object.create(Element.prototype);
 Loader.prototype.setLoadedText = function( name ) {
-    this.loaded_text.textContent = name;
+    this.loaded_text.textContent = name || '';
 };
 Loader.prototype.handleLoader = function( files ) {
     console.log('->handleLoader');

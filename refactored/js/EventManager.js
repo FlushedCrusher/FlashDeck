@@ -1,13 +1,15 @@
 /**
  * Event Manager Object
  * @param {Object} attrs
- *  @windowLeftKeyHandler
- *  @windowUpKeyHandler
- *  @windowRightKeyHandler
+ *  @windowLeftHandler
+ *  @windowUpHandler
+ *  @windowRightHandler
  *  @responseReturnHandler
- *  @responseLeftKeyHandler
- *  @responseRightKeyHandler
+ *  @responseLeftHandler
+ *  @responseRightHandler
  *  @windowSpaceHandler
+ *  @stateChangeHandler
+ *  @typeChangeHandler
  */
 function EventManager( attrs ) {
 
@@ -15,13 +17,13 @@ function EventManager( attrs ) {
         console.log('->windowKeyHandler');
         switch (event.keyCode) {
             case 37: // (LEFT ARROW)
-                attrs.windowLeftKeyHandler.call(this);
+                attrs.windowLeftHandler.call(this);
                 break;
             case 38: // (UP ARROW)
-                attrs.windowUpKeyHandler.call(this);
+                attrs.windowUpHandler.call(this);
                 break;
             case 39: // (RIGHT ARROW)
-                attrs.windowRightKeyHandler.call(this);
+                attrs.windowRightHandler.call(this);
                 break;
             default:
                 break;
@@ -34,10 +36,10 @@ function EventManager( attrs ) {
                 attrs.responseReturnHandler.call(this);
                 break;
             case 37: // (LEFT ARROW)
-                attrs.responseLeftKeyHandler.call(this);
+                attrs.responseLeftHandler.call(this);
                 break;
             case 39: // (RIGHT ARROW)
-                attrs.responseRightKeyHandler.call(this);
+                attrs.responseRightHandler.call(this);
                 break;
             default:
                 break;
@@ -53,23 +55,52 @@ function EventManager( attrs ) {
                 break;
         }
     };
+    this.stateChangeHandler = function( event ) {
+        attrs.stateChangeHandler.call(this);
+    };
+    this.typeChangeHandler = function( event ) {
+        attrs.typeChangeHandler.call(this);
+    };
+    
+    this.windowKeyExists = false;
+    this.responseKeyexists = false;
+    this.windowPauseExists = false;
     
 }
 EventManager.prototype.addWindowKeyListeners = function() {
     document.addEventListener("keyup", this.windowKeyHandler);
+    this.windowKeyExists = true;
 };
 EventManager.prototype.addResponseKeyListeners = function() {
     document.addEventListener("keyup", this.responseKeyHandler);
+    this.responseKeyexists = true;
 };
 EventManager.prototype.addWindowPauseListener = function() {
     document.addEventListener("keyup", this.windowPauseHandler);
+    this.windowPauseExists = true;
 };
+EventManager.prototype.addStateChangeListener = function() {
+    document.addEventListener("stateChange", this.stateChangeHandler);
+};
+EventManager.prototype.addTypeChangeListener = function() {
+    document.addEventListener("typeChange", this.typeChangeHandler);
+};
+
 EventManager.prototype.removeWindowKeyListeners = function() {
     document.removeEventListener("keyup", this.windowKeyHandler);
+    this.windowKeyExists = false;
 };
 EventManager.prototype.removeResponseKeyListeners = function() {
     document.removeEventListener("keyup", this.responseKeyHandler);
+    this.responseKeyexists = false;
 };
 EventManager.prototype.removeWindowPauseListener = function() {
     document.removeEventListener("keyup", this.windowPauseHandler);
+    this.windowPauseExists = false;
+};
+EventManager.prototype.removeStateChangeListener = function() {
+    document.removeEventListener("stateChange", this.stateChangeHandler);
+};
+EventManager.prototype.removeTypeChangeListener = function() {
+    document.removeEventListener("typeChange", this.typeChangeHandler);
 };

@@ -12,6 +12,8 @@ function Select( attrs ) {
     
     var self = this;
     
+    this.init = attrs.init;
+    
     this.element = document.createElement('div');
     this.element.classList.add('select_span');
     
@@ -39,12 +41,13 @@ function Select( attrs ) {
         }
     }
 
-    if(attrs.init) { attrs.init.call(this); };
+    if(this.init) { this.init(); };
     
 }
 Select.prototype = Object.create(Element.prototype);
 Select.prototype.setSelect = function( val ) {
     this.select.value = val;
+    this.select.onchange();
 };
 Select.prototype.handleSelect = function() {
     console.log('->handleSelect');

@@ -39,3 +39,10 @@ Timer.prototype.clear = function() {
     this.duration = 0;
     this.element.textContent = '0:0:0';
 };
+Timer.prototype.toggleTimer = function() {
+    if(this.timer) {
+        this.stop();
+    } else {
+        this.start();
+    }
+}

@@ -4,6 +4,8 @@
  */
 function Config( userState ) {
     
+    var self = this;
+    
     this.cycleEnum = {
         FORWARD: {
             name: 'FORWARD',
@@ -27,7 +29,7 @@ function Config( userState ) {
             name: 'Initial',
             value: 'initial'
         },
-        QUIZING: {
+        QUIZZING: {
             name: 'Quizzing',
             value: 'quizzing'
         },
@@ -51,25 +53,26 @@ function Config( userState ) {
         }
     };
     
-    this.appState              = this.stateEnum.FIRSTLOAD;
-    this.cycle                 = this.cycleEnum.FORWARD;
-    this.deckLimit             = Number.MAX_VALUE;
+    this.appState              = undefined;
+    this.cycle                 = undefined;
+    this.deckLimit             = undefined;
     this.endMessageFront       = 'Congratulations!';
     this.endMessageBack        = 'You did it!';
     this.flashDuration         = 750;
     this.flipDuration          = 2000;
     this.flipOnHover           = undefined;
-    this.fromSavedState        = undefined;
     this.masteryLevel          = 3;
-    this.quizType              = this.quizEnum.REVIEW;
-    this.saveConfig            = true;
-    this.saveDeck              = true;
+    this.quizType              = undefined;
     this.showReponseCount      = undefined;
     this.showReponseIndicators = undefined;
     this.showTimer             = undefined;
     this.version               = '1.1.0';
     
     this.default = {
+        appState                : self.stateEnum.FIRSTLOAD,
+        cycle                   : self.cycleEnum.FORWARD,   
+        quizType                : self.quizEnum.REVIEW,
+        deckLimit               : Number.MAX_VALUE,
         flipOnHover             : false,
         showReponseCount        : true,
         showReponseIndicators   : true,
@@ -82,6 +85,14 @@ function Config( userState ) {
 }
 Config.prototype.setConfig = function( key, value ) {
     this[key] = value;
+};
+Config.prototype.saveState = function() {
+    for(setting in this.state) {
+        this.state[setting] = this[setting];
+    }
+};
+Config.prototype.getState = function() {
+    return this.state;
 };
 Config.prototype.applyState = function( state ) {
     for(setting in state) {

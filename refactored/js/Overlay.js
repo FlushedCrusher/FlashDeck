@@ -2,10 +2,15 @@
  * Overlay Element
  * @params {Object} attrs
  *  @cls
+ *  @applyCallback
+ *  @removeCallback
  */
 function Overlay( attrs ) {
     
     var self = this;
+    
+    this.applyCallback = attrs.applyCallback || function() {};
+    this.removeCallback = attrs.removeCallback || function() {};
     
     this.element = document.createElement('div');
     this.element.classList.add(attrs.cls, 'stop_animation');
@@ -16,10 +21,12 @@ Overlay.prototype = Object.create(Element.prototype);
 Overlay.prototype.apply = function() {
     this.show();
     this.play();
+    this.applyCallback();
 };
 Overlay.prototype.remove = function() {
     this.hide();
     this.pause();
+    this.removeCallback();
 };
 Overlay.prototype.toggleOverlay = function() {
     var elem = this.element;

@@ -101,11 +101,34 @@ Quiz.prototype.cycleBackward = function() {
 };
 Quiz.prototype.cycleRandom = function() {
     console.log('->cycleRandom');
+    var index = this.getCurrentIndex();
+    var card;
+    while(index === this.getCurrentIndex()) {
+        card = this.deck.getRandomCard();
+        index = this.deck.getCardIndex( card );
+    }
+    this.setCard( card );
 };
-Quiz.prototype.handleResponse = function( known ) {
+Quiz.prototype.handleResponse = function( known, time ) {
     this.responseCallback( known );
+    var index = this.getCurrentIndex();
+    var card = this.deck.cards[ index ];
+    card.handleResponse( known );
+    card.calculateAverageAnswerTime( time );
+    if(card.isMastered()) {
+        this.deck.addToMastered( index );
+    }
     this.cycleCard();
+};
+Quiz.prototype.clear = function() {
+    this.deck = [];
+    this.front.textContent = 'FRONT';
+    this.back.textContent = 'BACK';
+    this.current_card.dataset.index = 0;
 };
 Quiz.prototype.reset = function() {
     this.resetCallback();
+};
+Quiz.prototype.isFinished = function() {
+    return this.deck.isMastered();
 };
