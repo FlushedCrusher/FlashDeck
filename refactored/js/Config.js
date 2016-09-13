@@ -62,6 +62,7 @@ function Config( userState ) {
     this.flipDuration          = 2000;
     this.flipOnHover           = undefined;
     this.masteryLevel          = 3;
+    this.persistState          = undefined;
     this.quizType              = undefined;
     this.showReponseCount      = undefined;
     this.showReponseIndicators = undefined;
@@ -74,6 +75,7 @@ function Config( userState ) {
         quizType                : self.quizEnum.REVIEW,
         deckLimit               : Number.MAX_VALUE,
         flipOnHover             : false,
+        persistState            : false,
         showReponseCount        : true,
         showReponseIndicators   : true,
         showTimer               : true

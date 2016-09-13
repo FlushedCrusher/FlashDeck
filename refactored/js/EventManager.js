@@ -10,6 +10,8 @@
  *  @windowSpaceHandler
  *  @stateChangeHandler
  *  @typeChangeHandler
+ *  @persistStateLoadHandler
+ *  @persistStateUnloadHandler
  */
 function EventManager( attrs ) {
 
@@ -55,6 +57,12 @@ function EventManager( attrs ) {
                 break;
         }
     };
+    this.persistStateLoadHandler = function( event ) {
+        attrs.persistStateLoadHandler.call(this);
+    };
+    this.persistStateUnloadHandler = function( event ) {
+        attrs.persistStateUnloadHandler.call(this);
+    };
     this.stateChangeHandler = function( event ) {
         attrs.stateChangeHandler.call(this);
     };
@@ -65,6 +73,7 @@ function EventManager( attrs ) {
     this.windowKeyExists = false;
     this.responseKeyexists = false;
     this.windowPauseExists = false;
+    this.persistStateExists = false;
     
 }
 EventManager.prototype.addWindowKeyListeners = function() {
@@ -78,6 +87,11 @@ EventManager.prototype.addResponseKeyListeners = function() {
 EventManager.prototype.addWindowPauseListener = function() {
     document.addEventListener("keyup", this.windowPauseHandler);
     this.windowPauseExists = true;
+};
+EventManager.prototype.addPersistStateListener = function() {
+    window.addEventListener("load", this.persistStateLoadHandler);
+    window.addEventListener("unload", this.persistStateUnloadHandler);
+    this.persistStateExists = true;
 };
 EventManager.prototype.addStateChangeListener = function() {
     document.addEventListener("stateChange", this.stateChangeHandler);
@@ -97,6 +111,12 @@ EventManager.prototype.removeResponseKeyListeners = function() {
 EventManager.prototype.removeWindowPauseListener = function() {
     document.removeEventListener("keyup", this.windowPauseHandler);
     this.windowPauseExists = false;
+};
+EventManager.prototype.removePersistStateListener = function() {
+    window.removeEventListener("load", this.persistStateLoadHandler);
+    window.removeEventListener("unload", this.persistStateUnloadHandler);
+    delete localStorage.flashDeck;
+    this.persistStateExists = false;
 };
 EventManager.prototype.removeStateChangeListener = function() {
     document.removeEventListener("stateChange", this.stateChangeHandler);

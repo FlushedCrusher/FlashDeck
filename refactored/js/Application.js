@@ -22,6 +22,7 @@ function changeAppType( type ) {
 }
 
 var firstLoadStateCallbacks = {
+    onResetPress            : emptyHandler,
     onConfigPress           : function() {
         config_modal.toggle();
     },
@@ -49,6 +50,7 @@ var firstLoadStateCallbacks = {
     onSpacePress            : emptyHandler
 };
 var initStateCallbacks = {
+    onResetPress            : emptyHandler,
     onConfigPress           : function() {
         config_modal.toggle();
     },
@@ -85,6 +87,7 @@ var initStateCallbacks = {
     onSpacePress            : emptyHandler
 };
 var quizzingStateCallbacks = {
+    onResetPress            : emptyHandler,
     onConfigPress           : function() {
         config_modal.toggle();
         timer.toggleTimer();
@@ -156,6 +159,19 @@ var quizzingStateCallbacks = {
     }
 };
 var finishedStateCallbacks = {
+    onResetPress            : function() {
+        changeAppState( config.stateEnum.QUIZZING );
+        quiz.deck.removeCard( 0 );
+        quiz.flipCard();
+        firework_overlay.remove();
+        quiz.deck.reset();
+        correct.clear();
+        incorrect.clear();
+        timer.clear();
+        quiz.setCard( quiz.deck.cards[0] );
+        timer.start();
+        reset_button.invisible();
+    },
     onConfigPress           : function() {
         config_modal.toggle();
     },
@@ -212,45 +228,57 @@ function setTypeCallbacks() {
 // Event Handlers
 function windowLeftHandler() {
     stateCallbacks.onNavLeftPress();
-};
+}
 function windowUpHandler() {
     stateCallbacks.onNavFlipPress();
-};
+}
 function windowRightHandler() {
     stateCallbacks.onNavRightPress();
-};
+}
 function responseReturnHandler() {
     stateCallbacks.onResponseReturnPress();
-};
+}
 function responseLeftHandler() {
     stateCallbacks.onResponseLeftPress();
-};
+}
 function responseRightHandler() {
     stateCallbacks.onResponseRightPress();
-};
+}
 function windowSpaceHandler() {
     stateCallbacks.onSpacePress();
-};
+}
+function persistStateLoadHandler() {
+    console.log('Persist state loaded.');
+    // TODO Load the Saved Quiz
+}
+function persistStateUnloadHandler() {
+    var json = {
+        'state'     : config.getState(),
+        'date'      : new Date(),
+        'quiz'      : Object.assign({}, quiz)
+    };
+    localStorage.flashDeck = JSON.stringify(json);
+}
 
 // Modal Handlers
 function responseOkayCallback() {
     stateCallbacks.onResponseLeftPress();
-};
+}
 function responseCancelCallback() {
     stateCallbacks.onResponseRightPress();
-};
+}
 function configCloseCallback() {
     stateCallbacks.configCloseCallback();
-};
+}
 function configResetCallback() {
     stateCallbacks.configResetCallback();
-};
+}
 function configOkayCallback() {
     stateCallbacks.configOkayCallback();
-};
+}
 function configCancelCallback() {
     stateCallbacks.configCancelCallback();
-};
+}
 
 // Button Handlers
 function onNavLeftPress() {
@@ -264,6 +292,9 @@ function onNavRightPress() {
 }
 function onConfigPress() {
     stateCallbacks.onConfigPress();
+}
+function onResetPress() {
+    stateCallbacks.onResetPress();
 }
 
 // Select Handlers
@@ -305,16 +336,24 @@ function handleTimerVisibility() {
         timer.invisible();
     }
 }
+function handlePersistStateToggle() {
+    var val = this.toggle.dataset.value;
+    if(val === 'true') {
+        eventManager.addPersistStateListener();
+    } else {
+        eventManager.removePersistStateListener();
+    }
+}
 
 // Overlay Handlers
 function pauseApplyCallback() {
 
-};
+}
 function pauseRemoveCallback() {
 
-};
-function fireworkApplyCallback() {};
-function fireworkRemoveCallback() {};
+}
+function fireworkApplyCallback() {}
+function fireworkRemoveCallback() {}
 
 // Loader Handler
 function handleLoadDeck( result ) {
@@ -338,10 +377,11 @@ function cycleCallback() {
         timer.clear();
         setTimeout(function() {
             quiz.flipCard();
+            reset_button.visible();
         }, 2000);
     }
-};
-function flipCallback() {};
+}
+function flipCallback() {}
 function responseCallback( known ) {
     if(known) {
         correct.increment();

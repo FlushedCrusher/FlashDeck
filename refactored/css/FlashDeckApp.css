@@ -47,6 +47,7 @@ a:hover {
     background-size:20px 20px;
 }
 #reset_button {
+    z-index: 9999;
     visibility: hidden;
     font-size: 30px;
     position: absolute;

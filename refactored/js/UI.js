@@ -1,22 +1,4 @@
 /* ********** ********** ********** ********** **********
- * Configuration
- */
-var config = new Config();
-/* ********** ********** ********** ********** **********
- * Events
- */
-var eventManager = new EventManager({
-    windowLeftHandler       : windowLeftHandler,
-    windowUpHandler         : windowUpHandler,
-    windowRightHandler      : windowRightHandler,
-    responseReturnHandler   : responseReturnHandler,
-    responseLeftHandler     : responseLeftHandler,
-    responseRightHandler    : responseRightHandler,
-    windowSpaceHandler      : windowSpaceHandler,
-    stateChangeHandler      : stateChangeHandler,
-    typeChangeHandler       : typeChangeHandler
-});
-/* ********** ********** ********** ********** **********
  * Register Elements with ElementFactory
  */
 ElementFactory.registerElement('toggle', Toggle);
@@ -29,6 +11,37 @@ ElementFactory.registerElement('overlay', Overlay);
 ElementFactory.registerElement('counter', Counter);
 ElementFactory.registerElement('loader', Loader);
 ElementFactory.registerElement('quiz', Quiz);
+/* ********** ********** ********** ********** **********
+ * Configuration
+ */
+var config = (localStorage.flashDeck) ?
+    new Config(JSON.parse(localStorage.flashDeck).state) :
+    new Config();
+/* ********** ********** ********** ********** **********
+ * Quiz
+ */
+var quiz = ElementFactory.createElement('quiz', {
+    cycleCallback       : cycleCallback,
+    flipCallback        : flipCallback,
+    responseCallback    : responseCallback,
+    resetCallback       : resetCallback
+});
+/* ********** ********** ********** ********** **********
+ * Events
+ */
+var eventManager = new EventManager({
+    windowLeftHandler           : windowLeftHandler,
+    windowUpHandler             : windowUpHandler,
+    windowRightHandler          : windowRightHandler,
+    responseReturnHandler       : responseReturnHandler,
+    responseLeftHandler         : responseLeftHandler,
+    responseRightHandler        : responseRightHandler,
+    windowSpaceHandler          : windowSpaceHandler,
+    stateChangeHandler          : stateChangeHandler,
+    typeChangeHandler           : typeChangeHandler,
+    persistStateLoadHandler     : persistStateLoadHandler,
+    persistStateUnloadHandler   : persistStateUnloadHandler
+});
 /* ********** ********** ********** ********** **********
  * Modals
  */
@@ -58,6 +71,12 @@ var config_button = ElementFactory.createElement('button', {
     text        : '',
     shadow      : 'left',
     handler     : onConfigPress
+});
+var reset_button = ElementFactory.createElement('button', {
+    id          : 'reset_button',
+    text        : '&#8634;',
+    shadow      : 'left',
+    handler     : onResetPress
 });
 var nav_left = ElementFactory.createElement('button', {
     id          : 'nav_left',
@@ -119,15 +138,6 @@ var deck_loader = ElementFactory.createElement('loader', {
     link    : emptyHandler
 });
 /* ********** ********** ********** ********** **********
- * Quiz
- */
-var quiz = ElementFactory.createElement('quiz', {
-    cycleCallback       : cycleCallback,
-    flipCallback        : flipCallback,
-    responseCallback    : responseCallback,
-    resetCallback       : resetCallback
-});
-/* ********** ********** ********** ********** **********
  * Selects
  */
 var select_cycle = ElementFactory.createElement('select', {
@@ -141,6 +151,13 @@ var select_cycle = ElementFactory.createElement('select', {
 /* ********** ********** ********** ********** **********
  * Toggles
  */
+var toggle_persist = ElementFactory.createElement('toggle', {
+    init    : toggleInit,
+    label   : 'Persist State',
+    handler : handleToggle,
+    name    : 'persistState',
+    link    : handlePersistStateToggle
+});
 var toggle_flip = ElementFactory.createElement('toggle', {
     init    : toggleInit,
     label   : 'Flip Card on Hover',
@@ -171,6 +188,7 @@ var toggle_timer = ElementFactory.createElement('toggle', {
  * Build UI
  */
 config_modal.body.appendChild(select_cycle.element);
+config_modal.body.appendChild(toggle_persist.element);
 config_modal.body.appendChild(toggle_flip.element);
 config_modal.body.appendChild(toggle_counts.element);
 config_modal.body.appendChild(toggle_indicators.element);
@@ -178,6 +196,7 @@ config_modal.body.appendChild(toggle_timer.element);
 config_modal.body.appendChild(deck_loader.element);
 
 nav_control.element.appendChild(config_button.element);
+nav_control.element.appendChild(reset_button.element);
 nav_control.element.appendChild(nav_left.element);
 nav_control.element.appendChild(nav_flip.element);
 nav_control.element.appendChild(nav_right.element);
