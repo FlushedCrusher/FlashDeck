@@ -1,0 +1,61 @@
+.quiz_container {
+    width: 100%;
+    height: 250px;
+}
+.card_container {
+    width: 500px;
+    height: 100%;
+    position: relative;
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -o-perspective: 800px;
+    perspective: 800px;
+}
+.card {
+    font-size: 20px;
+    color: #a8a8a8;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    position: absolute;
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.card span {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   height: 100%;
+   width: 100%;
+   text-align: center;
+   position: absolute;
+   -webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+   -o-backface-visibility: hidden;
+   backface-visibility: hidden;
+}
+.card .front {
+    background-color: white;
+}
+
+.card .back {
+    background-color: white;
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+.card.flipped {
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}

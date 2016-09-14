@@ -2,7 +2,7 @@
 
 A project for quizzing & mastering flash cards.
 
-Version 1.0.0
+Version 1.1.0
 
 + Load user created Decks
 + Keyboard controlled
@@ -10,6 +10,8 @@ Version 1.0.0
 + Configurable Cycle Method and UI
 + Instant feedback and card progression
 + Session saved in browser Cache
++ Major code Refactor... much better
++ Removed keyboard helper overlay
 
 ## Installation ##
 
@@ -50,9 +52,9 @@ $PATH_TO_PROJECT/html/index.html
 
 ### Version 1.0.0 ###
 
-
-
 ### Version 1.1.0 ###
+
+### Version 1.2.0 ###
 
 * Add DeckLimit to config settings
     * User should be able to specify how many cards to review at a time
