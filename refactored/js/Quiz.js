@@ -12,7 +12,7 @@ function Quiz( attrs ) {
     
     var self = this;
         
-    this.deck = attrs.deck || [];
+    this.deck = attrs.deck || new Deck();
     this.cycleMethod = attrs.cycleMethod || 'forward';
     this.cycleCallback = attrs.cycleCallback || function() {
         console.log('Cycling');

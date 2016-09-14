@@ -117,6 +117,7 @@ var quizzingStateCallbacks = {
     },
     configCloseCallback     : this.configCancelCallback,
     onNavLeftPress          : function() {
+        timer.clear();
         quiz.cycleBackward();
     },
     onNavFlipPress          : function() {
@@ -127,6 +128,7 @@ var quizzingStateCallbacks = {
         quiz.flipCard();
     },
     onNavRightPress         : function() {
+        timer.clear();
         quiz.cycleForward();
     },
     onResponseReturnPress   : this.onResponseLeftPress,
@@ -249,13 +251,35 @@ function windowSpaceHandler() {
 }
 function persistStateLoadHandler() {
     console.log('Persist state loaded.');
-    // TODO Load the Saved Quiz
+    var data = JSON.parse(localStorage.flashDeck);
+    for(index in data.quiz.cards) {
+        quiz.deck.addCard( new Card( data.quiz.cards[index] ) );
+    }
+    for(index in data.quiz.mastered) {
+        var lastIndex = quiz.deck.numCards();
+        quiz.deck.addCard( new Card( data.quiz.mastered[index] ) );
+        quiz.deck.addToMastered( lastIndex );
+    }
+    quiz.setCard( quiz.deck.getCard( data.quiz.currentIndex ) );
+    correct.setCount( data.correct );
+    incorrect.setCount( data.incorrect );
+    timer.setTime( data.timer );
+    changeAppState( config.appState );
+    timer.start();
+    stateCallbacks.onSpacePress();
 }
 function persistStateUnloadHandler() {
     var json = {
         'state'     : config.getState(),
-        'date'      : new Date(),
-        'quiz'      : Object.assign({}, quiz)
+        'timesatamp': new Date().getTime(),
+        'quiz'      : {
+            cards           : Object.assign({}, quiz.deck.cards),
+            mastered        : Object.assign({}, quiz.deck.mastered),
+            currentIndex    : quiz.getCurrentIndex()
+        },
+        correct     : correct.getCount(),
+        incorrect   : incorrect.getCount(),
+        timer       : timer.getTime()
     };
     localStorage.flashDeck = JSON.stringify(json);
 }

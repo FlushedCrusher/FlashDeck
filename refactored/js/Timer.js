@@ -18,6 +18,16 @@ function Timer( attrs ) {
     
 }
 Timer.prototype = Object.create(Element.prototype);
+Timer.prototype.getTime = function() {
+    return {
+        duration    : this.duration,
+        display     : this.element.textContent
+    };
+};
+Timer.prototype.setTime = function( obj ) {
+    this.duration = obj.duration;
+    this.element.textContent = obj.display;
+};
 Timer.prototype.increment = function() {
     this.duration += this.interval;
     var secOverTen  =             ( this.duration / 100 )         % 10;

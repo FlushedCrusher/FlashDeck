@@ -1,10 +1,18 @@
-function Card(phrase, definition) {
-    this.phrase = phrase;
-    this.definition = definition.toLowerCase();
+function Card(attr, definition) {
+    this.phrase;
+    this.definition = (definition) ? definition.toLowerCase() : '';
     this.timesCorrect = 0;
     this.timesIncorrect = 0;
     this.averageAnswerTime = 0;
     this.masteryLevel = 3;
+    
+    if(typeof attr === 'object') {
+        for(elem in attr) {
+            this[elem] = attr[elem]
+        }
+    } else {
+        this.phrase = attr;
+    }
 }
 Card.prototype.getPhrase = function() { return this.phrase; };
 Card.prototype.getDefinition = function() { return this.definition; };

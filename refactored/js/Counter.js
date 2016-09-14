@@ -13,6 +13,12 @@ function Counter( attrs ) {
     
 }
 Counter.prototype = Object.create(Element.prototype);
+Counter.prototype.getCount = function() {
+    return this.element.textContent;
+};
+Counter.prototype.setCount = function( num ) {
+    this.element.textContent = num;
+};
 Counter.prototype.increment = function() {
     var num = parseInt(this.element.textContent) + 1;
     this.element.textContent = num;
