@@ -10,7 +10,8 @@ Version 1.1.0
 + Configurable Cycle Method and UI
 + Instant feedback and card progression
 + Session saved in browser Cache
-+ Major code Refactor... much better =)
++ Major code Refactor... much better
++ Removed keyboard helper overlay
 
 ## Installation ##
 
