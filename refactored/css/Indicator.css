@@ -1,0 +1,58 @@
+.footer {
+    z-index: -1;
+    position:fixed;
+    bottom: 15px;;
+    width: 100%;
+    height: 15%;
+}
+.success, .failure {
+    z-index: 9999;
+}
+.success {
+    position: absolute;
+    opacity: 0.0;
+    left: 5%;
+    bottom: 0;
+    width: 195px;
+    height: 195px;
+}
+.failure {
+    position: absolute;
+    opacity: 0.0;
+    right: 5%;
+    bottom: 0;
+    width: 195px;
+    height: 195px;
+}
+.flash {
+    -webkit-animation-name: flash; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: .75s; /* Chrome, Safari, Opera */
+    animation-name: flash;
+    animation-duration: .75s;
+}
+
+@-webkit-keyframes flash {
+    0%   {   opacity: 0.0;
+             transform:translateY(100%);
+         }
+    50%  {   opacity: 1.0;
+             transform:translateY(0);
+             padding-bottom: 5px;
+         }
+    100% {   opacity: 0.0;
+             transform:translateY(100%);
+         }
+}
+
+@keyframes flash {
+    0%   {   opacity: 0.0;
+             transform:translateY(100%);
+         }
+    50%  {   opacity: 1.0;
+             transform:translateY(0);
+             padding-bottom: 5px;
+         }
+    100% {   opacity: 0.0;
+             transform:translateY(100%);
+         }
+}

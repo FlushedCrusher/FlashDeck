@@ -6,6 +6,7 @@ ElementFactory.registerElement('select', Select);
 ElementFactory.registerElement('modal', Modal);
 ElementFactory.registerElement('button', Button);
 ElementFactory.registerElement('group', Group);
+ElementFactory.registerElement('indicator', Indicator);
 ElementFactory.registerElement('timer', Timer);
 ElementFactory.registerElement('overlay', Overlay);
 ElementFactory.registerElement('counter', Counter);
@@ -99,7 +100,31 @@ var nav_right = ElementFactory.createElement('button', {
 /* ********** ********** ********** ********** **********
  * Groups
  */
-var nav_control = ElementFactory.createElement('group', {});
+var nav_control = ElementFactory.createElement('group', {
+    clsList  : [
+        'sidebyside'
+    ]
+});
+var footer = ElementFactory.createElement('group', {
+    clsList  : [
+        'footer'
+    ]
+});
+/* ********** ********** ********** ********** **********
+ * Indicators
+ */
+var success_indicator = ElementFactory.createElement('indicator', {
+    clsList : [
+        'success'
+    ],
+    imgUrl  : '../images/check.png'
+});
+var failure_indicator = ElementFactory.createElement('indicator', {
+    clsList : [
+        'failure'
+    ],
+    imgUrl  : '../images/exx.png'
+});
 /* ********** ********** ********** ********** **********
  * Timers
  */
@@ -175,7 +200,8 @@ var toggle_indicators = ElementFactory.createElement('toggle', {
     init    : toggleInit,
     label   : 'Show Response Indicators',
     handler : handleToggle,
-    name    : 'showReponseIndicators'
+    name    : 'showReponseIndicators',
+    link    : handleResponseIndicatorVisibility
 });
 var toggle_timer = ElementFactory.createElement('toggle', {
     init    : toggleInit,
@@ -204,6 +230,9 @@ nav_control.element.appendChild(nav_right.element);
 quiz.element.insertBefore(correct.element, quiz.card_container);
 quiz.element.appendChild(incorrect.element);
 
+footer.element.appendChild(success_indicator.element);
+footer.element.appendChild(failure_indicator.element);
+
 FlashDeckMain.appendChild(pause_overlay.element);
 FlashDeckMain.appendChild(firework_overlay.element);
 FlashDeckMain.appendChild(timer.element);
@@ -211,6 +240,7 @@ FlashDeckMain.appendChild(config_modal.element);
 FlashDeckMain.appendChild(response_modal.element);
 FlashDeckMain.appendChild(quiz.element);
 FlashDeckMain.appendChild(nav_control.element);
+FlashDeckMain.appendChild(footer.element);
 
 /* ********** ********** ********** ********** **********
 * Initialize

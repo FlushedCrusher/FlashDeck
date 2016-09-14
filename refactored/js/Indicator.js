@@ -1,10 +1,11 @@
 /**
- * Group Element
+ * Indicator Element
  * @param {Object} attrs
  *  @clsList
+ *  @imgUrl
  */
-function Group( attrs ) {
-
+function Indicator( attrs ) {
+    
     var self = this;
     
     attrs.clsList = attrs.clsList || [];
@@ -14,5 +15,10 @@ function Group( attrs ) {
         self.element.classList.add( cls);
     });
     
+    this.image = document.createElement('img');
+    this.image.src = attrs.imgUrl;
+    
+    this.element.appendChild( this.image );
+    
 }
-Group.prototype = Object.create(Element.prototype);
+Indicator.prototype = Object.create(Element.prototype);

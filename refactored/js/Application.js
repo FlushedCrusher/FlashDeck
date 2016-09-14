@@ -133,6 +133,10 @@ var quizzingStateCallbacks = {
     },
     onResponseReturnPress   : this.onResponseLeftPress,
     onResponseLeftPress     : function() {
+        success_indicator.element.classList.add("flash");
+        setTimeout(function() {
+            success_indicator.element.classList.remove("flash");
+        }, config.flashDuration)
         quiz.flipCard();
         quiz.handleResponse( true, timer.duration );
         eventManager.addWindowKeyListeners();
@@ -142,6 +146,10 @@ var quizzingStateCallbacks = {
         timer.toggleTimer();
     },
     onResponseRightPress    : function() {
+        failure_indicator.element.classList.add("flash");
+        setTimeout(function() {
+            failure_indicator.element.classList.remove("flash");
+        }, config.flashDuration)
         quiz.flipCard();
         quiz.handleResponse( false, timer.duration );
         eventManager.addWindowKeyListeners();
@@ -350,6 +358,16 @@ function handleResponseCountVisibility() {
     } else {
         correct.invisible();
         incorrect.invisible();
+    }
+}
+function handleResponseIndicatorVisibility() {
+    var val = this.toggle.dataset.value;
+    if(val === 'true') {
+        success_indicator.visible();
+        failure_indicator.visible();
+    } else {
+        success_indicator.invisible();
+        failure_indicator.invisible();
     }
 }
 function handleTimerVisibility() {
