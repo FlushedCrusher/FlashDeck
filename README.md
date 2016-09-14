@@ -50,9 +50,11 @@ $PATH_TO_PROJECT/html/index.html
 
 ### Version 1.0.0 ###
 
-
-
 ### Version 1.1.0 ###
+
+* Major code Refactor... much better =)
+
+### Version 1.2.0 ###
 
 * Add DeckLimit to config settings
     * User should be able to specify how many cards to review at a time
