@@ -2,220 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Flash Deck v 1.0.0">
+    <meta name="description" content="Flash Deck v 1.1.0">
     <meta name="author" content="Daniel J. Montanez">
     
-    <title>Flash Deck v 1.0.0</title>
+    <title>Flash Deck v 1.1.0</title>
 
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/fireworks.css">
-    <link rel="stylesheet" href="../css/pause.css">
-    <link rel="stylesheet" href="../css/keyboard.css">
+    <!--
+    <link rel="stylesheet" href="../dist/styles.css">
+    -->
+    
+    <link rel="stylesheet" href="../css/FlashDeckApp.css">
+    <link rel="stylesheet" href="../css/Element.css">
+    <link rel="stylesheet" href="../css/Select.css">
+    <link rel="stylesheet" href="../css/Toggle.css">
+    <link rel="stylesheet" href="../css/Modal.css">
+    <link rel="stylesheet" href="../css/Button.css">
+    <link rel="stylesheet" href="../css/Timer.css">
+    <link rel="stylesheet" href="../css/Overaly.css">
+    <link rel="stylesheet" href="../css/Counter.css">
+    <link rel="stylesheet" href="../css/Loader.css">
+    <link rel="stylesheet" href="../css/Indicator.css">
+    <link rel="stylesheet" href="../css/Quiz.css">
 
 </head>
 
 <body id="flashDeckApp">
-    <h1 class="center" id="headline">Flash Deck v 1.0.0</h1>
-    
-    <!-- Pause Graphic -->
-    <div id="pause_screen"></div>
-    
-    <!-- Fireworks -->
-    <div id="fireworks_window">
-        <div id="fireworks" class="pyro"></div>
-    </div>
-    
-    <!-- Timer -->
-    <div id="timer" class="nav_left" data-name="showTimer">0:0:0</div>
-    
-    <!-- Config Settings -->
-    <div id="configModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header-1">
-          <span id="config_close" class="close">×</span>
-          <span class="close soft_reset" onclick="softReset()">&#8634;</span>
-          <h2>Settings</h2>
-        </div>
-        <div id="settings_body" class="modal-body"> 
-            <div class="select_span">
-                <div class="select_label left" id="cardCycleMethod">Cycle Method</div>
-                &nbsp;&nbsp;
-                <select id="select_cycle" data-name="cycle" onchange="updateSelection(this)" class="select_box right"></select>
-            </div>
-            <div class="toggle_span">
-                <div class="toggle_label left" id="flipOnHover">Flip Card on Hover</div>
-                &nbsp;&nbsp;
-                <div class="toggle_button right toggle_off" onclick="handleToggle(event)">
-                    <div class="toggle_toggle toggle_toggle_left" data-value="false"></div>
-                    <div class="toggle_text">NO</div>
-                </div>
-            </div>
-            <div class="toggle_span">
-                <div class="toggle_label left" id="showReponseCount">Show Response Count</div>
-                &nbsp;&nbsp;
-                <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
-                    <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
-                    <div class="toggle_text">NO</div>
-                </div>
-            </div>
-            <div class="toggle_span">
-                <div class="toggle_label left" id="showReponseIndicators">Show Response Indicators</div>
-                &nbsp;&nbsp;
-                <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
-                    <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
-                    <div class="toggle_text">NO</div>
-                </div>
-            </div>
-            <div class="toggle_span">
-                <div class="toggle_label left" id="showTimer">Show Timer</div>
-                &nbsp;&nbsp;
-                <div class="toggle_button right toggle_on" onclick="handleToggle(event)">
-                    <div class="toggle_toggle toggle_toggle_right" data-value="true"></div>
-                    <div class="toggle_text">NO</div>
-                </div>
-            </div>
-            <div id="card_input_setting" class="toggle_span_always_on blue_back">
-                <div class="toggle_label left" id="importCards">Import Cards</div>
-                &nbsp;&nbsp;
-                <label for="card_input" id="card_input_button">Choose a file</label>
-                <input type="file" id="card_input" onchange="loadCardHandler(this.files)">
-            </div>
-        </div>
-        <div class="modal-footer-1">
-            <div class="sidebyside">
-                <div class="user_yes-1 left pop_out" onclick="applySettings()">APPLY</div>
-                &nbsp;&nbsp;
-                <div class="user_no-1 right pop_out" onclick="closeConfigModal()">CANCEL</div>
-            </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Test Controls -->
-    <div id="test_control" class="sidebyside">
-        <button class="test" onclick="handleResponse(big_check)">Correct</button>
-        <button class="test" onclick="handleResponse(big_exx)">Incorrect</button>
-        <button class="test" onclick="reset()">Reset</button>
-        <button class="test" onclick="cycleCardForward()">Cycle Card Forward</button>
-        <button class="test" onclick="cycleCardBackward()">Cycle Card Backward</button>
-        <button class="test" onclick="flipCard()">Flip Card</button>
-        <button class="test" id="myBtn">Open Modal</button>
-    </div>
-
-    <!-- User Input Modal -->
-    <div id="responseModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Did you know this one?</h2>
-        </div>
-        <div class="modal-body">
-            <div class="sidebyside">
-                <div class="user_yes left pop_out" onclick="handleUserQuery(true)">YES</div>
-                &nbsp;&nbsp;
-                <div class="user_no right pop_out" onclick="handleUserQuery(false)">NO</div>
-            </div>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-    
-    <!-- Card and response count -->
-    <div class="card_row">
-        <div id="correct" class="left side_bar" data-name="showReponseCount">
-            0
-        </div>
-        <div class="left card_container">
-            <div id="current_card" class="card" data-index="0">
-                <span id="front"></span>
-                <span id="back"></span>
-            </div>
-        </div>
-        <div id="in_correct" class="left side_bar" data-name="showReponseCount">
-            0
-        </div>
-    </div> 
-    
-    <!-- Navigation Control -->
-    <div id="nav_control" class="sidebyside">
-        <span id="reset_button" class="nav nav_left pop_out" onclick="reset()">&#8634;</span>
-        <span id="config_button" class="nav nav_left pop_out" onclick=""></span>
-        <span id="prev" class="nav nav_left pop_out" onclick="cycleCardBackward()">&larr;</span>
-        &nbsp;&nbsp;
-        <span id="flip" class="nav nav_center pop_out" onclick="flipCard()">&#8631;</span>
-        &nbsp;&nbsp;
-        <span id="next" class="nav nav_right pop_out" onclick="cycleCardForward()">&rarr;</span>
-    </div>
-    
-    <!-- Speech box & response indicators --> 
-    <div class="footer">
-        <div id="big_check" class="l_response left" data-count-id="correct" data-name="showReponseIndicators">
-            <img src="../images/check.png">
-        </div>
-        
-        <div class="s_response center">
-            <div id="results">
-              <button id="start_button" class="right" onclick="startButton(event)">
-              <img id="start_img" src="../images/mic.gif" alt="Start"></button>
-              <span id="final_span" class="final"></span>
-              <span id="interim_span" class="interim"></span>
-              <p>
-            </div>
-        </div>
-        
-        <div id="big_exx" class="r_response right" data-count-id="in_correct" data-name="showReponseIndicators">
-            <img src="../images/exx.png">
-        </div>
-    </div>
-    
-    <!-- Language control -->
-    <div class="base center">
-        <div id="div_language">
-            <select id="select_language" onchange="updateCountry()"></select>
-            &nbsp;&nbsp;
-            <select id="select_dialect"></select>
-        </div>
-    </div>    
+    <h1 class="center" id="headline">Flash Deck v 1.1.0</h1>
+    <div id='FlashDeckMain'></div>
 </body>
 
-    <!-- Keyboard Helper Overlay -->
-    <div id="keyboard_helper" class="slide_right">
-        <div id="kh_tab"    class="kh_icon"     >&laquo;</div>
-        <div class="kh_label_container">
-            <div class="kh_label">Pause</div>
-            <div class="kh_label">Cycle Back</div>
-            <div class="kh_label">Flip Card</div>
-            <div class="kh_label">Cycle Forward</div>
-        </div>
-        <div id="kh_space"  class="kh_icon left">SPACE</div>
-        <div id="kh_left"   class="kh_icon left">&#8678;</div>
-        <div id="kh_up"     class="kh_icon left">&#8679;</div>
-        <div id="kh_right"  class="kh_icon left">&#8680;</div>
-    </div>
+    <!--
+    <script type="text/javascript" src="../dist/app.js"></script>
+    -->
+    
+    <script type="text/javascript" src="../js/Card.js"></script>
+    <script type="text/javascript" src="../js/Deck.js"></script>
 
-<!--
-<script type="text/javascript" src="../js/myCards.js"></script>
--->
-    
-<script type="text/javascript" src="../js/Card.js"></script>
-<script type="text/javascript" src="../js/Deck.js"></script>
-<script type="text/javascript" src="../js/Selection.js"></script>
-<script type="text/javascript" src="../js/languages.js"></script>
+    <script type="text/javascript" src="../js/ElementFactory.js"></script>
+    <script type="text/javascript" src="../js/Element.js"></script>
+    <script type="text/javascript" src="../js/Select.js"></script>
+    <script type="text/javascript" src="../js/Toggle.js"></script>
+    <script type="text/javascript" src="../js/Modal.js"></script>
+    <script type="text/javascript" src="../js/Button.js"></script>
+    <script type="text/javascript" src="../js/Group.js"></script>
+    <script type="text/javascript" src="../js/Timer.js"></script>
+    <script type="text/javascript" src="../js/Overlay.js"></script>
+    <script type="text/javascript" src="../js/Counter.js"></script>
+    <script type="text/javascript" src="../js/Loader.js"></script>
+    <script type="text/javascript" src="../js/Indicator.js"></script>
+    <script type="text/javascript" src="../js/Quiz.js"></script>
 
-<script type="text/javascript" src="../js/config.js"></script>
-<script type="text/javascript" src="../js/app.js"></script>
-    
-<script type="text/javascript" src="../refactored/Select.js"></script>
-<script type="text/javascript" src="../refactored/Toggle.js"></script>
-    
-<script type="text/javascript">
-        
-    var myDeck = new Deck();
-    var myCards;
-    
-</script>
+    <script type="text/javascript" src="../js/EventManager.js"></script>
+    <script type="text/javascript" src="../js/Config.js"></script>
+    <script type="text/javascript" src="../js/Application.js"></script>
+    <script type="text/javascript" src="../js/UI.js"></script>
 
 </html>
