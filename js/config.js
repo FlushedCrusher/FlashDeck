@@ -52,6 +52,28 @@ function Config( userState ) {
             value: 'review'
         }
     };
+    this.limitEnum = {
+        THREE   : {
+            name: 'THREE',
+            value: 3
+        },
+        FIVE    : {
+            name: 'FIVE',
+            value: 5
+        },
+        TEN     : {
+            name: 'TEN',
+            value: 10
+        },
+        TWENTY  : {
+            name: 'TWENTY',
+            value: 20
+        },
+        ALL     : {
+            name: 'ALL',
+            value: Number.MAX_VALUE
+        }
+    };
     
     this.appState              = undefined;
     this.cycle                 = undefined;
@@ -73,7 +95,7 @@ function Config( userState ) {
         appState                : self.stateEnum.FIRSTLOAD,
         cycle                   : self.cycleEnum.FORWARD,   
         quizType                : self.quizEnum.REVIEW,
-        deckLimit               : Number.MAX_VALUE,
+        deckLimit               : self.limitEnum.ALL,
         flipOnHover             : false,
         persistState            : false,
         showReponseCount        : true,

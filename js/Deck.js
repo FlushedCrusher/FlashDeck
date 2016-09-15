@@ -1,11 +1,12 @@
 function Deck( cards ) {
     this.cards = cards || [];
     this.mastered = [];
+    this.limit = Number.MAX_VALUE;
 }
 Deck.prototype.getCards = function() { return this.cards; };
 Deck.prototype.getMastered = function() { return this.mastered; };
 Deck.prototype.getCount = function() {
-    return this.cards.length;
+    return Math.min(this.cards.length, this.limit);
 };
 Deck.prototype.getCard = function( index ) {
     return (typeof index !== 'undefined') ? this.cards[index] : this.getCards;
@@ -16,6 +17,9 @@ Deck.prototype.getRandomCard = function() {
 };
 Deck.prototype.getCardIndex = function( card ) {
     return this.cards.indexOf( card );
+};
+Deck.prototype.setLimit = function( num ) {
+    this.limit = num;
 };
 Deck.prototype.numCards = function() { return this.cards.length; };
 Deck.prototype.numMastered = function() { return this.mastered.lengh; };

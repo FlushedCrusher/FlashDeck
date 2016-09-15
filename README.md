@@ -12,6 +12,7 @@ Version 1.2.0
 + Session saved in browser Cache
 + Major code Refactor... much better
 + Removed keyboard helper overlay
++ Configurable Deck limit
 
 ## Installation ##
 
@@ -56,8 +57,6 @@ $PATH_TO_PROJECT/html/index.html
 
 ### Version 1.2.0 ###
 
-* Add DeckLimit to config settings
-    * User should be able to specify how many cards to review at a time
 * Add isMastered type to config settings
     * User should be able to specify mastery on three correct answers total, or three consecutive correct answers
 * Document Sequence Diagrams for Application events

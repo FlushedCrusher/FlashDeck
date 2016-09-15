@@ -173,6 +173,14 @@ var select_cycle = ElementFactory.createElement('select', {
     options : config.cycleEnum,
     link    : handleCycleChange
 });
+var limit_cycle = ElementFactory.createElement('select', {
+    init    : selectInit,
+    label   : 'Deck Limit',
+    handler : handleSelectLimit,
+    name    : 'deckLimit',
+    options : config.limitEnum,
+    link    : handleLimitChange
+});
 /* ********** ********** ********** ********** **********
  * Toggles
  */
@@ -214,6 +222,7 @@ var toggle_timer = ElementFactory.createElement('toggle', {
  * Build UI
  */
 config_modal.body.appendChild(select_cycle.element);
+config_modal.body.appendChild(limit_cycle.element);
 config_modal.body.appendChild(toggle_persist.element);
 config_modal.body.appendChild(toggle_flip.element);
 config_modal.body.appendChild(toggle_counts.element);

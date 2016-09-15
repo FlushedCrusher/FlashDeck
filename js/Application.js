@@ -269,6 +269,8 @@ function persistStateLoadHandler() {
         quiz.deck.addToMastered( lastIndex );
     }
     quiz.setCard( quiz.deck.getCard( data.quiz.currentIndex ) );
+    quiz.setCycleMethod(config.cycle);
+    quiz.setDeckLimit(config.deckLimit);
     correct.setCount( data.correct );
     incorrect.setCount( data.incorrect );
     timer.setTime( data.timer );
@@ -340,6 +342,12 @@ function handleSelectCycle() {
 function handleCycleChange() {
     quiz.setCycleMethod(config.cycleEnum[this.select.value]);
 }
+function handleSelectLimit() {
+    config[this.select.dataset.name] = config.limitEnum[this.select.value];
+}
+function handleLimitChange() {
+    quiz.setDeckLimit(config.limitEnum[this.select.value]);
+}
 
 // Toggle Handlers
 function toggleInit() {
@@ -406,6 +414,8 @@ function handleLoadDeck( result ) {
         deck.addCard( new Card(_card[0], _card[1]));
     });
     quiz.setDeck( deck );
+    quiz.setCycleMethod(config.cycle);
+    quiz.setDeckLimit(config.deckLimit);
     changeAppState( config.stateEnum.INITIAL );
 }
 
