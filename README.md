@@ -2,7 +2,7 @@
 
 A project for quizzing & mastering flash cards.
 
-Version 1.1.0
+Version 1.2.0
 
 + Load user created Decks
 + Keyboard controlled
@@ -60,8 +60,6 @@ $PATH_TO_PROJECT/html/index.html
     * User should be able to specify how many cards to review at a time
 * Add isMastered type to config settings
     * User should be able to specify mastery on three correct answers total, or three consecutive correct answers
-* Refactor to use HTML5 import
-    * Modularize UI to individual components
 * Document Sequence Diagrams for Application events
 
 ### Version 2.0.0 ###
