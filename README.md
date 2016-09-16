@@ -59,6 +59,7 @@ $PATH_TO_PROJECT/html/index.html
 ### Version 1.2.0 ###
 
 * Document Class Diagrams
+* Add Configuration help documentation
 
 ### Version 2.0.0 ###
 
