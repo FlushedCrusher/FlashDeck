@@ -37,6 +37,14 @@ Deck.prototype.setMasteryLevel = function( val ) {
         card.setMasteryLevel( val );
     });
 }
+Deck.prototype.setMasteryType = function ( val ) {
+    this.cards.forEach( function( card ) {
+        card.setMasteryLevel( val );
+    });
+    this.mastered.forEach( function( card ) {
+        card.setMasteryLevel( val );
+    });
+};
 Deck.prototype.isMastered = function() {
     return this.numCards() === 0;
 };

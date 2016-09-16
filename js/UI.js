@@ -173,13 +173,21 @@ var select_cycle = ElementFactory.createElement('select', {
     options : config.cycleEnum,
     link    : handleCycleChange
 });
-var limit_cycle = ElementFactory.createElement('select', {
+var select_limit = ElementFactory.createElement('select', {
     init    : selectInit,
     label   : 'Deck Limit',
     handler : handleSelectLimit,
     name    : 'deckLimit',
     options : config.limitEnum,
     link    : handleLimitChange
+});
+var select_mastery = ElementFactory.createElement('select', {
+    init    : selectInit,
+    label   : 'Card Mastery',
+    handler : handleSelectMastery,
+    name    : 'masteryType',
+    options : config.masteryEnum,
+    link    : handleMasteryChange
 });
 /* ********** ********** ********** ********** **********
  * Toggles
@@ -222,7 +230,8 @@ var toggle_timer = ElementFactory.createElement('toggle', {
  * Build UI
  */
 config_modal.body.appendChild(select_cycle.element);
-config_modal.body.appendChild(limit_cycle.element);
+config_modal.body.appendChild(select_limit.element);
+config_modal.body.appendChild(select_mastery.element);
 config_modal.body.appendChild(toggle_persist.element);
 config_modal.body.appendChild(toggle_flip.element);
 config_modal.body.appendChild(toggle_counts.element);

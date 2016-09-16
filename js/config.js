@@ -74,6 +74,16 @@ function Config( userState ) {
             value: Number.MAX_VALUE
         }
     };
+    this.masteryEnum = {
+        STANDARD: {
+            name: 'STANDARD',
+            value: 'standard'
+        },
+        SEQUENTIAL: {
+            name: 'SEQUENTIAL',
+            value: 'sequential'
+        }
+    };
     
     this.appState              = undefined;
     this.cycle                 = undefined;
@@ -83,6 +93,7 @@ function Config( userState ) {
     this.flashDuration         = 750;
     this.flipDuration          = 2000;
     this.flipOnHover           = undefined;
+    this.masteryType           = undefined;
     this.masteryLevel          = 3;
     this.persistState          = undefined;
     this.quizType              = undefined;
@@ -96,6 +107,7 @@ function Config( userState ) {
         cycle                   : self.cycleEnum.FORWARD,   
         quizType                : self.quizEnum.REVIEW,
         deckLimit               : self.limitEnum.ALL,
+        masteryType             : self.masteryEnum.STANDARD,
         flipOnHover             : false,
         persistState            : false,
         showReponseCount        : true,

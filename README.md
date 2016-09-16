@@ -13,6 +13,7 @@ Version 1.2.0
 + Major code Refactor... much better
 + Removed keyboard helper overlay
 + Configurable Deck limit
++ Two mastery types, standard and sequential
 
 ## Installation ##
 
@@ -57,9 +58,7 @@ $PATH_TO_PROJECT/html/index.html
 
 ### Version 1.2.0 ###
 
-* Add isMastered type to config settings
-    * User should be able to specify mastery on three correct answers total, or three consecutive correct answers
-* Document Sequence Diagrams for Application events
+* Document Class Diagrams
 
 ### Version 2.0.0 ###
 
@@ -84,3 +83,4 @@ $PATH_TO_PROJECT/html/index.html
     * The user should be able to modify decks and cards within decks from a UI
 * Add database persistance to application
     * Users should be able to load quizes from any location and pick up where they left off
+* Document Sequence Daigrams for Application Events

@@ -5,6 +5,33 @@ function Card(attr, definition) {
     this.timesIncorrect = 0;
     this.averageAnswerTime = 0;
     this.masteryLevel = 3;
+    this.masteryType = 'standard';
+    
+    this.handleStandard = function( correct ) {
+        switch( correct ) {
+            case true:
+                this.timesCorrectPlus( 1 );
+                break;
+            case false:
+                this.timesIncorrectPlus( 1 );
+                break;
+            default:
+                console.error("Error handling response.");
+        } 
+    };
+    this.handleSequntial = function( correct ) {
+        switch( correct ) {
+            case true:
+                this.timesCorrectPlus( 1 );
+                break;
+            case false:
+                this.timesCorrect = 0;
+                this.timesIncorrectPlus( 1 );
+                break;
+            default:
+                console.error("Error handling response.");
+        } 
+    };
     
     if(typeof attr === 'object') {
         for(elem in attr) {
@@ -24,6 +51,7 @@ Card.prototype.getMasteryLevel = function() { return this.masteryLevel; };
 Card.prototype.setPhrase = function( newVal ) { this.phrase = newVal; };
 Card.prototype.setDefinition = function( newVal ) { this.definition = newVal.toLowerCase(); };
 Card.prototype.setMasteryLevel = function( newVal ) { this.masteryLevel = newVal; };
+Card.prototype.setMasteryType = function( newVal ) { this.masteryType = newVal; };
 Card.prototype.timesCorrectPlus = function( num ) { this.timesCorrect += num || 1; };
 Card.prototype.timesIncorrectPlus = function( num ) { this.timesIncorrect += num || 1 };
 Card.prototype.calculateAverageAnswerTime = function( num ) {
@@ -51,12 +79,12 @@ Card.prototype.printStats = function() {
     return tmp;
 };
 Card.prototype.handleResponse = function( correct ) {
-    switch( correct ) {
-        case true:
-            this.timesCorrectPlus( 1 );
+    switch( this.masteryType ) {
+        case 'standard':
+            this.handleStandard( correct );
             break;
-        case false:
-            this.timesIncorrectPlus( 1 );
+        case 'sequential':
+            this.handleSequntial( correct );
             break;
         default:
             console.error("Error handling response.");

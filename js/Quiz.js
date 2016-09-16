@@ -71,6 +71,9 @@ Quiz.prototype.setCycleMethod = function( _cycleEnum ) {
 Quiz.prototype.setDeckLimit = function( _limitEnum ) {
     this.deck.setLimit( _limitEnum.value );
 };
+Quiz.prototype.setMasteryType = function( _masteryEnum ) {
+    this.deck.setMasteryType( _masteryEnum.value );
+};
 Quiz.prototype.flipCard = function() {
     this.flipCallback();
     this.current_card.classList.toggle('flipped');
