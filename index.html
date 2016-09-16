@@ -28,10 +28,161 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+          <h1>
+<a id="-flashdeck" class="anchor" href="#-flashdeck" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><img src="https://cloud.githubusercontent.com/assets/21090677/18574975/46684f1c-7b87-11e6-9dd2-584db358876f.png" alt="logo-sm"> FlashDeck</h1>
 
-<p>FlachDeck is an online flash card quizzing application with a goal to help you master your deck.</p>
+<p>A project for quizzing &amp; mastering flash cards.</p>
+
+<p>Version 1.1.0</p>
+
+<ul>
+<li>Load user created Decks</li>
+<li>Keyboard controlled</li>
+<li>Pause functionality</li>
+<li>Configurable Cycle Method and UI</li>
+<li>Instant feedback and card progression</li>
+<li>Session saved in browser Cache</li>
+<li>Major code Refactor... much better</li>
+<li>Removed keyboard helper overlay</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>This is an optional step, if you want to serve the app statically.
+You can also run from file by opening html/index.html in a browser (Prefferably Chrome).</p>
+
+<div class="highlight highlight-source-dart"><pre>npm install <span class="pl-k">-</span>g</pre></div>
+
+<p>OR</p>
+
+<div class="highlight highlight-source-dart"><pre>npm install http<span class="pl-k">-</span>server <span class="pl-k">-</span>g</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-source-dart"><pre>http<span class="pl-k">-</span>server $PATH_TO_PROJECT</pre></div>
+
+<p>Navigat to: [http-server address]/html/</p>
+
+<p>OR</p>
+
+<p>$PATH_TO_PROJECT/html/index.html</p>
+
+<ul>
+<li>  Load deck of cards using the upload feature in the Settings modal.
+
+<ul>
+<li> Two sample decks are provided; short &amp; long</li>
+</ul>
+</li>
+<li>  Click the 'Apply' button and get goin!</li>
+<li>  Keyboard controls are easiest:
+
+<ul>
+<li> Space Bar   : Pause</li>
+<li> Left Arrow  : Cycle Backward</li>
+<li> Up Arrow    : Flip Card and Respond</li>
+<li> Right Arrow : Cycle Forward</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="todo-incomplete" class="anchor" href="#todo-incomplete" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TODO (Incomplete)</h2>
+
+<h3>
+<a id="version-100" class="anchor" href="#version-100" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 1.0.0</h3>
+
+<h3>
+<a id="version-110" class="anchor" href="#version-110" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 1.1.0</h3>
+
+<h3>
+<a id="version-120" class="anchor" href="#version-120" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 1.2.0</h3>
+
+<ul>
+<li>Add DeckLimit to config settings
+
+<ul>
+<li>User should be able to specify how many cards to review at a time</li>
+</ul>
+</li>
+<li>Add isMastered type to config settings
+
+<ul>
+<li>User should be able to specify mastery on three correct answers total, or three consecutive correct answers</li>
+</ul>
+</li>
+<li>Refactor to use HTML5 import
+
+<ul>
+<li>Modularize UI to individual components</li>
+</ul>
+</li>
+<li>Document Sequence Diagrams for Application events</li>
+</ul>
+
+<h3>
+<a id="version-200" class="anchor" href="#version-200" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 2.0.0</h3>
+
+<ul>
+<li>Add mobile device support to UI
+
+<ul>
+<li>Application should be usable via mobile devices</li>
+</ul>
+</li>
+<li>Add speech recognition functionality (Chrome Only)
+
+<ul>
+<li>User should be able to respond via voice</li>
+</ul>
+</li>
+<li>Add learn mode to application
+
+<ul>
+<li>There should be an application mode that allows the app to learn correct responses that do not exactly match definitions</li>
+</ul>
+</li>
+<li>Add utterances to cards
+
+<ul>
+<li>Cards should retain a list of utterances that qualify as correct</li>
+</ul>
+</li>
+<li>Add statistics
+
+<ul>
+<li>The application should provide the user with statistics on response times &amp; attempts needed before mastery</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<a id="version-300" class="anchor" href="#version-300" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 3.0.0</h3>
+
+<ul>
+<li>Add retention checking to quizzes
+
+<ul>
+<li>The application should periodically reassess mastered cards</li>
+<li>Correct reassessments should be disqualified for one rotation of reassessment</li>
+<li>Incorrect reassessments should reenter quiz at a decreased mastery level</li>
+</ul>
+</li>
+<li>Add method for deck / card management
+
+<ul>
+<li>The user should be able to modify decks and cards within decks from a UI</li>
+</ul>
+</li>
+<li>Add database persistance to application
+
+<ul>
+<li>Users should be able to load quizes from any location and pick up where they left off</li>
+</ul>
+</li>
+</ul>
         </section>
 
         <aside id="sidebar">
