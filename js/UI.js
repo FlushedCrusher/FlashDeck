@@ -194,7 +194,7 @@ var select_mastery = ElementFactory.createElement('select', {
  */
 var toggle_persist = ElementFactory.createElement('toggle', {
     init    : toggleInit,
-    label   : 'Persist State',
+    label   : 'Save Progress',
     handler : handleToggle,
     name    : 'persistState',
     link    : handlePersistStateToggle
@@ -233,7 +233,7 @@ config_modal.body.appendChild(select_cycle.element);
 config_modal.body.appendChild(select_limit.element);
 config_modal.body.appendChild(select_mastery.element);
 config_modal.body.appendChild(toggle_persist.element);
-config_modal.body.appendChild(toggle_flip.element);
+// config_modal.body.appendChild(toggle_flip.element);
 config_modal.body.appendChild(toggle_counts.element);
 config_modal.body.appendChild(toggle_indicators.element);
 config_modal.body.appendChild(toggle_timer.element);
