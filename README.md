@@ -14,6 +14,7 @@ Version 1.2.0
 + Removed keyboard helper overlay
 + Configurable Deck limit
 + Two mastery types, standard and sequential
++ Configuration help documented
 
 ## Installation ##
 
@@ -59,7 +60,6 @@ $PATH_TO_PROJECT/html/index.html
 ### Version 1.2.0 ###
 
 * Document Class Diagrams
-* Add Configuration help documentation
 
 ### Version 2.0.0 ###
 
