@@ -1,0 +1,73 @@
+Lifecycle[]series of phases through which software is developed
+Phase[]Single step in a lifecycle
+Cowboy coding[]Absence of lifecycle
+Requirements[]The things a system must do
+Functional Requirements[]Tasks that a system must be able to perform
+Non-functional Requirements[]Constraints on the design due to external factors
+Elicitation[]Figuring out what the requirements are
+Design[]Developing a plan for a product, system or component. "how" a system should perform a task
+Design pattern[]Reusable, abstract "blocks" of design
+Stakeholders[]People who care about the outcome
+SRS Documentation[]Comprehensive description of software's intended purpose
+use case[]description of possible sequences of interactions between a user and the system.
+architectural design[]Ways to express the system's subsystems and their relationship
+Dijkstra's law[]Testing can show the presence but not absence of errors
+unit testing[]Testing that verifies that individual units of source code are working
+Integration testing[]Testing where modules are combined and tested as a group
+regression testing[]Testing designed to uncover regressions (where stuff that used to work doesn't work anymore)
+system testing[]testing the whole system for functionality
+Acceptance testing[]Formal testing against end user specifications
+Recovery testing[]Force software to fail in order to see how it recovers
+Security testing[]verifies that system is protected against improper penetration
+Stress testing[]executes system in a manner that demands abnormal amounts of resources
+Capacity testing[]Evaluates upper limits of operational parameters
+Usability testing[]Test whether or not tasks can be accomplished efficiently by all levels of users
+Performance testing[]Test the run-time performance of the system
+black box testing[]Testing tactic based on whether inputs and outputs match up for required functionality
+white box testing[]Testing tactic that looks at all ways that data can flow through the code
+Design patterns[]Techniques for composing objects to form larger structures
+Maturity level[]how developed code is (testing, documentation etc)
+Software Quality[]how well your fulfil your requirements
+Code Quality[]Lack of errors in code, readability etc
+a refactoring[]small, behaviour-preserving, source-to-source transformation
+Elicitation[]1st step of requirements gathering
+Analysis[]2nd step of requirements gathering
+Specification[]3rd step of requirements gathering
+Validation[]4th step of requirements gathering
+brief use case[]A few sentences summarizing a use case
+Casual use case[]One or two paragraphs of text outlining a use case
+Fully-dressed use case[]Formal document outlining a task that needs to be performed on a system
+Use case diagram[]Diagram outlining the tasks that are going to be performed by the user
+conflict[]a powerful motivator for change
+technical managerial approach[]approach to team management that splits management up into two people with separate tasks
+sequence diagram[]Diagram used to show how information flows around the system
+Law of demeter[]"single dot rule"
+Liskov substitution principle[]derived methods should not assume more or deliver less
+Test-driven development[]Test cases made -&gt; code compiles -&gt; make code pass
+model-driven development[]models-&gt;code work is done to keep models in sync with code
+feature-driven development[]each team member given set of features to work on
+Versioning[]Freezing the state of the source code at a particular point
+Maturity[]The rigorousness of the tests that are able to be placed on the code
+software quality[]degree to which the system meets the specified requirements and development standards
+code quality[]the degree to which code is free of defects
+Quality metrics[]a way to automatically grade code based on heuristics
+code smell[]recognizable indicator that something may be wrong with code
+duplicated code[](smell) code is repeated in multiple places
+long method[](smell) method has too many statements, loops or variables
+Large class[](smell)class with too many instance variables or too much code
+long parameter list[](smell) many parameters are being passed into a method
+comments[](smell) Smell deodorant
+message chain[](smell) client needs to use one object to get another and then use that one to get another
+data clumps[](smell) If a set of variables are used together in multiple places
+feature envy[](smell) A method using another class more than its own
+shotgun surgery[](smell) Making one change requires changes in multiple places
+inappropriate intimacy[](smell) Classes using things that should be private in other classes
+Data classes[](smell) A class whose only purpose is to hold data
+middle man[](smell) One class delegates all of its requests to another class
+intellectual property[]the rights governing the ownership and disposition of technology
+patent[]contract between inventor, assignee and state giving a time and geographically limited monopoly
+copyright[]protecting the embodiment of an idea
+trademark[]word, logo or symbol used to distinguish one organization's wares and services from another's
+statement[]Each line of code is covered once
+branch[]Each condition is covered twice (true, false)
+path[]Each possible path through the code is covered

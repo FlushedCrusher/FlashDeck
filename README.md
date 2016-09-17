@@ -59,6 +59,7 @@ $PATH_TO_PROJECT/html/index.html
 
 ### Version 1.2.0 ###
 
+* Add progress bar to application
 * Document Class Diagrams
 
 ### Version 2.0.0 ###
