@@ -116,15 +116,7 @@ Quiz.prototype.cycleRandom = function() {
     this.setCard( card );
 };
 Quiz.prototype.handleResponse = function( known, time ) {
-    this.responseCallback( known );
-    var index = this.getCurrentIndex();
-    var card = this.deck.cards[ index ];
-    card.handleResponse( known );
-    card.calculateAverageAnswerTime( time );
-    if(card.isMastered()) {
-        this.deck.addToMastered( index );
-    }
-    this.cycleCard();
+    this.responseCallback.call(this, known, time );
 };
 Quiz.prototype.clear = function() {
     this.deck = [];

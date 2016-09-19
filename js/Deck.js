@@ -21,10 +21,18 @@ Deck.prototype.getCardIndex = function( card ) {
 Deck.prototype.setLimit = function( num ) {
     this.limit = num;
 };
-Deck.prototype.numCards = function() { return this.cards.length; };
-Deck.prototype.numMastered = function() { return this.mastered.lengh; };
-Deck.prototype.addCard = function( card ) { this.cards.push( card ); };
-Deck.prototype.removeCard = function( index ) { this.cards.splice(index, 1); };
+Deck.prototype.numCards = function() {
+    return this.cards.length;
+};
+Deck.prototype.numMastered = function() {
+    return this.mastered.length;
+};
+Deck.prototype.addCard = function( card ) {
+    this.cards.push( card );
+};
+Deck.prototype.removeCard = function( index ) {
+    this.cards.splice(index, 1);
+};
 Deck.prototype.addToMastered = function( index ) {
     this.mastered.push( this.cards[index] );
     this.removeCard( index );

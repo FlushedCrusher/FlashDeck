@@ -275,6 +275,9 @@ function persistStateLoadHandler() {
     correct.setCount( data.correct );
     incorrect.setCount( data.incorrect );
     timer.setTime( data.timer );
+    progress_bar.setMaxVal(quiz.deck.numCards() + quiz.deck.numMastered() );
+    progress_bar.setCurrentVal( quiz.deck.numMastered() );
+    progress_bar.setCalculatedWidth();
     changeAppState( config.appState );
     timer.start();
     stateCallbacks.onSpacePress();
@@ -442,12 +445,23 @@ function cycleCallback() {
     }
 }
 function flipCallback() {}
-function responseCallback( known ) {
+function responseCallback( known, time ) {
     if(known) {
         correct.increment();
     } else {
         incorrect.increment();
     }
+    var index = this.getCurrentIndex();
+    var card = this.deck.cards[ index ];
+    card.handleResponse( known );
+    card.calculateAverageAnswerTime( time );
+    if(card.isMastered()) {
+        this.deck.addToMastered( index );
+        progress_bar.setMaxVal(quiz.deck.numCards() + quiz.deck.numMastered() );
+        progress_bar.setCurrentVal( quiz.deck.numMastered() );
+        progress_bar.setCalculatedWidth();
+    }
+    this.cycleCard();
 }
 function resetCallback() {
     correct.clear();

@@ -11,6 +11,7 @@ ElementFactory.registerElement('timer', Timer);
 ElementFactory.registerElement('overlay', Overlay);
 ElementFactory.registerElement('counter', Counter);
 ElementFactory.registerElement('loader', Loader);
+ElementFactory.registerElement('progress', ProgressBar);
 ElementFactory.registerElement('quiz', Quiz);
 /* ********** ********** ********** ********** **********
  * Configuration
@@ -227,6 +228,10 @@ var toggle_timer = ElementFactory.createElement('toggle', {
     link    : handleTimerVisibility
 });
 /* ********** ********** ********** ********** **********
+ * Progress Bar
+ */
+var progress_bar = ElementFactory.createElement('progress', {});
+/* ********** ********** ********** ********** **********
  * Build UI
  */
 config_modal.body.appendChild(select_cycle.element);
@@ -257,6 +262,7 @@ FlashDeckMain.appendChild(timer.element);
 FlashDeckMain.appendChild(config_modal.element);
 FlashDeckMain.appendChild(response_modal.element);
 FlashDeckMain.appendChild(quiz.element);
+FlashDeckMain.appendChild(progress_bar.element);
 FlashDeckMain.appendChild(nav_control.element);
 FlashDeckMain.appendChild(footer.element);
 
