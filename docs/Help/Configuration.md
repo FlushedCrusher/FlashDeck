@@ -27,3 +27,6 @@ Setting                 | Name                       | Description
 *showTimer*             | *Show Timer*               | *Show/hide response timer.*
                         | YES                        | Shown.
                         | NO                         | Hidden.
+*showProgress*          | *Show Progress Bar*        | *Show/hide progress bar.*
+                        | YES                        | Shown.
+                        | NO                         | Hidden.

@@ -4,6 +4,7 @@
  *  @clsList
  */
 function Group( attrs ) {
+    'use strict';
 
     var self = this;
     

@@ -155,6 +155,10 @@ var firework_overlay = ElementFactory.createElement('overlay', {
     removeCallback  : fireworkRemoveCallback
 });
 /* ********** ********** ********** ********** **********
+ * Progress Bar
+ */
+var progress_bar = ElementFactory.createElement('progress', {});
+/* ********** ********** ********** ********** **********
  * Loaders
  */
 var deck_loader = ElementFactory.createElement('loader', {
@@ -200,12 +204,6 @@ var toggle_persist = ElementFactory.createElement('toggle', {
     name    : 'persistState',
     link    : handlePersistStateToggle
 });
-var toggle_flip = ElementFactory.createElement('toggle', {
-    init    : toggleInit,
-    label   : 'Flip Card on Hover',
-    handler : handleToggle,
-    name    : 'flipOnHover'
-});
 var toggle_counts = ElementFactory.createElement('toggle', {
     init    : toggleInit,
     label   : 'Show Response Count',
@@ -227,10 +225,25 @@ var toggle_timer = ElementFactory.createElement('toggle', {
     name    : 'showTimer',
     link    : handleTimerVisibility
 });
+var toggle_progress = ElementFactory.createElement('toggle', {
+    init    : toggleInit,
+    label   : 'Show Progress Bar',
+    handler : handleToggle,
+    name    : 'showTimer',
+    link    : handleProgressVisibility
+});
 /* ********** ********** ********** ********** **********
- * Progress Bar
+ * Hash the config Settings
  */
-var progress_bar = ElementFactory.createElement('progress', {});
+var config_settings = [];
+config_settings.push(select_cycle);
+config_settings.push(select_limit);
+config_settings.push(select_mastery);
+config_settings.push(toggle_persist);
+config_settings.push(toggle_counts);
+config_settings.push(toggle_indicators);
+config_settings.push(toggle_timer);
+config_settings.push(toggle_progress);
 /* ********** ********** ********** ********** **********
  * Build UI
  */
@@ -238,10 +251,10 @@ config_modal.body.appendChild(select_cycle.element);
 config_modal.body.appendChild(select_limit.element);
 config_modal.body.appendChild(select_mastery.element);
 config_modal.body.appendChild(toggle_persist.element);
-// config_modal.body.appendChild(toggle_flip.element);
 config_modal.body.appendChild(toggle_counts.element);
 config_modal.body.appendChild(toggle_indicators.element);
 config_modal.body.appendChild(toggle_timer.element);
+config_modal.body.appendChild(toggle_progress.element);
 config_modal.body.appendChild(deck_loader.element);
 
 nav_control.element.appendChild(config_button.element);

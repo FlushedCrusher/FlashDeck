@@ -2,11 +2,10 @@
  * Progress Bar Element
  */
 function ProgressBar( attrs ) {
-    
-    var self = this;
-    
-    this.maxVal;
-    this.currentVal;
+    'use strict';
+  
+    this.maxVal = undefined;
+    this.currentVal = undefined;
     
     this.element = document.createElement('div');
     this.element.classList.add('progress_bar');
@@ -19,11 +18,19 @@ function ProgressBar( attrs ) {
 }
 ProgressBar.prototype = Object.create(Element.prototype);
 ProgressBar.prototype.setMaxVal = function( val ) {
+    'use strict';
     this.maxVal = val;
 };
 ProgressBar.prototype.setCurrentVal = function( val ) {
+    'use strict';
     this.currentVal = val;
 };
 ProgressBar.prototype.setCalculatedWidth = function() {
+    'use strict';
     this.status_bar.style.width = ((this.currentVal / this.maxVal) * 500) + 'px';
+};
+ProgressBar.prototype.clear = function() {
+    'use strict';
+    this.currentVal = 0;
+    this.setCalculatedWidth();
 };

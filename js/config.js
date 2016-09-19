@@ -3,6 +3,7 @@
  * @param {Object} userState
  */
 function Config( userState ) {
+    'use strict';
     
     var self = this;
     
@@ -100,6 +101,7 @@ function Config( userState ) {
     this.showReponseCount      = undefined;
     this.showReponseIndicators = undefined;
     this.showTimer             = undefined;
+    this.showProgress          = undefined;
     this.version               = '1.1.0';
     
     this.default = {
@@ -112,7 +114,8 @@ function Config( userState ) {
         persistState            : false,
         showReponseCount        : true,
         showReponseIndicators   : true,
-        showTimer               : true
+        showTimer               : true,
+        showProgress            : true
     };
     this.state = userState || this.default;
     
@@ -120,18 +123,26 @@ function Config( userState ) {
     
 }
 Config.prototype.setConfig = function( key, value ) {
+    'use strict';
     this[key] = value;
 };
 Config.prototype.saveState = function() {
-    for(setting in this.state) {
-        this.state[setting] = this[setting];
+    'use strict';
+    for(var setting in this.state) {
+        if(this.state.hasOwnProperty(setting)) {
+            this.state[setting] = this[setting];
+        }
     }
 };
 Config.prototype.getState = function() {
+    'use strict';
     return this.state;
 };
 Config.prototype.applyState = function( state ) {
-    for(setting in state) {
-        this.setConfig( setting, state[setting] );
+    'use strict';
+    for(var setting in state) {
+        if(state.hasOwnProperty(setting)) {
+            this.setConfig( setting, state[setting] );
+        }
     }
 };
