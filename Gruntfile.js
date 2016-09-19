@@ -8,7 +8,7 @@ module.exports = function(grunt) {
           banner:   '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
                     '<%= grunt.template.today("yyyy-mm-dd") %> */'
         },
-        dist: {
+        dist_js: {
           src: [
             'js/Card.js',
             'js/Deck.js',
@@ -32,6 +32,24 @@ module.exports = function(grunt) {
             'js/UI.js'
           ],
           dest: 'dist/FlashDeck.js',
+        },
+        dist_css: {
+          src: [
+            'css/FlashDeckApp.css',
+            'css/Element.css',
+            'css/Select.css',
+            'css/Toggle.css',
+            'css/Modal.css',
+            'css/Button.css',
+            'css/Timer.css',
+            'css/Overaly.css',
+            'css/Counter.css',
+            'css/Loader.css',
+            'css/Indicator.css',
+            'css/ProgressBar.css',
+            'css/Quiz.css'
+          ],
+          dest: 'dist/FlashDeck.css',
         },
       },
 	jshint: {
