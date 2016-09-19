@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         options: {
           separator: '\n',
           banner:   '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                    '<%= grunt.template.today("yyyy-mm-dd") %> */'
+                    '<%= grunt.template.today("yyyy-mm-dd") %> */' + '\n'
         },
         dist_js: {
           src: [

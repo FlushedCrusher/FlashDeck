@@ -1,4 +1,5 @@
-/*! flashdeck - v1.2.0 - 2016-09-19 *//**
+/*! flashdeck - v1.2.0 - 2016-09-19 */
+/**
  * Card Object
  * @param {Object || String} attr
  * @param {String} definittion
