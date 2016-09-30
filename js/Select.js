@@ -9,6 +9,7 @@
  *  @init
  */
 function Select( attrs ) {
+    'use strict';
     
     var self = this;
     
@@ -41,17 +42,21 @@ function Select( attrs ) {
         }
     }
 
-    if(this.init) { this.init(); };
+    if(this.init) {
+        this.init();
+    }
     
 }
 Select.prototype = Object.create(Element.prototype);
 Select.prototype.setSelect = function( val ) {
+    'use strict';
     this.select.value = val;
     this.select.onchange();
 };
 Select.prototype.handleSelect = function() {
-    console.log('->handleSelect');
+    'use strict';
 };
 Select.prototype.addOption = function( key, value ) {
+    'use strict';
     this.select.options.add( new Option( key, value ) );
 };

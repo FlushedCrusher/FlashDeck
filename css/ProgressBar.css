@@ -1,0 +1,15 @@
+.progress_bar {
+    position: relative;
+    margin: 0 auto 0 auto;
+    width: 500px;
+    height: 2px;
+    top: 10px;
+    background-color: rgb(220, 220, 220);
+    border: 2px solid #cccccc;
+    z-index: -999;
+}
+.status_bar {
+    background-color: rgb(8, 126, 255);
+    height: 100%;
+    float: left;
+}

@@ -8,6 +8,7 @@
  *  @init
  */
 function Toggle( attrs ) {
+    'use strict';
     
     var self = this;
     
@@ -43,10 +44,13 @@ function Toggle( attrs ) {
     this.element.appendChild(this.label);
     this.element.appendChild(this.button);
     
-    if(this.init) { this.init(); };
+    if(this.init) {
+        this.init();
+    }
 }
 Toggle.prototype = Object.create(Element.prototype);
 Toggle.prototype.setToggle = function( on ) {
+    'use strict';
     if(!on) {
         this.toggle.dataset.value = 'true';
     } else {
@@ -55,6 +59,7 @@ Toggle.prototype.setToggle = function( on ) {
     this.button.onclick();
 };
 Toggle.prototype.handleToggle = function() {
+    'use strict';
     switch (this.toggle.dataset.value) {
         case 'true':
             this.toggleOff();
@@ -67,6 +72,7 @@ Toggle.prototype.handleToggle = function() {
     }
 };
 Toggle.prototype.toggleOn = function() {
+    'use strict';
     console.log('->toggleOn');
     // Move the toggle
     this.toggle.classList.add('toggle_toggle_right');
@@ -79,6 +85,7 @@ Toggle.prototype.toggleOn = function() {
     this.toggle.dataset.value = 'true';
 };
 Toggle.prototype.toggleOff = function() {
+    'use strict';
     console.log('->toggleOff');
     // Move the toggle
     this.toggle.classList.remove('toggle_toggle_right');

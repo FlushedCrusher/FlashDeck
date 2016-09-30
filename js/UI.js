@@ -11,6 +11,7 @@ ElementFactory.registerElement('timer', Timer);
 ElementFactory.registerElement('overlay', Overlay);
 ElementFactory.registerElement('counter', Counter);
 ElementFactory.registerElement('loader', Loader);
+ElementFactory.registerElement('progress', ProgressBar);
 ElementFactory.registerElement('quiz', Quiz);
 /* ********** ********** ********** ********** **********
  * Configuration
@@ -154,6 +155,10 @@ var firework_overlay = ElementFactory.createElement('overlay', {
     removeCallback  : fireworkRemoveCallback
 });
 /* ********** ********** ********** ********** **********
+ * Progress Bar
+ */
+var progress_bar = ElementFactory.createElement('progress', {});
+/* ********** ********** ********** ********** **********
  * Loaders
  */
 var deck_loader = ElementFactory.createElement('loader', {
@@ -173,21 +178,31 @@ var select_cycle = ElementFactory.createElement('select', {
     options : config.cycleEnum,
     link    : handleCycleChange
 });
+var select_limit = ElementFactory.createElement('select', {
+    init    : selectInit,
+    label   : 'Deck Limit',
+    handler : handleSelectLimit,
+    name    : 'deckLimit',
+    options : config.limitEnum,
+    link    : handleLimitChange
+});
+var select_mastery = ElementFactory.createElement('select', {
+    init    : selectInit,
+    label   : 'Card Mastery',
+    handler : handleSelectMastery,
+    name    : 'masteryType',
+    options : config.masteryEnum,
+    link    : handleMasteryChange
+});
 /* ********** ********** ********** ********** **********
  * Toggles
  */
 var toggle_persist = ElementFactory.createElement('toggle', {
     init    : toggleInit,
-    label   : 'Persist State',
+    label   : 'Save Progress',
     handler : handleToggle,
     name    : 'persistState',
     link    : handlePersistStateToggle
-});
-var toggle_flip = ElementFactory.createElement('toggle', {
-    init    : toggleInit,
-    label   : 'Flip Card on Hover',
-    handler : handleToggle,
-    name    : 'flipOnHover'
 });
 var toggle_counts = ElementFactory.createElement('toggle', {
     init    : toggleInit,
@@ -210,15 +225,36 @@ var toggle_timer = ElementFactory.createElement('toggle', {
     name    : 'showTimer',
     link    : handleTimerVisibility
 });
+var toggle_progress = ElementFactory.createElement('toggle', {
+    init    : toggleInit,
+    label   : 'Show Progress Bar',
+    handler : handleToggle,
+    name    : 'showTimer',
+    link    : handleProgressVisibility
+});
+/* ********** ********** ********** ********** **********
+ * Hash the config Settings
+ */
+var config_settings = [];
+config_settings.push(select_cycle);
+config_settings.push(select_limit);
+config_settings.push(select_mastery);
+config_settings.push(toggle_persist);
+config_settings.push(toggle_counts);
+config_settings.push(toggle_indicators);
+config_settings.push(toggle_timer);
+config_settings.push(toggle_progress);
 /* ********** ********** ********** ********** **********
  * Build UI
  */
 config_modal.body.appendChild(select_cycle.element);
+config_modal.body.appendChild(select_limit.element);
+config_modal.body.appendChild(select_mastery.element);
 config_modal.body.appendChild(toggle_persist.element);
-config_modal.body.appendChild(toggle_flip.element);
 config_modal.body.appendChild(toggle_counts.element);
 config_modal.body.appendChild(toggle_indicators.element);
 config_modal.body.appendChild(toggle_timer.element);
+config_modal.body.appendChild(toggle_progress.element);
 config_modal.body.appendChild(deck_loader.element);
 
 nav_control.element.appendChild(config_button.element);
@@ -239,6 +275,7 @@ FlashDeckMain.appendChild(timer.element);
 FlashDeckMain.appendChild(config_modal.element);
 FlashDeckMain.appendChild(response_modal.element);
 FlashDeckMain.appendChild(quiz.element);
+FlashDeckMain.appendChild(progress_bar.element);
 FlashDeckMain.appendChild(nav_control.element);
 FlashDeckMain.appendChild(footer.element);
 

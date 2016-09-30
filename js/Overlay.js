@@ -6,9 +6,8 @@
  *  @removeCallback
  */
 function Overlay( attrs ) {
-    
-    var self = this;
-    
+    'use strict';
+
     this.applyCallback = attrs.applyCallback || function() {};
     this.removeCallback = attrs.removeCallback || function() {};
     
@@ -19,16 +18,19 @@ function Overlay( attrs ) {
 }
 Overlay.prototype = Object.create(Element.prototype);
 Overlay.prototype.apply = function() {
+    'use strict';
     this.show();
     this.play();
     this.applyCallback();
 };
 Overlay.prototype.remove = function() {
+    'use strict';
     this.hide();
     this.pause();
     this.removeCallback();
 };
 Overlay.prototype.toggleOverlay = function() {
+    'use strict';
     var elem = this.element;
     if(elem.style.display === 'none') {
         this.apply();
@@ -37,8 +39,10 @@ Overlay.prototype.toggleOverlay = function() {
     }
 };
 Overlay.prototype.play = function() {
+    'use strict';
     this.element.classList.remove('stop_animation');
 };
 Overlay.prototype.pause = function() {
+    'use strict';
     this.element.classList.add('stop_animation');
 };

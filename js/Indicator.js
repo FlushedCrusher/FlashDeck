@@ -5,6 +5,7 @@
  *  @imgUrl
  */
 function Indicator( attrs ) {
+    'use strict';
     
     var self = this;
     

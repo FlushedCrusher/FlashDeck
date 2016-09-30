@@ -7,6 +7,7 @@
  *  @link
  */
 function Loader( attrs ) {
+    'use strict';
 
     var self = this;
     
@@ -45,18 +46,21 @@ function Loader( attrs ) {
 }
 Loader.prototype = Object.create(Element.prototype);
 Loader.prototype.setLoadedText = function( name ) {
+    'use strict';
     this.loaded_text.textContent = name || '';
 };
 Loader.prototype.handleLoader = function( files ) {
+    'use strict';
     console.log('->handleLoader');
     var _this = this;
-    var reader = new FileReader;
+    var reader = new FileReader();
     reader.onload = function(e) {
         _this.afterLoadHandler( reader.result );
-    }
+    };
     reader.readAsText(files[0], 'UTF-8');
     this.setLoadedText( files[0].name );
 };
 Loader.prototype.afterLoadHandler = function( result ) {
+    'use strict';
     this.onAfterLoad( result );
 };

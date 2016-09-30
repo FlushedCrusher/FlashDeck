@@ -9,9 +9,8 @@
  *  @resetCallback
  */
 function Quiz( attrs ) {
-    
-    var self = this;
-        
+    'use strict';
+ 
     this.deck = attrs.deck || new Deck();
     this.cycleMethod = attrs.cycleMethod || 'forward';
     this.cycleCallback = attrs.cycleCallback || function() {
@@ -54,25 +53,39 @@ function Quiz( attrs ) {
 }
 Quiz.prototype = Object.create(Element.prototype);
 Quiz.prototype.getCurrentIndex = function() {
+    'use strict';
     return parseInt( this.current_card.dataset.index );
 };
 Quiz.prototype.setDeck = function( deck ) {
+    'use strict';
     this.deck = deck;
     this.setCard( this.deck.getCard( 0 ) );
 };
 Quiz.prototype.setCard = function( card ) {
+    'use strict';
     this.front.textContent = card.phrase;
     this.back.textContent = card.definition;
     this.current_card.dataset.index = this.deck.getCardIndex( card );
-}
+};
 Quiz.prototype.setCycleMethod = function( _cycleEnum ) {
+    'use strict';
     this.cycleMethod = _cycleEnum.value;
 };
+Quiz.prototype.setDeckLimit = function( _limitEnum ) {
+    'use strict';
+    this.deck.setLimit( _limitEnum.value );
+};
+Quiz.prototype.setMasteryType = function( _masteryEnum ) {
+    'use strict';
+    this.deck.setMasteryType( _masteryEnum.value );
+};
 Quiz.prototype.flipCard = function() {
+    'use strict';
     this.flipCallback();
     this.current_card.classList.toggle('flipped');
 };
 Quiz.prototype.cycleCard = function() {
+    'use strict';
     this.cycleCallback();
     switch(this.cycleMethod) {
         case 'forward':
@@ -90,16 +103,19 @@ Quiz.prototype.cycleCard = function() {
     }
 };
 Quiz.prototype.cycleForward = function() {
+    'use strict';
     console.log('->cycleForward');
     var index = (this.getCurrentIndex() + 1) % this.deck.getCount();
     this.setCard( this.deck.getCard( index ) );
 };
 Quiz.prototype.cycleBackward = function() {
+    'use strict';
     console.log('->cycleBackward');
     var index = ((this.getCurrentIndex() || this.deck.getCount()) - 1) % this.deck.getCount();
     this.setCard( this.deck.getCard( index ) );
 };
 Quiz.prototype.cycleRandom = function() {
+    'use strict';
     console.log('->cycleRandom');
     var index = this.getCurrentIndex();
     var card;
@@ -110,25 +126,21 @@ Quiz.prototype.cycleRandom = function() {
     this.setCard( card );
 };
 Quiz.prototype.handleResponse = function( known, time ) {
-    this.responseCallback( known );
-    var index = this.getCurrentIndex();
-    var card = this.deck.cards[ index ];
-    card.handleResponse( known );
-    card.calculateAverageAnswerTime( time );
-    if(card.isMastered()) {
-        this.deck.addToMastered( index );
-    }
-    this.cycleCard();
+    'use strict';
+    this.responseCallback.call(this, known, time );
 };
 Quiz.prototype.clear = function() {
+    'use strict';
     this.deck = [];
     this.front.textContent = 'FRONT';
     this.back.textContent = 'BACK';
     this.current_card.dataset.index = 0;
 };
 Quiz.prototype.reset = function() {
+    'use strict';
     this.resetCallback();
 };
 Quiz.prototype.isFinished = function() {
+    'use strict';
     return this.deck.isMastered();
 };

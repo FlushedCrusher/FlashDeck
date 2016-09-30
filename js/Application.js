@@ -1,5 +1,12 @@
 // Application Control
-function emptyHandler() {};
+function emptyHandler() {}
+function initSettings() {
+    'use strict';
+    
+    config_settings.forEach(function(setting) {
+        setting.init();
+    });
+}
 
 var stateChangeEvent = new CustomEvent("stateChange", {});
 var typeChangeEvent = new CustomEvent("typeChange", {});
@@ -7,16 +14,21 @@ var stateCallbacks = {};
 var typeCallbacks = {};
 
 function stateChangeHandler() {
+    'use strict';
     setStateCallbacks();
 }
 function typeChangeHandler() {
+    'use strict';
     setTypeCallbacks();
 }
 function changeAppState( state ) {
+    'use strict';
     config.appState = state;
     document.dispatchEvent( stateChangeEvent );
 }
+/*exported changeAppType */
 function changeAppType( type ) {
+    'use strict';
     config.quizType = type;
     document.dispatchEvent( typeChangeEvent );
 }
@@ -24,23 +36,23 @@ function changeAppType( type ) {
 var firstLoadStateCallbacks = {
     onResetPress            : emptyHandler,
     onConfigPress           : function() {
+        'use strict';
         config_modal.toggle();
     },
     configOkayCallback      : function() {
+        'use strict';
         config.saveState();
     },
     configCancelCallback    : function() {
+        'use strict';
         config.applyState( config.state );
-        select_cycle.init();
-        toggle_flip.init();
-        toggle_counts.init();
-        toggle_indicators.init();
-        toggle_timer.init();
+        initSettings();
     },
     configResetCallback     : emptyHandler,
     configCloseCallback     : this.configCancelCallback,
     onNavLeftPress          : emptyHandler,
     onNavFlipPress          : function() {
+        'use strict';
         quiz.flipCard();
     },
     onNavRightPress         : emptyHandler,
@@ -52,32 +64,35 @@ var firstLoadStateCallbacks = {
 var initStateCallbacks = {
     onResetPress            : emptyHandler,
     onConfigPress           : function() {
+        'use strict';
         config_modal.toggle();
     },
     configOkayCallback      : function() {
+        'use strict';
         timer.start();
         changeAppState( config.stateEnum.QUIZZING );
         config.saveState();
     },
     configCancelCallback    : function() {
+        'use strict';
         changeAppState( config.stateEnum.FIRSTLOAD );
         deck_loader.setLoadedText();
         quiz.clear();
         config.applyState( config.state );
-        select_cycle.init();
-        toggle_flip.init();
-        toggle_counts.init();
-        toggle_indicators.init();
-        toggle_timer.init();
+        initSettings();
     },
     configResetCallback     : function() {
+        'use strict';
         quiz.deck.reset();
         correct.clear();
         incorrect.clear();
+        progress_bar.clear();
+        progress_bar.setMaxVal(quiz.deck.numCards() + quiz.deck.numMastered() );
     },
     configCloseCallback     : this.configCancelCallback,
     onNavLeftPress          : emptyHandler,
     onNavFlipPress          : function() {
+        'use strict';
         quiz.flipCard();
     },
     onNavRightPress         : emptyHandler,
@@ -89,38 +104,42 @@ var initStateCallbacks = {
 var quizzingStateCallbacks = {
     onResetPress            : emptyHandler,
     onConfigPress           : function() {
+        'use strict';
         config_modal.toggle();
         timer.toggleTimer();
         eventManager.removeWindowKeyListeners();
     },
     configOkayCallback      : function() {
+        'use strict';
         timer.toggleTimer();
         eventManager.addWindowKeyListeners();
         config.saveState();
     },
     configCancelCallback    : function() {
+        'use strict';
         timer.toggleTimer();
         eventManager.addWindowKeyListeners();
         config.applyState( config.state );
-        select_cycle.init();
-        toggle_flip.init();
-        toggle_counts.init();
-        toggle_indicators.init();
-        toggle_timer.init();
+        initSettings();
     },
     configResetCallback     : function() {
+        'use strict';
         quiz.deck.reset();
         correct.clear();
         incorrect.clear();
         timer.clear();
+        progress_bar.clear();
+        progress_bar.setMaxVal(quiz.deck.numCards() + quiz.deck.numMastered() );
         quiz.setCard( quiz.deck.cards[0] );
     },
     configCloseCallback     : this.configCancelCallback,
     onNavLeftPress          : function() {
+        'use strict';
         timer.clear();
         quiz.cycleBackward();
     },
     onNavFlipPress          : function() {
+        'use strict';
         eventManager.removeWindowKeyListeners();
         eventManager.addResponseKeyListeners();
         response_modal.show();
@@ -128,15 +147,17 @@ var quizzingStateCallbacks = {
         quiz.flipCard();
     },
     onNavRightPress         : function() {
+        'use strict';
         timer.clear();
         quiz.cycleForward();
     },
     onResponseReturnPress   : this.onResponseLeftPress,
     onResponseLeftPress     : function() {
+        'use strict';
         success_indicator.element.classList.add("flash");
         setTimeout(function() {
             success_indicator.element.classList.remove("flash");
-        }, config.flashDuration)
+        }, config.flashDuration);
         quiz.flipCard();
         quiz.handleResponse( true, timer.duration );
         eventManager.addWindowKeyListeners();
@@ -146,10 +167,11 @@ var quizzingStateCallbacks = {
         timer.toggleTimer();
     },
     onResponseRightPress    : function() {
+        'use strict';
         failure_indicator.element.classList.add("flash");
         setTimeout(function() {
             failure_indicator.element.classList.remove("flash");
-        }, config.flashDuration)
+        }, config.flashDuration);
         quiz.flipCard();
         quiz.handleResponse( false, timer.duration );
         eventManager.addWindowKeyListeners();
@@ -159,6 +181,7 @@ var quizzingStateCallbacks = {
         timer.toggleTimer();
     },
     onSpacePress            : function() {
+        'use strict';
         pause_overlay.toggleOverlay();
         timer.toggleTimer();
         if(eventManager.windowKeyExists) {
@@ -170,6 +193,7 @@ var quizzingStateCallbacks = {
 };
 var finishedStateCallbacks = {
     onResetPress            : function() {
+        'use strict';
         changeAppState( config.stateEnum.QUIZZING );
         quiz.deck.removeCard( 0 );
         quiz.flipCard();
@@ -178,11 +202,14 @@ var finishedStateCallbacks = {
         correct.clear();
         incorrect.clear();
         timer.clear();
+        progress_bar.clear();
+        progress_bar.setMaxVal(quiz.deck.numCards() + quiz.deck.numMastered() );
         quiz.setCard( quiz.deck.cards[0] );
         timer.start();
         reset_button.invisible();
     },
     onConfigPress           : function() {
+        'use strict';
         config_modal.toggle();
     },
     configOkayCallback      : emptyHandler,
@@ -202,6 +229,7 @@ var standardTypecallbacks = {};
 var reviewTypeCallbacks = {};
 
 function setStateCallbacks() {
+    'use strict';
     switch(config.appState.value) {
         case 'firstLoad':
             stateCallbacks = firstLoadStateCallbacks;
@@ -220,6 +248,7 @@ function setStateCallbacks() {
     }
 }
 function setTypeCallbacks() {
+    'use strict';
     switch(config.quizType.value) {
         case 'test':
             typeCallbacks = testTypeCallbacks;
@@ -237,46 +266,65 @@ function setTypeCallbacks() {
 
 // Event Handlers
 function windowLeftHandler() {
+    'use strict';
     stateCallbacks.onNavLeftPress();
 }
 function windowUpHandler() {
+    'use strict';
     stateCallbacks.onNavFlipPress();
 }
 function windowRightHandler() {
+    'use strict';
     stateCallbacks.onNavRightPress();
 }
 function responseReturnHandler() {
+    'use strict';
     stateCallbacks.onResponseReturnPress();
 }
 function responseLeftHandler() {
+    'use strict';
     stateCallbacks.onResponseLeftPress();
 }
 function responseRightHandler() {
+    'use strict';
     stateCallbacks.onResponseRightPress();
 }
 function windowSpaceHandler() {
+    'use strict';
     stateCallbacks.onSpacePress();
 }
 function persistStateLoadHandler() {
+    'use strict';
     console.log('Persist state loaded.');
     var data = JSON.parse(localStorage.flashDeck);
-    for(index in data.quiz.cards) {
-        quiz.deck.addCard( new Card( data.quiz.cards[index] ) );
+    for(var index in data.quiz.cards) {
+        if(data.quiz.cards.hasOwnProperty(index)) {
+            quiz.deck.addCard( new Card( data.quiz.cards[index] ) );
+        }
     }
     for(index in data.quiz.mastered) {
-        var lastIndex = quiz.deck.numCards();
-        quiz.deck.addCard( new Card( data.quiz.mastered[index] ) );
-        quiz.deck.addToMastered( lastIndex );
+        if(data.quiz.mastered.hasOwnProperty(index)) {
+            var lastIndex = quiz.deck.numCards();
+            quiz.deck.addCard( new Card( data.quiz.mastered[index] ) );
+            quiz.deck.addToMastered( lastIndex );
+        }
     }
     quiz.setCard( quiz.deck.getCard( data.quiz.currentIndex ) );
+    quiz.setCycleMethod(config.cycle);
+    quiz.setDeckLimit(config.deckLimit);
+    quiz.setMasteryType(config.masteryType);
     correct.setCount( data.correct );
     incorrect.setCount( data.incorrect );
     timer.setTime( data.timer );
+    progress_bar.setMaxVal(quiz.deck.numCards() + quiz.deck.numMastered() );
+    progress_bar.setCurrentVal( quiz.deck.numMastered() );
+    progress_bar.setCalculatedWidth();
     changeAppState( config.appState );
     timer.start();
     stateCallbacks.onSpacePress();
 }
 function persistStateUnloadHandler() {
+    'use strict';
     var json = {
         'state'     : config.getState(),
         'timesatamp': new Date().getTime(),
@@ -294,63 +342,106 @@ function persistStateUnloadHandler() {
 
 // Modal Handlers
 function responseOkayCallback() {
+    'use strict';
     stateCallbacks.onResponseLeftPress();
 }
 function responseCancelCallback() {
+    'use strict';
     stateCallbacks.onResponseRightPress();
 }
 function configCloseCallback() {
+    'use strict';
     stateCallbacks.configCloseCallback();
 }
 function configResetCallback() {
+    'use strict';
     stateCallbacks.configResetCallback();
 }
 function configOkayCallback() {
+    'use strict';
     stateCallbacks.configOkayCallback();
 }
 function configCancelCallback() {
+    'use strict';
     stateCallbacks.configCancelCallback();
 }
 
 // Button Handlers
 function onNavLeftPress() {
+    'use strict';
     stateCallbacks.onNavLeftPress();
 }
 function onNavFlipPress() {
+    'use strict';
     stateCallbacks.onNavFlipPress();
 }
 function onNavRightPress() {
+    'use strict';
     stateCallbacks.onNavRightPress();
 }
 function onConfigPress() {
+    'use strict';
     stateCallbacks.onConfigPress();
 }
 function onResetPress() {
+    'use strict';
     stateCallbacks.onResetPress();
 }
 
 // Select Handlers
 function selectInit() {
+    'use strict';
+    /*jshint validthis: true */
     var method = config[this.select.dataset.name];
     this.setSelect( method.name );
 }
 function handleSelectCycle() {
+    'use strict';
+    /*jshint validthis: true */
     config[this.select.dataset.name] = config.cycleEnum[this.select.value];
 }
 function handleCycleChange() {
+    'use strict';
+    /*jshint validthis: true */
     quiz.setCycleMethod(config.cycleEnum[this.select.value]);
+}
+function handleSelectLimit() {
+    'use strict';
+    /*jshint validthis: true */
+    config[this.select.dataset.name] = config.limitEnum[this.select.value];
+}
+function handleLimitChange() {
+    'use strict';
+    /*jshint validthis: true */
+    quiz.setDeckLimit(config.limitEnum[this.select.value]);
+}
+function handleSelectMastery() {
+    'use strict';
+    /*jshint validthis: true */
+    config[this.select.dataset.name] = config.masteryEnum[this.select.value];
+}
+function handleMasteryChange() {
+    'use strict';
+    /*jshint validthis: true */
+    quiz.setMasteryType(config.masteryEnum[this.select.value]);
 }
 
 // Toggle Handlers
 function toggleInit() {
+    'use strict';
+    /*jshint validthis: true */
     var on = config[this.toggle.dataset.name];
     this.setToggle(on);
 }
 function handleToggle() {
+    'use strict';
+    /*jshint validthis: true */
     var val = this.toggle.dataset.value;
     config[this.toggle.dataset.name] = (val === 'true') ? true : false;
 }
 function handleResponseCountVisibility() {
+    'use strict';
+    /*jshint validthis: true */
     var val = this.toggle.dataset.value;
     if(val === 'true') {
         correct.visible();
@@ -361,6 +452,8 @@ function handleResponseCountVisibility() {
     }
 }
 function handleResponseIndicatorVisibility() {
+    'use strict';
+    /*jshint validthis: true */
     var val = this.toggle.dataset.value;
     if(val === 'true') {
         success_indicator.visible();
@@ -371,6 +464,8 @@ function handleResponseIndicatorVisibility() {
     }
 }
 function handleTimerVisibility() {
+    'use strict';
+    /*jshint validthis: true */
     var val = this.toggle.dataset.value;
     if(val === 'true') {
         timer.visible();
@@ -379,6 +474,8 @@ function handleTimerVisibility() {
     }
 }
 function handlePersistStateToggle() {
+    'use strict';
+    /*jshint validthis: true */
     var val = this.toggle.dataset.value;
     if(val === 'true') {
         eventManager.addPersistStateListener();
@@ -386,19 +483,38 @@ function handlePersistStateToggle() {
         eventManager.removePersistStateListener();
     }
 }
+function handleProgressVisibility() {
+    'use strict';
+    /*jshint validthis: true */
+    var val = this.toggle.dataset.value;
+    if(val === 'true') {
+        progress_bar.visible();
+    } else {
+        progress_bar.invisible();
+    }
+}
 
 // Overlay Handlers
 function pauseApplyCallback() {
+    'use strict';
 
 }
 function pauseRemoveCallback() {
+    'use strict';
 
 }
-function fireworkApplyCallback() {}
-function fireworkRemoveCallback() {}
+function fireworkApplyCallback() {
+    'use strict';
+
+}
+function fireworkRemoveCallback() {
+    'use strict';
+    
+}
 
 // Loader Handler
 function handleLoadDeck( result ) {
+    'use strict';
     var deck = new Deck();
     var cards = result.split('\n');
     cards.forEach( function( card ) {
@@ -406,11 +522,15 @@ function handleLoadDeck( result ) {
         deck.addCard( new Card(_card[0], _card[1]));
     });
     quiz.setDeck( deck );
+    quiz.setCycleMethod(config.cycle);
+    quiz.setDeckLimit(config.deckLimit);
+    quiz.setMasteryType(config.masteryType);
     changeAppState( config.stateEnum.INITIAL );
 }
 
 // Quiz Handlers
 function cycleCallback() {
+    'use strict';
     if(quiz.isFinished()) {
         quiz.deck.cards.push( new Card(config.endMessageFront, config.endMessageBack) );
         changeAppState( config.stateEnum.FINISHED );
@@ -423,15 +543,32 @@ function cycleCallback() {
         }, 2000);
     }
 }
-function flipCallback() {}
-function responseCallback( known ) {
+function flipCallback() {
+    'use strict';
+    
+}
+function responseCallback( known, time ) {
+    'use strict';
+    /*jshint validthis: true */
     if(known) {
         correct.increment();
     } else {
         incorrect.increment();
     }
+    var index = this.getCurrentIndex();
+    var card = this.deck.cards[ index ];
+    card.handleResponse( known );
+    card.calculateAverageAnswerTime( time );
+    if(card.isMastered()) {
+        this.deck.addToMastered( index );
+        progress_bar.setMaxVal(quiz.deck.numCards() + quiz.deck.numMastered() );
+        progress_bar.setCurrentVal( quiz.deck.numMastered() );
+        progress_bar.setCalculatedWidth();
+    }
+    this.cycleCard();
 }
 function resetCallback() {
+    'use strict';
     correct.clear();
     incorrect.clear();
 }

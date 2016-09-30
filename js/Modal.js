@@ -11,11 +11,12 @@
  *  @cancelCallback
  */
 function Modal( attrs ) {
+    'use strict';
     
     var self = this;
     var styleMod = attrs.styleMod ? '-' + attrs.styleMod : '';
     
-    this.element = document.createElement('div')
+    this.element = document.createElement('div');
     this.element.classList.add('modal');
     
     this.content = document.createElement('div');
@@ -84,17 +85,17 @@ function Modal( attrs ) {
 }
 Modal.prototype = Object.create(Element.prototype);
 Modal.prototype.handleClose = function() {
-    console.log('->handleClose');
+    'use strict';
     this.hide();
 };
 Modal.prototype.handleReset = function() {
-    console.log('->handleReset');
+    'use strict';
 };
 Modal.prototype.handleOkay = function() {
-    console.log('->handleOkay');
+    'use strict';
     this.hide();
 };
 Modal.prototype.handleCancel = function() {
-    console.log('->handleCancel');
+    'use strict';
     this.hide();
 };
