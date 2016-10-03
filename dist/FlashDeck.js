@@ -1,4 +1,4 @@
-/*! flashdeck - v1.2.0 - 2016-09-29 */
+/*! flashdeck - v1.2.0 - 2016-10-01 */
 // Application Control
 function emptyHandler() {}
 function initSettings() {
@@ -1759,11 +1759,51 @@ Select.prototype.addOption = function( key, value ) {
 function Stat( attrs ) {
   'use strict';
   
-  this.data = (attrs.data) ? this.setData( attrs.data ) : [];
-  this.k = attrs.k || 0;
+  this.data = undefined;
+  if(attrs && attrs.data) {
+    this.setData( attrs.data );
+  } else {
+    this.data = [];
+  }
+  this.k = (attrs && attrs.k) ? attrs.k : 0;
   this.centroids = [];
+  this.result = [];
   
 }
+Stat.prototype.run = function( times ) {
+  'use strict';
+  times = times || 1;
+  for(var i = 0; i < times; i++) {
+    console.debug(this.step());
+    this.reset();
+  }
+};
+Stat.prototype.step = function() {
+  'use strict';
+  var iteration = [];
+  var cycles = 0;
+  this.seedCentroids();
+  do{
+    this.result = this.calculateResult();
+    this.groupElements();
+    this.calculateCentroids();
+    iteration = this.calculateResult();
+    cycles++;
+  } while( !this.areEqualArray(this.result, iteration) );
+  return cycles;
+};
+Stat.prototype.clearResult = function() {
+  'use strict';
+  this.result = [];
+};
+Stat.prototype.reset = function() {
+  'use strict';
+  this.centroids = [];
+  this.result = [];
+  this.data.forEach(function( element ) {
+    element.group = undefined;
+  });
+};
 Stat.prototype.setData = function( data ) {
   'use strict';
   var arr = data.map(function( element ) {
@@ -1807,17 +1847,20 @@ Stat.prototype.groupElements = function() {
   this.data.forEach(function( element ) {
     var tmpDist = [];
     for(var i = 0; i < self.k; i++) {
-      tmpDist.push(self.getDistance2( element.value ), slef.centroids[i]);
+      var dist = self.getDistance2( element.value, self.centroids[i] );
+      tmpDist.push(dist);
     }
-    element.group = self.centroids.indexOf( self.minOfArray( tmpDist ) );
+    var min = self.minOfArray( tmpDist );
+    element.group = tmpDist.indexOf( min );
   });
 };
 Stat.prototype.calculateCentroids = function() {
   'use strict';
   for(var i = 0; i < this.k; i++) {
-    this.centroids[i] = this.avgOfElements2(this.data.filter(function(element) {
-      return element.group === i;
-    }));
+    this.centroids[i] = this.avgOfElements2(this.data.filter(inGroup.bind(this)));
+  }
+  function inGroup( element ) {
+    return element.group === i;
   }
 };
 Stat.prototype.getDistance2 = function( d1, d2 ) {
@@ -1829,15 +1872,36 @@ Stat.prototype.getDistance2 = function( d1, d2 ) {
 };
 Stat.prototype.minOfArray = function( arr ) {
   'use strict';
-  return Math.min.apply(null, arr);
+  var min = Math.min.apply(null, arr);
+  return min;
+};
+Stat.prototype.areEqualArray = function( array1, array2 ) {
+  'use strict';
+  return (array1.length === array2.length) && array1.every(function(element, index) {
+    return element === array2[index];
+  });
 };
 Stat.prototype.avgOfElements2 = function( arr ) {
   'use strict';
   var len = arr.length;
-  var avg = {};
+   var avg = {
+    0: 0,
+    1: 0
+  };
   arr.forEach(function( element ) {
-    
+    avg[0] += element.value[0];
+    avg[1] += element.value[1];
   });
+  avg[0] = avg[0] / (len || 1);
+  avg[1] = avg[1] / (len || 1);
+  return avg;
+};
+Stat.prototype.calculateResult = function() {
+  'use strict';
+  var res = this.data.map(function( element ) {
+    return element.group;
+  });
+  return res;
 };
 /**
  * Timer Element
