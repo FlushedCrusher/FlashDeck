@@ -1,4 +1,4 @@
-/*! flashdeck - v1.2.0 - 2016-09-29 */
+/*! flashdeck - v1.2.0 - 2016-10-03 */
 .nav {
     font-size: 60px;
     color:#333; 
@@ -136,6 +136,31 @@ a:hover {
     top: 0;
     left: 0;
     margin: 15px;
+}
+.bar-graph {
+  text-align: center;
+}
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
 }
 .footer {
     z-index: -1;

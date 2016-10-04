@@ -13,6 +13,7 @@ ElementFactory.registerElement('counter', Counter);
 ElementFactory.registerElement('loader', Loader);
 ElementFactory.registerElement('progress', ProgressBar);
 ElementFactory.registerElement('quiz', Quiz);
+ElementFactory.registerElement('graph', Graph);
 /* ********** ********** ********** ********** **********
  * Configuration
  */
@@ -233,6 +234,10 @@ var toggle_progress = ElementFactory.createElement('toggle', {
     link    : handleProgressVisibility
 });
 /* ********** ********** ********** ********** **********
+ * Graphs
+ */
+var bar_graph = ElementFactory.createElement('graph',{});
+/* ********** ********** ********** ********** **********
  * Hash the config Settings
  */
 var config_settings = [];
@@ -277,6 +282,7 @@ FlashDeckMain.appendChild(response_modal.element);
 FlashDeckMain.appendChild(quiz.element);
 FlashDeckMain.appendChild(progress_bar.element);
 FlashDeckMain.appendChild(nav_control.element);
+FlashDeckMain.appendChild(bar_graph.element);
 FlashDeckMain.appendChild(footer.element);
 
 /* ********** ********** ********** ********** **********
@@ -290,3 +296,4 @@ setStateCallbacks( config.appState );
 setTypeCallbacks( config.quizType );
 response_modal.hide('reset_button');
 response_modal.hide('close_button');
+bar_graph.map();

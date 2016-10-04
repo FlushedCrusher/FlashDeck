@@ -20,8 +20,8 @@ Stat.prototype.run = function( times ) {
   'use strict';
   times = times || 1;
   for(var i = 0; i < times; i++) {
-    console.debug(this.step());
     this.reset();
+    console.debug(this.step());
   }
 };
 Stat.prototype.step = function() {
