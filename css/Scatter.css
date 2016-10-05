@@ -1,21 +1,23 @@
-.bar-graph {
+.scatter-plot {
   text-align: center;
 }
-.bar {
+
+.point {
   fill: steelblue;
 }
 
-.bar:hover {
-  fill: brown;
+.c-point {
+  fill: green;
 }
 
-.axis {
-  font: 10px sans-serif;
+.point:hover {
+  fill: brown;
 }
 
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: grey;
+  stroke-width: 1;
   shape-rendering: crispEdges;
 }

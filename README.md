@@ -17,6 +17,10 @@ Version 1.2.0
 + Configuration help documented
 + Progress bar
 
+## Sample Screen Shot ##
+
+![screen-cap](https://cloud.githubusercontent.com/assets/21090677/19100453/d1ba8d82-8a73-11e6-87be-d6eff47e5099.png)
+
 ## Installation ##
 
 This is an optional step, if you want to serve the app statically.

@@ -49,7 +49,7 @@ module.exports = function(grunt) {
       ],
       tasks:
       [
-        'concat:dist_js',
+        'concat',
         'jshint'
       ]
     }

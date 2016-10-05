@@ -1,4 +1,4 @@
-/*! flashdeck - v1.2.0 - 2016-10-03 */
+/*! flashdeck - v1.2.0 - 2016-10-04 */
 .nav {
     font-size: 60px;
     color:#333; 
@@ -159,9 +159,6 @@ a:hover {
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
-  display: none;
-}
 .footer {
     z-index: -1;
     position:fixed;
@@ -542,6 +539,29 @@ a:hover {
     -moz-transform: rotateY( 180deg );
     -o-transform: rotateY( 180deg );
     transform: rotateY( 180deg );
+}
+.scatter-plot {
+  text-align: center;
+}
+
+.point {
+  fill: steelblue;
+}
+
+.c-point {
+  fill: green;
+}
+
+.point:hover {
+  fill: brown;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
 }
 .select_span {
     z-index: 1;

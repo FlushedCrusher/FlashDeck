@@ -78,9 +78,22 @@ Stat.prototype.getLength = function() {
 };
 Stat.prototype.seedCentroids = function() {
   'use strict';
-  for(var i = 0; i < this.k; i++) {
-    this.centroids.push( this.getRandomElement().value );
-  }
+  var self = this;
+  this.centroids.push({
+    0: 0,
+    1: 0
+  });
+  this.centroids.push({
+    0: Math.max.apply(Math,self.data.map(function(o){return o[0];})) /2,
+    1: Math.max.apply(Math,self.data.map(function(o){return o[1];})) /2
+  });
+  this.centroids.push({
+    0: Math.max.apply(Math,self.data.map(function(o){return o[0];})),
+    1: Math.max.apply(Math,self.data.map(function(o){return o[1];}))
+  });
+  // for(var i = 0; i < this.k; i++) {
+  //   this.centroids.push( this.getRandomElement().value );
+  // }
 };
 Stat.prototype.getRandomElement = function() {
   'use strict';

@@ -14,6 +14,7 @@ ElementFactory.registerElement('loader', Loader);
 ElementFactory.registerElement('progress', ProgressBar);
 ElementFactory.registerElement('quiz', Quiz);
 ElementFactory.registerElement('graph', Graph);
+ElementFactory.registerElement('scatter', Scatter);
 /* ********** ********** ********** ********** **********
  * Configuration
  */
@@ -237,6 +238,7 @@ var toggle_progress = ElementFactory.createElement('toggle', {
  * Graphs
  */
 var bar_graph = ElementFactory.createElement('graph',{});
+var scatter_graph = ElementFactory.createElement('scatter',{});
 /* ********** ********** ********** ********** **********
  * Hash the config Settings
  */
@@ -283,6 +285,7 @@ FlashDeckMain.appendChild(quiz.element);
 FlashDeckMain.appendChild(progress_bar.element);
 FlashDeckMain.appendChild(nav_control.element);
 FlashDeckMain.appendChild(bar_graph.element);
+FlashDeckMain.appendChild(scatter_graph.element);
 FlashDeckMain.appendChild(footer.element);
 
 /* ********** ********** ********** ********** **********
@@ -296,4 +299,59 @@ setStateCallbacks( config.appState );
 setTypeCallbacks( config.quizType );
 response_modal.hide('reset_button');
 response_modal.hide('close_button');
-bar_graph.map();
+
+var attrs = {
+    k: 3,
+    data: [
+      {
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      },
+      {
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      },
+      {
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      },
+      {
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      },
+      {
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      },
+      {
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      },
+      {
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      },
+      {
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      },
+      {
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      }
+      ,{
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      },{
+        0: (Math.random() * 10),
+        1: (Math.random() * 10)
+      }
+    ]
+  };
+var stat = new Stat(attrs);
+stat.run();
+bar_graph.map(stat.result);
+scatter_graph.map({
+  data: attrs.data,
+  centroids: stat.centroids
+});

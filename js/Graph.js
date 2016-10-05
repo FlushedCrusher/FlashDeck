@@ -1,69 +1,15 @@
 /**
  * Graph Element
  * @param {Object} attrs
- *  @id
- *  @text
- *  @shadow
- *  @handler
+ *  @k
+ *  @data
  */
 function Graph( attrs ) {
   'use strict';
 
   this.element= document.createElement('div');
   this.element.classList.add('bar-graph');
-  
-  var ats = {
-    k: 3,
-    data: [
-      {
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      },
-      {
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      },
-      {
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      },
-      {
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      },
-      {
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      },
-      {
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      },
-      {
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      },
-      {
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      },
-      {
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      }
-      ,{
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      },{
-        0: (Math.random() * 10),
-        1: (Math.random() * 10)
-      }
-    ]
-  };
-  
-  this.stat = new Stat(ats);
-  this.stat.run();
-  
+    
   this.data = [
     {
       category: 'Don\'t Know',
@@ -101,15 +47,13 @@ function Graph( attrs ) {
     .attr("width", this.width + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom)
     .append("g")
-    .attr("transform", 
+    .attr("transform",
       "translate(" + this.margin.left + "," + this.margin.top + ")");
-
 
 }
 Graph.prototype = Object.create(Element.prototype);
 Graph.prototype.map = function( data ) {
   'use strict';
-  data = data || this.stat.result;
   var self = this;
   data.forEach(function( element ) {
     var index = parseInt(element);

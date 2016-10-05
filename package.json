@@ -1,6 +1,6 @@
 {
   "name": "flashdeck",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "A project for storing and quizzing flash cards.",
   "main": "html/index.html",
   "directories": {
