@@ -113,6 +113,11 @@ var footer = ElementFactory.createElement('group', {
         'footer'
     ]
 });
+var stat_group = ElementFactory.createElement('group', {
+    clsList  : [
+        'stat-group'
+    ]
+});
 /* ********** ********** ********** ********** **********
  * Indicators
  */
@@ -276,6 +281,9 @@ quiz.element.appendChild(incorrect.element);
 footer.element.appendChild(success_indicator.element);
 footer.element.appendChild(failure_indicator.element);
 
+stat_group.element.appendChild(bar_graph.element);
+stat_group.element.appendChild(scatter_graph.element);
+
 FlashDeckMain.appendChild(pause_overlay.element);
 FlashDeckMain.appendChild(firework_overlay.element);
 FlashDeckMain.appendChild(timer.element);
@@ -284,8 +292,7 @@ FlashDeckMain.appendChild(response_modal.element);
 FlashDeckMain.appendChild(quiz.element);
 FlashDeckMain.appendChild(progress_bar.element);
 FlashDeckMain.appendChild(nav_control.element);
-FlashDeckMain.appendChild(bar_graph.element);
-FlashDeckMain.appendChild(scatter_graph.element);
+FlashDeckMain.appendChild(stat_group.element);
 FlashDeckMain.appendChild(footer.element);
 
 /* ********** ********** ********** ********** **********

@@ -36,22 +36,26 @@ a:hover {
  * Buttons
  */
 #config_button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    margin: 15px;
-    font-size: 20px;
-    background:transparent url('../images/gear.png') no-repeat center;
-    background-size:20px 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  margin: 15px;
+  font-size: 20px;
+  background:transparent url('../images/gear.png') no-repeat center;
+  background-size:20px 20px;
 }
 #reset_button {
-    z-index: 9999;
-    visibility: hidden;
-    font-size: 30px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 15px;
+  z-index: 9999;
+  visibility: hidden;
+  font-size: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 15px;
+}
+.stat-group {
+  text-align: center;
+  margin: 0px auto;
 }

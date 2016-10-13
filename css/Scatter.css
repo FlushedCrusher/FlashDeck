@@ -1,5 +1,5 @@
 .scatter-plot {
-  text-align: center;
+  display: inline-block;
 }
 
 .point {
